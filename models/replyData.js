@@ -1,7 +1,7 @@
 let db = require('../db/db');
 
 function addReplyPost(replydetail,timestamp,userid,postid) {
-    let sql = `INSERT INTO knowledge_schema.reply (replydetail, "timestamp","userid","postid") VALUES('${replydetail}', '${timestamp}','${userid}','${postid}')`;
+    let sql = `INSERT INTO reply (replydetail, "timestamp","userid","postid") VALUES('${replydetail}', '${timestamp}','${userid}','${postid}')`;
     return db.query(sql);
 }
 
