@@ -36,3 +36,20 @@ let getConversation = data => {
       });
   });
 };
+
+let getAllConversation = data => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      `
+          SELECT * FROM ${table} 
+          WHERE 'to' = ${data.to}
+      `
+    )
+      .then(data => {
+        resolve(data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
