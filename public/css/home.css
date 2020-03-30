@@ -1,0 +1,97 @@
+body {
+    font-family: 'Lobster', cursive;
+}
+
+span {
+    font-weight: bold;
+}
+
+#submitbutton {
+    padding: 7px;
+    background-color: solid rgb(184, 181, 181);
+}
+
+#container .noshowborder {
+    border: 0px;
+
+}
+#navbar {
+    background-color: #f0ad4e;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#headerform {
+    
+}
+
+#container {
+    padding-top: 25px;
+    width: 400px;
+    margin:0 auto;
+}
+
+#container form {
+    border:1px solid rgb(184, 181, 181);
+    padding: 15px 15px;
+    
+}
+#container form h3 {
+    margin-top: 5px;
+}
+
+#topInput {
+    width: 40%;
+}
+
+#inputForm {
+    display: none;
+    text-align: center;
+}
+
+#addArtistButton {
+    margin: 5px;
+    width: 20ppx
+}
+
+#inputForm input {
+    display: inline-block;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+#addArtistButton {
+    display: inline;
+    width: 25%;
+}
+#profilesDiv {
+    margin: 0 20px;
+    border:1px solid rgb(184, 181, 181);
+}
+.profile {  
+    padding: 10px;
+    position: relative;
+    border-bottom: 1px solid rgb(184, 181, 181);
+}
+.profile img {
+    float:left;
+    padding: 0 10px;
+}
+
+.profile:hover {
+    background-color: rgb(184, 181, 181);
+}
+
+.deleteButton {
+    position:absolute;
+    right: 10px;
+    bottom: 40px;
+    float:right;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+}

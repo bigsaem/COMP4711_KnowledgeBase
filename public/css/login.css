@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  ::-webkit-input-placeholder {
+    font-style: italic;
+  }
+  :-moz-placeholder {
+    font-style: italic;  
+  }
+  ::-moz-placeholder {
+    font-style: italic;  
+  }
+  :-ms-input-placeholder {  
+    font-style: italic; 
+  }
+  
+  #form {
+    max-width:400px;
+    margin:auto;
+    padding: 10px;
+    border:1px solid rgb(184, 181, 181);
+    background-color: #f7f7f7;
+  }
+  /* Style the input container */
+  .input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Style the form icons */
+  .icon {
+    padding: 10px;
+    background: #f0ad4e;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  /* Style the input fields */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border: 2px solid #f0ad4e;
+  }
+  
+  /* Set a style for the submit button */
+  .btn {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
