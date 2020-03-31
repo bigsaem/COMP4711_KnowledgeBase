@@ -1,18 +1,20 @@
 const profileData = require("../models/profileData");
 
-exports.signup = (req, res, next) => {
-  let username = req.query.username;
-  let password = req.query.password;
-  let firstname = req.query.firstname;
-  let lastname = req.query.lastname;
-  let email = req.query.email;
+exports.signin = (req, res, next) => {
+  res.render('signup', { signuphbs: true });
+}
 
-  let data = {
-    username,
-    password,
-    firstname,
-    lastname,
-    email
-  };
-  profileData.add(data);
-};
+exports.signup = (req, res, next) => {
+
+  res.render('signup', { signuphbs: true });
+
+}
+
+exports.signup_additionalInfo = (req, res, next) => {
+  res.render('signup', { signuphbs: true });
+}
+
+exports.signout = (req, res, next) => {
+  res.render('signup', { signuphbs: true });
+}
+

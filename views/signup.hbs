@@ -1,0 +1,53 @@
+<div id="signup-register">
+    <div id="signup-navbar" class="row">
+        <div class="col">
+            <span id="signup-title">
+                knowledge<span id="signup-title-base">Base</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <br />
+    </div>
+
+    <div class="row">
+        <div id="signup-words" class="col">
+            Let us <br />know a <br />little more <br />about you
+        </div>
+        <div class="col">
+
+            <div id="login-preregistration">
+                <form action="/signup/additional_information" method="POST">
+                    <div class="form-group row">
+                        <input class="col form-control" type="url" name="imageurl" placeholder="imageurl" />
+                    </div>
+
+                    <div class="row form-group">
+                        <textarea class="col form-control" rows="5" name="about"
+                            placeholder="a few lines about yourself..."></textarea>
+                    </div>
+
+                    <div class="row form-group">
+                        <input class="col form-control" type="text" name="country" placeholder="country" />
+                    </div>
+
+                    <div class="row form-group">
+                        <input class="col form-control" placeholder="date of birth" type="text"
+                            onfocus="(this.type='date')" onblur="(this.type='text')" />
+                    </div>
+
+                    <div class="row form-group">
+                        <button id="signup-submit-btn" class="btn" type="submit">Complete
+                            Registration</button>
+                    </div>
+
+
+            </div>
+            </form>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>

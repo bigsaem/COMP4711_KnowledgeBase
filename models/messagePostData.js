@@ -13,6 +13,11 @@ function getMessagePost(userid) {
   return db.query(sql);
 }
 
+function getPostById(postid) {
+    let sql = `SELECT * FROM messagepost where postid = '${postid}'`;
+    return db.query(sql);
+}
+
 function getTopicPost(topic) {
   let sql = `SELECT * FROM messagepost where topic like '${topic}'`;
   return db.query(sql);
@@ -24,8 +29,17 @@ function getSubjectPost(subject) {
 }
 
 module.exports = {
+<<<<<<< HEAD
   addPost: addMessagePost,
   getPost: getMessagePost,
   getTopic: getTopicPost,
   getsubject: getSubjectPost
 };
+=======
+    addPost : addMessagePost,
+    getPost : getMessagePost,
+    getTopic : getTopicPost,
+    getsubject : getSubjectPost,
+    getPostId : getPostById,
+}
+>>>>>>> db8194fe7e5414a811486a2678c44fcf1801fbeb
