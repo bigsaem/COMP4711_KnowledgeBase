@@ -1,31 +1,54 @@
-<!DOCTYPE html>
-<html>
+<div id="login-register">
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Add icon library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
-</head>
-
-<body>
-
-  <form id="form" action="/" method="POST">
-    
-    <h2>Member Login</h2>
-    <div class="input-container">
-      <i class="fa fa-user icon"></i>
-      <input class="input-field" type="text" placeholder="Username" name="usrnm">
+  <div id="login-navbar" class="row">
+    <div class="col">
+      <span id="login-title">
+        knowledge<span id="login-title-base">Base</span>
+      </span>
     </div>
-
-    <div class="input-container">
-      <i class="fa fa-key icon"></i>
-      <input class="input-field" type="password" placeholder="Password" name="psw">
+    <div class="col">
+      <form id="login-navbarsubmit" action="/login" method="POST">
+        <div class="row form-group">
+          <input class="form-control col form-content-spacing" type="email" name="email" placeholder="email" />
+          <input class="form-control col form-content-spacing" type="password" name="password" placeholder="password" />
+          <button class="btn btn-primary col" type="submit">Login</button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <button type="submit" class="btn">Login</button>
-  </form>
+  <div class="row">
+    <div class="col">
+      <img id="login-main-image" src="/images/vector_knowledge.jpg">
+    </div>
+    <div class="col">
+      <div class="row">
+        <span id="login-preregistration-title">Join the world's largest <br/>community for knowledge <br/>sharing</span>
+      </div>
 
-</body>
+      <div id="login-preregistration">
+        <form action="/register" method="POST">
+          <div id="login-preregistration-names" class="form-group">
+            <div class="row">
+              <input class="col form-control form-content-spacing" type="text" name="firstname" placeholder="firstname" />
+              <input class="col form-control form-content-spacing" type="text" name="lastname" placeholder="lastname" />
+            </div>
+          </div>
 
-</html>
+          <div class="row form-group">
+            <input class="col form-control form-content-spacing" type="email" name="email" placeholder="email" />
+          </div>
+
+          <div class="row form-group">
+            <input class="col form-control form-content-spacing" type="password" name="password" placeholder="password" />
+          </div>
+
+          <div class="row form-group">
+            <input class="col form-control form-content-spacing" type="password" name="confirmpassword" placeholder="confirm password" />
+          </div>
+
+          <button id="login-preregistration-btn" class="btn btn-primary" type="submit">Register</button>
+      </div>
+      </form>
+    </div>
+  </div>

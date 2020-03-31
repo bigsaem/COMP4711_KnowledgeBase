@@ -43,9 +43,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+/* TODO: This should take us to a controller which checks if we're logged in,  
+   if not, renders the login view, else home view */
 app.get('/', (req,res) => {
-  res.render('home', {login:true});
+  res.render('login', {loginhbs:true});
 })
 
 
