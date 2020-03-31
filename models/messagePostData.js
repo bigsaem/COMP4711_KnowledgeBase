@@ -10,6 +10,11 @@ function getMessagePost(userid) {
     return db.query(sql);
 }
 
+function getPostById(postid) {
+    let sql = `SELECT * FROM messagepost where postid = '${postid}'`;
+    return db.query(sql);
+}
+
 function getTopicPost(topic) {
     let sql = `SELECT * FROM messagepost where topic like '${topic}'`;
     return db.query(sql);
@@ -25,4 +30,5 @@ module.exports = {
     getPost : getMessagePost,
     getTopic : getTopicPost,
     getsubject : getSubjectPost,
+    getPostId : getPostById,
 }
