@@ -24,7 +24,7 @@
   }
   
   #login-register {
-      padding-top: 30px;
+      padding-top: 10px;
       width: 100%;
   }
   
@@ -41,6 +41,7 @@
   
   #login-preregistration-title {
       font-size: 30pt;
+      padding-bottom: 15px;
   }
   
   #login-preregistration-btn {

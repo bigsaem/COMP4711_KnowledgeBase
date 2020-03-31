@@ -15,20 +15,21 @@
 
 
 const express = require('express');
+
 const accountController = require('../controllers/accountController.js');
-const discussionController = require('../controllers/discussionController.js');
-const messageController = require('../controllers/messageController.js');
-const navigationController = require('../controllers/navigationController.js');
-const profileController = require('../controllers/profileController.js');
-const searchController = require('../controllers/searchController.js');
+// const discussionController = require('../controllers/discussionController.js');
+// const messageController = require('../controllers/messageController.js');
+// const navigationController = require('../controllers/navigationController.js');
+// const profileController = require('../controllers/profileController.js');
+// const searchController = require('../controllers/searchController.js');
 
 const router = express.Router();
 
 // Account Routes
-router.post('/signout',  accountController.signout);
-router.post('/signin',  accountController.signin);
-router.post('/signup',  accountController.signup);
-router.post('/signup/additional_information',  accountController.signup_additionalInfo);
+router.post('/signout', accountController.signout);
+router.post('/signin', accountController.signin);
+router.post('/signup', accountController.signup);
+router.post('/signup/additional_information', accountController.signup_additionalInfo);
 
 /* TODO:
 
@@ -56,18 +57,18 @@ and content (back to the profile page)
 */
 
 
-// Sample routes
+/* Sample routes
 
 // User logout router
-router.get('/logout', (req,res) => {
-    res.render('login', {login:false});
+router.get('/logout', (req, res) => {
+    res.render('login', { login: false });
 })
 
 // User login router
-router.post('/',  loginController.getAllPeople);
+router.post('/', loginController.getAllPeople);
 
 // Add an artist router
-router.post('/add',  peopleController.addPerson);
+router.post('/add', peopleController.addPerson);
 
 // Search for an artist name
 router.post('/search', peopleController.findPerson);
@@ -75,4 +76,5 @@ router.post('/search', peopleController.findPerson);
 // Delete artist
 router.post('/delete', peopleController.deletePerson);
 
+*/
 module.exports = router;
