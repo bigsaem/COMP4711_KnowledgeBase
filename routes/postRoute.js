@@ -4,7 +4,7 @@ const discussionController = require("../controllers/discussionController");
 
 router.get("/post/create", discussionController.viewCreatePage);
 
-router.get("/post/createPost", discussionController.createPost);
+router.post("/post/createPost", discussionController.createPost);
 
 router.get("/post/deletePost", discussionController.deletePost);
 

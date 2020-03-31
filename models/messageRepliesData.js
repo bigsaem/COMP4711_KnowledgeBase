@@ -29,7 +29,7 @@ let getConversation = data => {
       `
     )
       .then(data => {
-        resolve(data);
+        resolve(data.rows);
       })
       .catch(err => {
         reject(err);
@@ -46,10 +46,16 @@ let getAllConversation = data => {
       `
     )
       .then(data => {
-        resolve(data);
+        resolve(data.rows);
       })
       .catch(err => {
         reject(err);
       });
   });
+};
+
+module.exports = {
+  post: postMessage,
+  getOne: getConversation,
+  getAll: getAllConversation
 };

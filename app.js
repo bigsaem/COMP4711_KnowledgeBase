@@ -58,5 +58,5 @@ app.get("/", (req, res) => {
 // SERVER //
 ////////////
 
-app.listen(80);
+app.listen(8080);
 console.log("node server is running on port 80");
