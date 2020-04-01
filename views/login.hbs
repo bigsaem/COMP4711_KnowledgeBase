@@ -9,11 +9,14 @@
       </span>
     </div>
     <div class="col">
-      <form id="login-navbarsubmit" action="/signin" method="POST">
+      <form id="login-navbarsubmit" action="/auth/signin" method="POST">
         <div class="row form-group">
           <input class="form-control col form-content-spacing" type="email" name="email" placeholder="email" />
           <input class="form-control col form-content-spacing" type="password" name="password" placeholder="password" />
           <button class="btn btn-primary col" type="submit">Login</button>
+          {{#if signinFail}}
+              <b class="error">Log in failed</b>
+          {{/if}}
         </div>
       </form>
     </div>
@@ -30,7 +33,7 @@
       </div>
 
       <div id="login-preregistration">
-        <form action="/signup" method="POST" oninput='confirmpassword.setCustomValidity(confirmpassword.value != password.value ? "Passwords do not match." : "")'>
+        <form action="/auth/signup" method="POST" oninput='confirmpassword.setCustomValidity(confirmpassword.value != password.value ? "Passwords do not match." : "")'>
           <div id="login-preregistration-names" class="form-group">
             <div class="row">
               <input class="col form-control form-content-spacing" type="text" name="firstname"
@@ -52,7 +55,11 @@
             <input class="col form-control form-content-spacing" type="password" name="confirmpassword"
               placeholder="confirm password" />
           </div>
-
+          {{#if signupFail}}
+            <div class="rwo error-msg">
+              <b>Please fill all the input boxes</b>
+            </div>
+          {{/if}}
           <button id="login-preregistration-btn" class="btn btn-primary" type="submit">Register</button>
       </div>
       </form>

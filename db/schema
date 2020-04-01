@@ -1,4 +1,3 @@
-
 CREATE TABLE profile (
 	userid serial NOT NULL,
 	username varchar(50) NOT NULL,
@@ -6,7 +5,7 @@ CREATE TABLE profile (
 	firstname varchar(50) NOT NULL,
 	lastname varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
-    CONSTRAINT messagepost_pk PRIMARY KEY (userid),
+    CONSTRAINT profile_pk PRIMARY KEY (userid)
 );
 
 
@@ -22,10 +21,55 @@ CREATE TABLE messagepost (
 );
 
 
-CREATE TABLE knowledge_schema.reply (
+CREATE TABLE reply (
 	replyid serial NOT NULL,
 	postid serial NOT NULL,
 	userid serial NOT NULL,
 	replydetail varchar(200) NULL,
-	"timestamp" timestamp NULL
+	"timestamp" timestamp NULL,
+	CONSTRAINT reply_pk PRIMARY KEY (replyid),
+	CONSTRAINT reply_post_fk FOREIGN KEY (postid) REFERENCES messagepost(postid),
+	CONSTRAINT reply_user_fk FOREIGN KEY (userid) REFERENCES profile(userid)
+);
+
+	
+CREATE TABLE messagereply (
+	messageid serial NOT NULL,
+	subject varchar(100) NULL,
+	content varchar(100) NULL,
+	"timestamp" date NULL,
+	"to" serial NOT NULL,
+	"from" serial NOT NULL,
+	CONSTRAINT messagereply_pk PRIMARY KEY (messageid),
+	CONSTRAINT messagereply_to_fk FOREIGN KEY ("to") REFERENCES profile(userid),
+	CONSTRAINT messagereply_from_fk FOREIGN KEY ("from") REFERENCES profile(userid)
+);
+
+CREATE TABLE likes (
+	likeid serial NOT NULL,
+	recipient serial NOT NULL,
+	"owner" serial NOT NULL,
+	CONSTRAINT likes_pk PRIMARY KEY (likeid),
+	CONSTRAINT likes_receipient_fk FOREIGN KEY (recipient) REFERENCES profile(userid),
+	CONSTRAINT likes_owner_fk FOREIGN KEY ("owner") REFERENCES profile(userid)
+);
+CREATE TABLE messagereply (
+	messageid serial NOT NULL,
+	subject varchar(100) NULL,
+	content varchar(100) NULL,
+	"timestamp" date NULL,
+	to serial NOT NULL,
+	from serial NOT NULL,
+	CONSTRAINT messagereply_pk PRIMARY KEY (messageid),
+	CONSTRAINT messagereply_to_fk FOREIGN KEY (to) REFERENCES profile(userid),
+	CONSTRAINT messagereply_from_fk FOREIGN KEY (from) REFERENCES profile(userid)
+);
+
+CREATE TABLE likes (
+	likeid serial NOT NULL,
+	recipient serial NOT NULL,
+	owner serial NOT NULL,
+	CONSTRAINT likes_pk PRIMARY KEY (likeid),
+	CONSTRAINT likes_receipient_fk FOREIGN KEY (recipient) REFERENCES profile(userid),
+	CONSTRAINT likes_owner_fk FOREIGN KEY (owner) REFERENCES profile(userid)
 );
