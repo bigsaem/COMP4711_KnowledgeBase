@@ -13,7 +13,7 @@ const accountController = require("../controllers/accountController");
 
 router.post("/auth/signup", accountController.signup);
 
-// router.post("/auth/login", accountController.login);
+router.post("/auth/signin", accountController.signin);
 
 // router.post("/auth/logout", accountController.logout);
 

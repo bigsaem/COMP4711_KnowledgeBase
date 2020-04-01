@@ -20,6 +20,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const session = require('client-sessions');
 const expressHbs = require("express-handlebars");
 const app = express();
 const authRoute = require("./routes/authRoute");
@@ -51,7 +52,7 @@ app.use(searchRoute);
 app.use(postRoute);
 
 app.get("/", (req, res) => {
-  res.render("home", { login: true });
+  res.render("login", { loginhbs: true });
 });
 
 ////////////

@@ -29,17 +29,9 @@ function getSubjectPost(subject) {
 }
 
 module.exports = {
-<<<<<<< HEAD
-  addPost: addMessagePost,
-  getPost: getMessagePost,
-  getTopic: getTopicPost,
-  getsubject: getSubjectPost
-};
-=======
     addPost : addMessagePost,
     getPost : getMessagePost,
     getTopic : getTopicPost,
     getsubject : getSubjectPost,
     getPostId : getPostById,
 }
->>>>>>> db8194fe7e5414a811486a2678c44fcf1801fbeb
