@@ -1,3 +1,17 @@
+/*------------------------------------------------------------------------------------------------------------------
+-- FILE: accountController.js
+--
+-- DATE: March 31, 2020
+--
+-- REVISIONS: 
+--
+-- DESIGNER:    Sam Lee
+--
+-- PROGRAMMER:  Sam Lee
+--
+-- NOTES:
+-- This file manages sign in, sign up and sign out with validation.
+----------------------------------------------------------------------------------------------------------------------*/
 const profileData = require("../models/profileData");
 
 exports.signin = (req, res, next) => {
@@ -19,7 +33,6 @@ exports.signin = (req, res, next) => {
       promise.then((data)=>{
         if(data.rows.length != 0) userObj = data.rows[0];
         req.session.user = userObj;
-        console.log(`/user/${userObj.userid}/home`);
         res.redirect(`/user/${userObj.userid}/home`);
       });
     }
