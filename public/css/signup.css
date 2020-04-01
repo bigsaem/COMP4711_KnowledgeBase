@@ -1,3 +1,17 @@
+span a {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
+span a:hover {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
 #signup-register {
     padding-top: 10px;
     width: 100%;

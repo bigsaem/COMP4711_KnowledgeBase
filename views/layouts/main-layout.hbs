@@ -9,12 +9,17 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main-layout.css">
 
-    {{#if loginhbs}} <!-- The main navbar -->
+    {{#if loginhbs}}
     <link rel="stylesheet" type="text/css" href="/css/login.css">
     {{/if}}
 
-    {{#if signuphbs}} <!-- The main navbar -->
+    {{#if signuphbs}}
     <link rel="stylesheet" type="text/css" href="/css/signup.css">
+    {{/if}}
+
+
+    {{#if userprofilehbs}}
+    <link rel="stylesheet" type="text/css" href="/css/userprofile.css">
     {{/if}}
 
     <!-- Bootstrap CSS -->
@@ -37,18 +42,20 @@
         crossorigin="anonymous"></script>
 
 
-    
-    {{#if loggedIn}} <!-- The main navbar -->
+
+    {{#if loggedIn}}
+    <!-- The main navbar -->
 
     <!-- Mikhaela to implement -->
-    
+
     <div id="navbar">
         <form id="headerform" action="/logout" method="GET">
             <button class="btn btn-primary" type="submit">Logout</button>
         </form>
     </div>
 
-    {{else}} <!-- On the login screen, do not show the main nav-bar -->
+    {{else}}
+    <!-- On the login screen, do not show the main nav-bar -->
 
     {{/if}}
 

@@ -53,6 +53,9 @@ app.get('/', (req, res) => {
     res.render('login', { loginhbs: true, signuphbs: false });
 })
 
+app.get('/profile', (req, res) => {
+    res.render('partials/userprofile', { loginhbs: false, signuphbs: false, userprofilehbs: true });
+})
 
 ////////////
 // SERVER //

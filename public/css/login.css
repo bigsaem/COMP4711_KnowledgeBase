@@ -1,50 +1,64 @@
-  #login-navbar {
-      width: 100%;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-  }
-  
-  #login-title {
-      font-size: 20pt;
-      padding: 10px;
-  }
-  
-  #login-title #login-title-base {
-      color: #00BFFF;
-  }
-  
-  .form-content-spacing {
-      margin-right: 5px;
-  }
-  
-  #login-navbarsubmit {
-      padding: 10px;
-      width: 500px;
-  }
-  
-  #login-register {
-      padding-top: 10px;
-      width: 100%;
-  }
-  
-  #login-main-image {
-      max-width: 100%;
-      max-height: 100%;
-      padding-left: 10px;
-      padding-right: 100px;
-  }
-  
-  #login-preregistration {
-      padding-right: 50px;
-  }
-  
-  #login-preregistration-title {
-      font-size: 30pt;
-      padding-bottom: 15px;
-  }
-  
-  #login-preregistration-btn {
-      margin: 1px;
-      width: 100%;
-  }
+span a {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
+span a:hover {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
+#login-navbar {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login-title {
+    font-size: 20pt;
+    padding: 10px;
+}
+
+#login-title #login-title-base {
+    color: #00BFFF;
+}
+
+.form-content-spacing {
+    margin-right: 5px;
+}
+
+#login-navbarsubmit {
+    padding: 10px;
+    width: 500px;
+}
+
+#login-register {
+    padding-top: 10px;
+    width: 100%;
+}
+
+#login-main-image {
+    max-width: 100%;
+    max-height: 100%;
+    padding-left: 10px;
+    padding-right: 100px;
+}
+
+#login-preregistration {
+    padding-right: 50px;
+}
+
+#login-preregistration-title {
+    font-size: 30pt;
+    padding-bottom: 15px;
+}
+
+#login-preregistration-btn {
+    margin: 1px;
+    width: 100%;
+}
