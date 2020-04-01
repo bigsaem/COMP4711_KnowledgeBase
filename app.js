@@ -50,15 +50,19 @@ app.use(express.static(path.join(__dirname, 'public')));
    if not, renders the login view, else home view */
 
 app.get('/', (req, res) => {
-    res.render('login', { loginhbs: true, signuphbs: false });
+    res.render('login', { loginhbs: true });
 })
 
 app.get('/profile', (req, res) => {
-    res.render('partials/userprofile', { loginhbs: false, signuphbs: false, userprofilehbs: true });
+    res.render('partials/userprofile', { userprofilehbs: true });
 })
 
 app.get('/message', (req, res) => {
-    res.render('message', { loginhbs: false, signuphbs: false, userprofilehbs: true, messagehbs: true });
+    res.render('message', { messagehbs: true });
+})
+
+app.get('/messages', (req, res) => {
+    res.render('messagespage', { messagespagehbs: true });
 })
 
 ////////////
