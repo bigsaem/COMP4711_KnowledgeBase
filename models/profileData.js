@@ -10,8 +10,8 @@ function authUser(email,password){
     return db.query(sql);
 }
 
-function getProfileDB(username) {
-    let sql = `SELECT * FROM profile where username like '${username}'`;
+function getProfileDB(email) {
+    let sql = `SELECT * FROM profile where email like '${email}'`;
     return db.query(sql);
 }
 

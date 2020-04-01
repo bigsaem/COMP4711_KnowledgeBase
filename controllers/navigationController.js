@@ -2,8 +2,9 @@ const profileData = require("../models/profileData");
 const messageRepliesData = require("../models/messageRepliesData");
 
 exports.getHomeInfo = (req, res, next) => {
-  //not sure what to include yet..will do later
+  console.log(req.session);
   console.log("home info");
+  res.render('home');
 };
 
 exports.viewMessagesPage = async (req, res, next) => {

@@ -30,6 +30,14 @@ const postRoute = require("./routes/postRoute");
 
 app.use(express.json());
 
+//session object added
+app.use(session({
+  cookieName: 'session',
+  secret: 'random_string_goes_here',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
+
 // To install: npm install express-handlebars
 app.engine(
   "hbs",
