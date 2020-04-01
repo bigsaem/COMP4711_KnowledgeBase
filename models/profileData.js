@@ -31,10 +31,16 @@ function editProfileDB(username,firstname,lastname,email) {
     return db.query(sql);
 }
 
+function removeProfileByUserName(username) {
+    let sql = `DELETE * FROM profile where username like '${username}'`;
+    return db.query(sql);
+}
+
 
 module.exports = {
     add : addProfile,
     auth : authUser,
     getProfile: getProfileDB,
     editProfile: editProfileDB,
+    removeProfile: removeProfileByUserName,
 }
