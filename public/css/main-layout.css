@@ -1,7 +1,3 @@
-body {
-    font-family: 'Lobster', cursive;
-}
-
 span {
     font-weight: bold;
 }
@@ -13,8 +9,8 @@ span {
 
 #container .noshowborder {
     border: 0px;
-
 }
+
 #navbar {
     background-color: #f0ad4e;
     padding: 10px;
@@ -22,21 +18,19 @@ span {
     justify-content: flex-end;
 }
 
-#headerform {
-    
-}
+#headerform {}
 
 #container {
     padding-top: 25px;
     width: 400px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 #container form {
-    border:1px solid rgb(184, 181, 181);
+    border: 1px solid rgb(184, 181, 181);
     padding: 15px 15px;
-    
 }
+
 #container form h3 {
     margin-top: 5px;
 }
@@ -63,21 +57,25 @@ span {
 .hidden {
     display: none;
 }
+
 #addArtistButton {
     display: inline;
     width: 25%;
 }
+
 #profilesDiv {
     margin: 0 20px;
-    border:1px solid rgb(184, 181, 181);
+    border: 1px solid rgb(184, 181, 181);
 }
-.profile {  
+
+.profile {
     padding: 10px;
     position: relative;
     border-bottom: 1px solid rgb(184, 181, 181);
 }
+
 .profile img {
-    float:left;
+    float: left;
     padding: 0 10px;
 }
 
@@ -86,10 +84,10 @@ span {
 }
 
 .deleteButton {
-    position:absolute;
+    position: absolute;
     right: 10px;
     bottom: 40px;
-    float:right;
+    float: right;
     background-color: red;
     border-radius: 10px;
     color: white;

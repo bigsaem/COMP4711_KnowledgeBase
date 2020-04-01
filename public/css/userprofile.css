@@ -1,0 +1,42 @@
+#userprofile-picture {
+    border-radius: 50%;
+    border: solid 5px;
+    border-color: lightgray;
+    width: 256px;
+    height: 256px;
+}
+
+#userprofile-name {
+    font-size: 28pt;
+}
+
+#userprofile-facts {
+    font-size: 20pt;
+}
+
+#userprofile-country {
+    font-size: 18pt;
+}
+
+#userprofile-empty-row {
+    height: 192px;
+}
+
+#userprofile-like-symbol {
+    margin-left: 15px;
+    background-color: #007BFF;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 1px;
+}
+
+.profilefontclr {
+    color: #007BFF;
+}
+
+#userprofileposts {
+    font-weight: bold;
+}

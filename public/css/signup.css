@@ -1,0 +1,57 @@
+span a {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
+span a:hover {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: none;
+    /* no underline */
+}
+
+#signup-register {
+    padding-top: 10px;
+    width: 100%;
+}
+
+#singup-navbar {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+#signup-title {
+    font-size: 20pt;
+    padding: 10px;
+}
+
+#signup-title #signup-title-base {
+    color: #00BFFF;
+}
+
+#signup-words {
+    font-size: 30pt;
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    margin-right: 0.5em;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+
+#signup-submit-btn {
+    width: 100%;
+    border: solid 1px #00BFFF;
+    color: #00BFFF;
+    font-weight: bold;
+}

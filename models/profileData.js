@@ -1,28 +1,31 @@
-let db = require('../db/db');
-
-
+var db = require('../db/db');
+/*------------------------------------------------------------------------------------------------------------------
+-- FILE: profileData.js
+--
+-- DATE: March 24, 2020
+--
+-- REVISIONS: Sam Lee, 2020-03-31, changed the code to use email instead of userid and return a promise object.
+--
+-- DESIGNER:    Jameson Chung
+--
+-- PROGRAMMER:  Jameson Chung, Sam Lee
+--
+-- NOTES:
+-- Configuration file as well as entry point for the web application.
+----------------------------------------------------------------------------------------------------------------------*/
 // Add a single individual to the database
 function addProfile(data) {
     let sql = `INSERT INTO profile (username, "password", firstname, lastname, email) VALUES('${data.username}', '${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
     return db.query(sql);
 }
 
-function authUser(username,password){
-    let sql = `SELECT * FROM profile where username like '${username}'`;
-    let db = db.query(sql)
-
-    if(db == null){
-        return false;
-    }else{
-        if(password == db.password){
-            return true;
-        }
-    }
-    return false;
+function authUser(email,password){
+    let sql = `SELECT * FROM profile where email like '${email}'`;
+    return db.query(sql);
 }
 
-function getProfileDB(username) {
-    let sql = `SELECT * FROM profile where username like '${username}'`;
+function getProfileDB(email) {
+    let sql = `SELECT * FROM profile where email like '${email}'`;
     return db.query(sql);
 }
 
