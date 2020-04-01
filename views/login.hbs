@@ -3,7 +3,9 @@
   <div id="login-navbar" class="row">
     <div class="col">
       <span id="login-title">
-        knowledge<span id="login-title-base">Base</span>
+        <a href="/">
+          knowledge<span id="login-title-base">Base</span>
+        </a>
       </span>
     </div>
     <div class="col">
@@ -31,7 +33,7 @@
       </div>
 
       <div id="login-preregistration">
-        <form action="/auth/signup" method="POST">
+        <form action="/auth/signup" method="POST" oninput='confirmpassword.setCustomValidity(confirmpassword.value != password.value ? "Passwords do not match." : "")'>
           <div id="login-preregistration-names" class="form-group">
             <div class="row">
               <input class="col form-control form-content-spacing" type="text" name="firstname"
@@ -63,3 +65,4 @@
       </form>
     </div>
   </div>
+</div>

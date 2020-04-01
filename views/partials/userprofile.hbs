@@ -1,0 +1,60 @@
+<div class="container">
+
+    <div class="row">
+        <div id="profile-overview" class="col-6">
+            <div class="row">
+                <!-- {{url}} -->
+                <img src="https://randomuser.me/api/portraits/men/7.jpg" id="userprofile-picture">
+            </div>
+            <div class="row" id="userprofile-name">
+                <!-- {{name}} -->
+                Kevin Hudson
+            </div>
+            <div class="row" id="userprofile-facts">
+                <!-- {{facts}} -->
+                Team Lead | Part-time Singer | Fulltime Dad
+            </div>
+            <div class="row" id="userprofile-country">
+                <!-- {{country}} -->
+                Country
+            </div>
+
+        </div>
+
+        <div id="profile-actions" class="col-4">
+            <div id="userprofile-empty-row" class="row">
+                <br />
+            </div>
+            <div class="row">
+                <button class="btn btn-primary">Message</button>
+            </div>
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <span class="profilefontclr">5 Likes</span>
+                <!-- This should refresh the page -->
+                <form id="userprofilelikeform" action="/profile" method="GET">
+                    <input id="userprofile-like-symbol" type="submit" value="+">
+                </form>
+            </div>
+            <div class="row">
+                <span class="profilefontclr">2 Posts</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+    <div class="row">
+        
+        <br />
+        </div><div class="row">
+        <br />
+        </div>
+        <div class="row">
+        <!-- Name -->
+        <h1 id="userprofileposts">All posts by Kevin</h1>
+    </div>
+
+</div>
