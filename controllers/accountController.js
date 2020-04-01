@@ -14,6 +14,10 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 const profileData = require("../models/profileData");
 
+//check if the user is already logged in and if so, redirect to the 'home' page
+exports.sessionCheck = (req, res, next) =>{
+
+}
 exports.signin = (req, res, next) => {
   if(!emptyFieldCheck(req.body)){
     console.log('request is wrong');

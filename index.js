@@ -1,11 +1,9 @@
-
-
 /*------------------------------------------------------------------------------------------------------------------
 -- FILE: index.js
 --
 -- DATE: March 24, 2020
 --
--- REVISIONS: Sam Lee, 2020-04-01, session module implmented with session object.
+-- REVISIONS:
 --
 -- DESIGNER:    Justin Cervantes,
 --
@@ -15,34 +13,24 @@
 -- Configuration file as well as entry point for the web application.
 ----------------------------------------------------------------------------------------------------------------------*/
 
-
 ////////////
 // CONFIG //
 ////////////
 
-let express = require('express')
-let bodyParser = require('body-parser')
-let path = require('path');
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
 const session = require('client-sessions');
-let app = express();
+const expressHbs = require("express-handlebars");
+const app = express();
+const authRoute = require("./routes/authRoute");
+const userRoute = require("./routes/userRoute");
+const searchRoute = require("./routes/searchRoute");
+const postRoute = require("./routes/postRoute");
+
 app.use(express.json());
-let fs = require("fs");
-let util = require('util');
 
-// To install: npm install express-handlebars
-const expressHbs = require('express-handlebars');
-app.engine(
-    'hbs',
-    expressHbs({
-        layoutsDir: 'views/layouts/',
-        defaultLayout: 'main-layout',
-        extname: 'hbs'
-    })
-);
-app.set('view engine', 'hbs');
-app.set('views', 'views');
-
-//session ojbect
+//session object added
 app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
@@ -50,35 +38,45 @@ app.use(session({
   activeDuration: 5 * 60 * 1000,
 }));
 
+// To install: npm install express-handlebars
+app.engine(
+  "hbs",
+  expressHbs({
+    layoutsDir: "views/layouts/",
+    defaultLayout: "main-layout",
+    extname: "hbs"
+  })
+);
+app.set("view engine", "hbs");
+app.set("views", "views");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-let routes = require('./routes/routes');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
+app.use(authRoute);
+app.use(userRoute);
+app.use(searchRoute);
+app.use(postRoute);
 
-
-/* TODO: This should take us to a controller which checks if we're logged in,  
-   if not, renders the login view, else home view */
-
-app.get('/', (req, res) => {
-    res.render('login', { loginhbs: true });
-})
+app.get("/", (req, res) => {
+  res.render("login", { loginhbs: true });
+});
 
 app.get('/profile', (req, res) => {
-    res.render('partials/userprofile', { userprofilehbs: true });
+  res.render('partials/userprofile', { userprofilehbs: true });
 })
 
 app.get('/message', (req, res) => {
-    res.render('message', { messagehbs: true });
+  res.render('message', { messagehbs: true });
 })
 
 app.get('/messages', (req, res) => {
-    res.render('messagespage', { messagespagehbs: true });
+  res.render('messagespage', { messagespagehbs: true });
 })
-
 ////////////
 // SERVER //
 ////////////
 
-app.use(routes);
 app.listen(80);
+console.log("node server is running on port 80");
