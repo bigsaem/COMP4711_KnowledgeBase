@@ -14,9 +14,7 @@
           <input class="form-control col form-content-spacing" type="email" name="email" placeholder="email" />
           <input class="form-control col form-content-spacing" type="password" name="password" placeholder="password" />
           <button class="btn btn-primary col" type="submit">Login</button>
-          {{#if signinFail}}
-              <b class="error">Log in failed</b>
-          {{/if}}
+              <b class="error">{{signinFail}}</b>
         </div>
       </form>
     </div>

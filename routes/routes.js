@@ -26,10 +26,10 @@ const accountController = require('../controllers/accountController.js');
 const router = express.Router();
 
 // Account Routes
-router.post('/auth/signout', accountController.signout);
-router.post('/auth/signin', accountController.signin);
-router.post('/auth/signup', accountController.signup);
-router.post('/auth/signup/additional_information', accountController.signup_additionalInfo);
+// router.post('/auth/signout', accountController.signout);
+// router.post('/auth/signin', accountController.signin);
+// router.post('/auth/signup', accountController.signup);
+// router.post('/auth/signup/additional_information', accountController.signup_additionalInfo);
 
 /* TODO:
 /user/:userid/home Shows the index page
