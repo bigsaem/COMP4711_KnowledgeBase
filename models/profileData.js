@@ -6,9 +6,9 @@ var db = require('../db/db');
 --
 -- REVISIONS: Sam Lee, 2020-03-31, changed the code to use email instead of userid and return a promise object.
 --
--- DESIGNER:    Jameson Chung
+-- DESIGNER:    Jameson Cheong
 --
--- PROGRAMMER:  Jameson Chung, Sam Lee
+-- PROGRAMMER:  Jameson Cheong, Sam Lee
 --
 -- NOTES:
 -- Configuration file as well as entry point for the web application.
@@ -34,10 +34,16 @@ function editProfileDB(username,firstname,lastname,email) {
     return db.query(sql);
 }
 
+function removeProfileByUserName(username) {
+    let sql = `DELETE * FROM profile where username like '${username}'`;
+    return db.query(sql);
+}
+
 
 module.exports = {
     add : addProfile,
     auth : authUser,
     getProfile: getProfileDB,
     editProfile: editProfileDB,
+    removeProfile: removeProfileByUserName,
 }
