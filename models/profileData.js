@@ -5,6 +5,7 @@ var db = require('../db/db');
 -- DATE: March 24, 2020
 --
 -- REVISIONS: Sam Lee, 2020-03-31, changed the code to use email instead of userid and return a promise object.
+--            Sam Lee, 2020-04-02, changed edit profile to accept an object
 --
 -- DESIGNER:    Jameson Cheong
 --
@@ -24,18 +25,18 @@ function authUser(email,password){
     return db.query(sql);
 }
 
-function getProfileDB(email) {
-    let sql = `SELECT * FROM profile where email like '${email}'`;
+function getProfileDB(userid) {
+    let sql = `SELECT * FROM profile where userid like '${userid}'`;
     return db.query(sql);
 }
 
-function editProfileDB(username,firstname,lastname,email) {
-    let sql = `UPDATE knowledge_schema.profile SET  firstname='${firstname}', lastname='${lastname}', email='${email}' where username='${username}'`;
+function editProfileDB(user, userid) {
+    let sql = `UPDATE knowledge_schema.profile SET  firstname='${user.firstname}', lastname='${user.lastname}',  where userid='${userid}'`;
     return db.query(sql);
 }
 
-function removeProfileByUserName(username) {
-    let sql = `DELETE * FROM profile where username like '${username}'`;
+function removeProfileByUserName(userid) {
+    let sql = `DELETE * FROM profile where username like '${userid}'`;
     return db.query(sql);
 }
 

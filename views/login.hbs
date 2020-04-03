@@ -55,11 +55,10 @@
             <input class="col form-control form-content-spacing" type="password" name="confirmpassword"
               placeholder="confirm password" />
           </div>
-          {{#if signupFail}}
+          
             <div class="rwo error-msg">
-              <b>Please fill all the input boxes</b>
+              <b>{{signupFail}}</b>
             </div>
-          {{/if}}
           <button id="login-preregistration-btn" class="btn btn-primary" type="submit">Register</button>
       </div>
       </form>
