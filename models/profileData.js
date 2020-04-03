@@ -16,35 +16,36 @@ var db = require('../db/db');
 ----------------------------------------------------------------------------------------------------------------------*/
 // Add a single individual to the database
 function addProfile(data) {
-    let sql = `INSERT INTO profile (username, "password", firstname, lastname, email) VALUES('${data.username}', '${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
+    let sql = `INSERT INTO profile (password, firstname, lastname, email) VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
     return db.query(sql);
 }
 
-function authUser(email,password){
-    let sql = `SELECT * FROM profile where email like '${email}'`;
+function getProfileById(userid) {
+    let sql = `SELECT * FROM profile where userid = ${userid}`;
+    console.log(sql);
     return db.query(sql);
 }
-
-function getProfileDB(userid) {
-    let sql = `SELECT * FROM profile where userid like '${userid}'`;
+function getProfileByEmail(email) {
+    let sql = `SELECT * FROM profile where email = '${email}'`;
+    console.log(sql);
     return db.query(sql);
 }
 
 function editProfileDB(user, userid) {
-    let sql = `UPDATE knowledge_schema.profile SET  firstname='${user.firstname}', lastname='${user.lastname}',  where userid='${userid}'`;
+    let sql = `UPDATE knowledge_schema.profile SET  firstname='${user.firstname}', lastname='${user.lastname}',  where userid=${userid}`;
     return db.query(sql);
 }
 
 function removeProfileByUserName(userid) {
-    let sql = `DELETE * FROM profile where username like '${userid}'`;
+    let sql = `DELETE * FROM profile where userid = ${userid}`;
     return db.query(sql);
 }
 
 
 module.exports = {
     add : addProfile,
-    auth : authUser,
-    getProfile: getProfileDB,
+    getProfileById: getProfileById,
+    getProfileByEmail: getProfileByEmail,
     editProfile: editProfileDB,
     removeProfile: removeProfileByUserName,
 }
