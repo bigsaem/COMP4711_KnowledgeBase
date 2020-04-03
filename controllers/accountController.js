@@ -16,7 +16,11 @@ const profileData = require("../models/profileData");
 
 //check if the user is already logged in and if so, redirect to the 'home' page
 exports.sessionCheck = (req, res, next) =>{
-
+  if(req.body.user == undefined || req.body.user.length == 0){
+    res.render("login", { loginhbs: true});
+  } else {
+    res.redirect(`/user/${req.body.user.userid}/home`);
+  }
 }
 exports.signin = (req, res, next) => {
   if(!emptyFieldCheck(req.body)){
@@ -51,6 +55,7 @@ exports.signup = (req, res, next) => {
     res.render("login", { loginhbs: true, signupFail: true });
     return;
   } 
+  
   console.log(req.body);
   profileData.add(req.body);
   res.render('signup', { signuphbs: true });
