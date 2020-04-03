@@ -52,21 +52,28 @@ exports.signin = (req, res, next) => {
 
 exports.signup = (req, res, next) => {
   if(!emptyFieldCheck(req.body)){
-    res.render("login", { loginhbs: true, signupFail: true });
+    res.render("login", { loginhbs: true, signupFail: "Fill all the input box" });
     return;
   } 
-  
-  console.log(req.body);
-  profileData.add(req.body);
-  res.render('signup', { signuphbs: true });
+  let result = profileData.getProfile(req.body.email);
+  result.then((data)=>{
+    if(data.rows.length != 0 ){
+      res.render("login", { loginhbs: true, signupFail: "That email is not available to use" });
+    } else{
+      profileData.add(req.body);
+      res.render('signup', { signuphbs: true });
+    }
+  });
 }
 
+//i need a model function to add the additional info 
 exports.signup_additionalInfo = (req, res, next) => {
   res.render('signup', { signuphbs: true });
 }
 
 exports.signout = (req, res, next) => {
-  res.render('signup', { signuphbs: true });
+  req.session.destroy();
+  res.redirect('/');
 }
 
 function emptyFieldCheck(obj){
@@ -79,14 +86,3 @@ function emptyFieldCheck(obj){
   return true;
 }
 
-function getProfile(email){
-  let result = profileData.getProfile(email);
-  let user = {}
-  result.then((data)=>{
-    console.log(data.rows[0]);
-    if(data.rows.length != 0) user = data.rows[0];
-    console.log(user);
-  });
-  console.log(user);
-  return user;
-}
