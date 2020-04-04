@@ -63,15 +63,15 @@ app.use(postRoute);
 app.get("/", (req, res) => {
   if (req.session.user == undefined || req.session.user.userid == undefined) {
     req.session.destroy();
-    res.render("login", { loginhbs: true });
+    res.render("login");
   } else {
     res.redirect(`/user/${req.session.user.userid}/home`);
   }
-  //res.render("login", { loginhbs: true });
+  //res.render("login");
 });
 
-app.get('/profile', (req, res) => {
-  res.render('partials/userprofile', { userprofilehbs: true });
+app.get('/:userid/profile', (req, res) => {
+  res.render('partials/userprofile', { liked: false });
 })
 
 app.get('/message', (req, res) => {

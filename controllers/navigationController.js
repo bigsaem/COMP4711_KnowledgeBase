@@ -1,10 +1,16 @@
 const profileData = require("../models/profileData");
 const messageRepliesData = require("../models/messageRepliesData");
+const likesData = require("../models/likesData");
+const messagePostData = require("../models/messagePostData");
 
-exports.getHomeInfo = (req, res, next) => {
+exports.getHomeInfo = async (req, res, next) => {
   console.log("i'm in home");
-  console.log(req.session);
-  res.render('home');
+  console.log(req.session.user.userid);
+
+  // TODO: We need a model which will get all unique profile likes
+  let postCount = await messagePostData.getPost(req.session.user.userid);
+  console.log(postCount.rowCount);
+  res.render('home', {name: req.session.user.firstname + " " + req.session.user.lastname, url: req.session.user.imageurl, facts: req.session.user.description});
 };
 
 exports.viewMessagesPage = async (req, res, next) => {
