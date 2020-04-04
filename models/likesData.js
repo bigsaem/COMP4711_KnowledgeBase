@@ -55,7 +55,13 @@ let removeLikes = (recipient, owner) => {
   });
 };
 
+function getNumberLikes(ownerid) {
+  let sql = `SELECT COUNT( owner = ${ownerid} ) FROM likes`;
+  return db.query(sql);
+}
+
 module.exports = {
   add: addLikes,
-  delete: removeLikes
+  delete: removeLikes,
+  getnumlikes: getNumberLikes
 };
