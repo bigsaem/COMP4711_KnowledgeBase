@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/css/home.css">
-    {{!-- <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-    <script src='/js/home.js' defer></script> --}}
-    <title>KnowledgeBase</title>
-</head>
-<body>
 
-    <img src="{{url}}">
-   <p>Name: {{name}}</p>
- <p>Details: {{facts}}</p>
+<img src="{{url}}">
+<p>Name: {{name}}</p>
+<p>Details: {{facts}}</p>
 <p>Posts: {{posts}} </p>
 <p>Likes: {{likes}} </p>
-
-
-</body>
-</html>
+{{#if myProfile}}
+    <form id="editProfile" action="/user/{{userid}}/edit_profile" method="GET">
+        <button class="btn btn-primary" type="submit">Edit profile</button>
+    </form>
+{{/if}}

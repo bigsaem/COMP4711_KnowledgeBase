@@ -34,7 +34,14 @@ exports.editProfile = (req, res, next) => {
   if(req.body == undefined || req.body.length == 0){
     return;
   } 
-  profileData.editProfile(req.body, req.params.userid);
+  profileData.editProfile(req.body, req.params.userid).then(data=>{
+    
+    for(let key in req.body){
+      req.session.user[key] = req.body[key];
+    }
+    console.log(req.session.user);
+    res.redirect(`/user/${req.session.userid}/home`);
+  }).catch((e) => { console.log("error occured in edit profile " + e); });
 };
 
 exports.checkLike = (req, res, next) => {

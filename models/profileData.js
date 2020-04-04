@@ -36,7 +36,7 @@ function getProfileByEmail(email) {
 }
 
 function editProfileDB(user, userid) {
-    let sql = `UPDATE knowledge_schema.profile SET  firstname='${user.firstname}', lastname='${user.lastname}',  where userid=${userid}`;
+    let sql = `UPDATE profile SET firstname='${user.firstname}', lastname='${user.lastname}', imageurl = '${user.imageurl}', description = '${user.description}', country = '${user.country}', dateofbirth = '${user.dateofbirth}'  where userid=${userid}`;
     return db.query(sql);
 }
 
