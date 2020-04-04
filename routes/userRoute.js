@@ -8,8 +8,8 @@ router.get("/user/:userid/home", navigationController.getHomeInfo);
 
 // router.get("/user/:userid/", profileController.getProfile);
 
-// router.get("/user/:userid/edit_profile", profileController.editProfilePage);
-
+router.get("/user/:userid/edit_profile", navigationController.editProfilePage);
+router.post("/user/:userid/edit_profile", profileController.editProfile);
 // router.get("/user/:userid/updateProfile", profileController.updateProfile);
 
 // router.get("/user/:userid/like", profileController.addLike);
