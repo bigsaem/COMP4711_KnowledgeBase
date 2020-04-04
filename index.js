@@ -59,8 +59,15 @@ app.use(userRoute);
 app.use(searchRoute);
 app.use(postRoute);
 
+//session check applied
 app.get("/", (req, res) => {
-  res.render("login", { loginhbs: true });
+  if (req.session.user == undefined || req.session.user.userid == undefined) {
+    req.session.destroy();
+    res.render("login", { loginhbs: true });
+  } else {
+    res.redirect(`/user/${req.session.user.userid}/home`);
+  }
+  //res.render("login", { loginhbs: true });
 });
 
 app.get('/profile', (req, res) => {
@@ -71,7 +78,7 @@ app.get('/message', (req, res) => {
   res.render('message', { messagehbs: true });
 })
 
-app.get('/messages', (req, res) => {
+app.get('/:userid/messages', (req, res) => {
   res.render('messagespage', { messagespagehbs: true });
 })
 ////////////

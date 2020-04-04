@@ -49,7 +49,6 @@ exports.signin = (req, res, next) => {
 
 exports.signup = (req, res, next) => {
   if (!emptyFieldCheck(req.body)) {
-
     res.render("login", { loginhbs: true, signupFail: "Fill all the input box" });
     return;
   }
@@ -58,8 +57,8 @@ exports.signup = (req, res, next) => {
     if (data.rows.length != 0) {
       res.render("login", { loginhbs: true, signupFail: "That email is not available to use" });
     } else {
-      console.log(data.rows)
-      profileData.add(req.body);
+      //profileData.add(req.body);
+      req.session.user = req.body;
       res.render('signup', { signuphbs: true });
     }
   }).catch((e) => { console.log("error occured in signup " + e); });
@@ -67,7 +66,23 @@ exports.signup = (req, res, next) => {
 
 //i need a model function to add the additional info 
 exports.signup_additionalInfo = (req, res, next) => {
-  res.render('signup', { signuphbs: true });
+  if (!emptyFieldCheck(req.body)) {
+    res.render("signup", { signuphbs: true, signupFail: "Fill all the input box" });
+    return;
+  }
+  console.log(req.body);
+  let userObj = req.session.user;
+  for (let key in req.body) {
+    userObj[key] = req.body[key];
+  }
+  console.log(userObj);
+  profileData.add(userObj).then(res=>{
+    profileData.getProfileByEmail(userObj.email).then(data=>{
+      console.log(data.rows[0]);
+      userObj.userid = data.rows[0].userid;
+    }).catch((e) => { console.log("error occured in get user id " + e); });
+  }).catch((e) => { console.log("error occured in add data " + e); });
+  res.redirect(`/user/${userObj.userid}/home`);
 }
 
 exports.signout = (req, res, next) => {
