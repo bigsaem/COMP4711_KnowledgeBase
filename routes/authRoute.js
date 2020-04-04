@@ -6,10 +6,10 @@ const accountController = require("../controllers/accountController");
 
 // router.get("/signup", accountController.singupPage);
 
-// router.get(
-//   "/signup/additional_information",
-//   accountController.additionalInfoPage
-// );
+router.post(
+  "/signup/additional_information",
+  accountController.signup_additionalInfo
+);
 
 router.post("/auth/signup", accountController.signup);
 

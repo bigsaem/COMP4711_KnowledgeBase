@@ -2,8 +2,8 @@ const profileData = require("../models/profileData");
 const messageRepliesData = require("../models/messageRepliesData");
 
 exports.getHomeInfo = (req, res, next) => {
+  console.log("i'm in home");
   console.log(req.session);
-  console.log("home info");
   res.render('home');
 };
 

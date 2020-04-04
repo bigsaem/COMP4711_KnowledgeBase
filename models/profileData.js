@@ -16,18 +16,22 @@ var db = require('../db/db');
 ----------------------------------------------------------------------------------------------------------------------*/
 // Add a single individual to the database
 function addProfile(data) {
-    let sql = `INSERT INTO profile (password, firstname, lastname, email) VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
-    return db.query(sql);
+    let sql = 
+    `INSERT INTO profile (password, firstname, lastname, email, imageurl, description, country, dateofbirth)
+     VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}', '${data.imageurl}', '${data.description}', '${data.country}', '${data.dateofbirth}')`;
+    console.log(sql);
+     return db.query(sql);
 }
-
+// function addAdditionalInfo(data) {
+//     let sql = `INSERT INTO profile (password, firstname, lastname, email) VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
+//     return db.query(sql);
+// }
 function getProfileById(userid) {
     let sql = `SELECT * FROM profile where userid = ${userid}`;
-    console.log(sql);
     return db.query(sql);
 }
 function getProfileByEmail(email) {
     let sql = `SELECT * FROM profile where email = '${email}'`;
-    console.log(sql);
     return db.query(sql);
 }
 
