@@ -59,19 +59,26 @@ app.use(userRoute);
 app.use(searchRoute);
 app.use(postRoute);
 
+//session check applied
 app.get("/", (req, res) => {
-  res.render("login", { loginhbs: true });
+  if (req.session.user == undefined || req.session.user.userid == undefined) {
+    req.session.destroy();
+    res.render("login");
+  } else {
+    res.redirect(`/user/${req.session.user.userid}/home`);
+  }
+  //res.render("login");
 });
 
-app.get('/profile', (req, res) => {
-  res.render('partials/userprofile', { userprofilehbs: true });
+app.get('/:userid/profile', (req, res) => {
+  res.render('partials/userprofile', { liked: false });
 })
 
 app.get('/message', (req, res) => {
   res.render('message', { messagehbs: true });
 })
 
-app.get('/messages', (req, res) => {
+app.get('/:userid/messages', (req, res) => {
   res.render('messagespage', { messagespagehbs: true });
 })
 ////////////

@@ -3,20 +3,21 @@
     <div class="row">
         <div id="profile-overview" class="col-6">
             <div class="row">
-                <!-- {{url}} -->
-                <img src="https://randomuser.me/api/portraits/men/7.jpg" id="userprofile-picture">
+        
+                <img src="{{url}}" id="userprofile-picture">
+                {{!-- <img src="https://randomuser.me/api/portraits/men/7.jpg" id="userprofile-picture"> --}}
             </div>
             <div class="row" id="userprofile-name">
-                <!-- {{name}} -->
-                Kevin Hudson
+                {{name}}
+                {{!-- Kevin Hudson --}}
             </div>
             <div class="row" id="userprofile-facts">
-                <!-- {{facts}} -->
-                Team Lead | Part-time Singer | Fulltime Dad
+                {{facts}}
+                {{!-- Team Lead | Part-time Singer | Fulltime Dad --}}
             </div>
             <div class="row" id="userprofile-country">
-                <!-- {{country}} -->
-                Country
+                {{country}}
+                {{!-- Country --}}
             </div>
 
         </div>
@@ -34,9 +35,15 @@
             <div class="row">
                 <span class="profilefontclr">5 Likes</span>
                 <!-- This should refresh the page -->
-                <form id="userprofilelikeform" action="/profile" method="GET">
+                {{#if liked}}
+                <form id="userprofilelikeform" action="/profile/like" method="GET">
                     <input id="userprofile-like-symbol" type="submit" value="+">
                 </form>
+                {{else}}
+                <form id="userprofiledislikeform" action="/profile/dislike" method="GET">
+                    <input id="userprofile-dislike-symbol" type="submit" value="-">
+                </form>
+                {{/if}}
             </div>
             <div class="row">
                 <span class="profilefontclr">2 Posts</span>
@@ -53,8 +60,8 @@
         <br />
         </div>
         <div class="row">
-        <!-- Name -->
-        <h1 id="userprofileposts">All posts by Kevin</h1>
+        <h1 id="userprofileposts">All posts by {{name}}</h1>
+        {{!-- <h1 id="userprofileposts">All posts by Kevin</h1> --}}
     </div>
 
 </div>

@@ -33,9 +33,19 @@
     padding-bottom: 1px;
 }
 
-.profilefontclr {
-    color: #007BFF;
+#userprofile-dislike-symbol {
+    margin-left: 15px;
+    background-color: red;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    font-weight: bold;
 }
+
+
 
 #userprofileposts {
     font-weight: bold;

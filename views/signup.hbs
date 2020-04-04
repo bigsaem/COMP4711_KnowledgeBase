@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="row form-group">
-                        <textarea class="col form-control" rows="5" name="about"
+                        <textarea class="col form-control" rows="5" name="description"
                             placeholder="a few lines about yourself..."></textarea>
                     </div>
 
@@ -35,10 +35,10 @@
                     </div>
 
                     <div class="row form-group">
-                        <input class="col form-control" placeholder="date of birth" type="text"
+                        <input class="col form-control" name="dateofbirth" placeholder="date of birth" type="text"
                             onfocus="(this.type='date')" onblur="(this.type='text')" />
                     </div>
-
+                    <b>{{signupFail}}</b>
                     <div class="row form-group">
                         <button id="signup-submit-btn" class="btn" type="submit">Complete
                             Registration</button>
