@@ -1,22 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/css/home.css">
-    {{!-- <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-    <script src='/js/home.js' defer></script> --}}
-    <title>KnowledgeBase</title>
-</head>
-<body>
+<div class="row">
+    <div id="home-profile-col" class="col-3">
+        <a href = '/user/{{userid}}'><img id="home-profile-pic" src="{{url}}"></a>
+        <br />
+        <br />
+        <span id="home-name">{{name}}</span>
+        <br />
+        <span id="home-facts">{{facts}}</span>
+        <br />
+        <table id="home-user-table">
+            <tr>
+                <td>
+                    <a class="home-profile-link" href="/user/{{userid}}/posts">Posts</a>
+                </td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td>
+                    <span class="home-profile-content">{{posts}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="home-profile-link" href="/user/{{userid}}/messages">Messages</a></td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td><span class="home-profile-content">{{messages}}</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="home-profile-content">Likes</span>
+                </td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td>
+                    <span class="home-profile-content">{{likes}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="home-profile-link" href="/user/{{userid}}/edit_profile">Edit profile</a>
+                </td>
 
-    <img src="{{url}}">
-   <p>Name: {{name}}</p>
- <p>Details: {{facts}}</p>
-<p>Posts: {{posts}} </p>
-<p>Likes: {{likes}} </p>
+            </tr>
+        </table>
+    </div>
+
+    
+    <div id="home-right-column" class="col-9">
+        <div id="home-post-question">
+            <span id="home-question-text">What's your question today?</span>
+
+            <form onsubmit="return isValidForm()" id="home-question-form" action="/post/createPost" method="POST">
+                <div class="form-group row">
+                    <input class="square-border col form-control home-post-input-spacing" type="text" name="subject"
+                        placeholder="Subject" />
+                </div>
+
+                <div class="row form-group">
+                    <textarea class="square-border col form-control home-post-input-spacing" rows="3" name="details"
+                        placeholder="Explain in detail..."></textarea>
+                </div>
+
+                <input id="home-question-hidden-topic" type="text" name="topic">
+
+                <div id="home-form-bottom" class="row form-group">
+                    <div id="home-post-dropdown" class="dropdown col square-border">
+                        <button class="btn btn-primary dropdown-toggle" id="home-topic-menu" type="button"
+                            data-toggle="dropdown">Topic
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li id="home-dropdown-php" role="presentation">PHP</li>
+                            <li id="home-dropdown-node" role="presentation">Node.js</li>
+                            <li id="home-dropdown-java" role="presentation">Java</li>
+                            <li id="home-dropdown-sql" role="presentation">SQL</li>
+                            <li id="home-dropdown-zend" role="presentation">Zend</li>
+                        </ul>
+                    </div>
+                    <button id="home-post-question-submit" class="square-border btn btn-primary col" type="submit">Post
+                        Question</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div id="home-search-question-div" class="home-search-inline col-2">
+                <span id="home-search-by-topic-text">Search by topic</span>
+            </div>
+
+            <div class="home-search-inline col-9">
+                <form onsubmit="return isValidSearchForm()">
+                    <div id="home-search-dropdown" class="dropdown home-search-inline square-border row">
+                        <div id="home-dropdown-search" class="col-4">
+                            <input id="home-search-hidden-topic" type="text" name="topic">
+                            <button class="btn btn-primary dropdown-toggle" id="home-search-menu" type="button"
+                                data-toggle="dropdown" data-flip="false">Topic
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li id="home-filter-php" role="presentation">PHP</li>
+                                <li id="home-filter-node" role="presentation">Node.js</li>
+                                <li id="home-filter-java" role="presentation">Java</li>
+                                <li id="home-filter-sql" role="presentation">SQL</li>
+                                <li id="home-filter-zend" role="presentation">Zend</li>
+                            </ul>
+                        </div>
+                        <div id="home-search-submit" class="col-3">
+                            <button id="home-search-submit-btn"
+                                class=" home-search-inlinesquare-border btn btn-primary col" type="submit">Go
+                                -></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let homeDropDownPostTopicBtn = document.getElementById("home-topic-menu");
+    let homeDropDownSearchTopicBtn = document.getElementById("home-search-menu");
+    let hiddenPostInput = document.getElementById("home-question-hidden-topic");
+    let hiddenSearchInput = document.getElementById("home-search-hidden-topic");
+
+    document.getElementById("home-dropdown-php").addEventListener("click", function () {
+        setPostTopic("php");
+    });
+    document.getElementById("home-dropdown-node").addEventListener("click", function () {
+        setPostTopic("node");
+    });
+    document.getElementById("home-dropdown-java").addEventListener("click", function () {
+        setPostTopic("java");
+    });
+    document.getElementById("home-dropdown-sql").addEventListener("click", function () {
+        setPostTopic("sql");
+    });
+    document.getElementById("home-dropdown-zend").addEventListener("click", function () {
+        setPostTopic("zend");
+    });
+    document.getElementById("home-filter-php").addEventListener("click", function () {
+        setSearchTopic("php");
+    });
+    document.getElementById("home-filter-node").addEventListener("click", function () {
+        setSearchTopic("node");
+    });
+    document.getElementById("home-filter-java").addEventListener("click", function () {
+        setSearchTopic("java");
+    });
+    document.getElementById("home-filter-sql").addEventListener("click", function () {
+        setSearchTopic("sql");
+    });
+    document.getElementById("home-filter-zend").addEventListener("click", function () {
+        setSearchTopic("zend");
+    });
 
 
-</body>
-</html>
+    function isValidPostForm() {
+        if (!hiddenPostInput.hasAttribute("value")) {
+            alert("You must select a topic");
+            return false;
+        }
+    }
+
+    function isValidSearchForm() {
+        if (!hiddenSearchInput.hasAttribute("value")) {
+            alert("You must select a topic");
+            return false;
+        }
+    }
+
+    function setPostTopic(topic) {
+        homeDropDownPostTopicBtn.innerHTML = topic + "<span class='caret'></span>";
+        hiddenPostInput.setAttribute("value", topic);
+    }
+    function setSearchTopic(topic) {
+        homeDropDownSearchTopicBtn.innerHTML = topic + "<span class='caret'></span>";
+        hiddenSearchInput.setAttribute("value", topic);
+    }
+</script>

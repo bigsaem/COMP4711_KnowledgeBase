@@ -1,0 +1,137 @@
+#home-profile-col {
+    padding-top: 50px;
+    text-align: center;
+}
+
+#home-profile-pic {
+    width: 100px;
+    height: 100px;
+    border: 2px lightgrey;
+    border-radius: 50%;
+}
+
+#home-name {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+#home-facts {
+    padding: 0px;
+    margin: 0px;
+    font-size: 12pt;
+    color: lightgrey;
+}
+
+#home-user-box {
+    width: 100%;
+}
+
+#home-user-table {
+    text-align: left;
+    margin: 0 auto;
+}
+
+.home-profile-link {
+    color: rgb(80, 75, 75);
+    text-decoration: underline;
+}
+
+.home-profile-content {
+    color: rgb(80, 75, 75);
+}
+
+#home-right-column {
+    height: 100%;
+}
+
+#home-post-question {
+    width: 50%;
+}
+
+#home-question-form {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+#home-question-text {
+    font-size: 14pt;
+    color: rgb(80, 75, 75);
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+#home-post-dropdown {
+    margin-left: -15px;
+
+}
+
+.row .square-border {
+    border-radius: 0px;
+}
+
+#home-topic-menu {
+    width: 300px;
+    border-radius: 0%;
+    color: rgb(39, 148, 221);
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: white;
+}
+
+#home-post-question-submit {
+    border-radius: 0%;
+    color: rgb(39, 148, 221);
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: white;
+}
+
+.dropdown-menu li:hover {
+    background-color: lightgrey;
+}
+
+#home-question-hidden-topic {
+    display: none;
+}
+
+#home-search-hidden-topic {
+    display:none;
+}
+
+#home-search-menu {
+    border-radius: 0%;
+    color: rgb(39, 148, 221);
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: white;
+    width: 200px;
+}
+
+.home-search.inline {
+    display: inline-block;
+}
+
+#home-dropdown-search {
+    margin-left: -35px;
+}
+
+#home-search-submit {
+    margin-left: -35px;
+}
+
+#home-search-submit-btn {
+    border-radius: 0%;
+    color: white;
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: rgb(39, 148, 221);
+}
+
+#home-search-by-topic-text {
+    font-size: 12pt;
+    color: rgb(80, 75, 75);
+}
+
+#home-search-question-div {
+    line-height:35px;
+}

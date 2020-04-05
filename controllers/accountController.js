@@ -80,9 +80,9 @@ exports.signup_additionalInfo = (req, res, next) => {
     profileData.getProfileByEmail(userObj.email).then(data=>{
       console.log(data.rows[0]);
       userObj.userid = data.rows[0].userid;
+      res.redirect(`/user/${userObj.userid}/home`);
     }).catch((e) => { console.log("error occured in get user id " + e); });
   }).catch((e) => { console.log("error occured in add data " + e); });
-  res.redirect(`/user/${userObj.userid}/home`);
 }
 
 exports.signout = (req, res, next) => {

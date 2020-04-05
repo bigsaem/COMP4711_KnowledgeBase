@@ -15,7 +15,7 @@ router.post("/auth/signup", accountController.signup);
 
 router.post("/auth/signin", accountController.signin);
 
-// router.post("/auth/logout", accountController.logout);
+router.post("/auth/logout", accountController.signout);
 
 // router.post(
 //   "/auth/signup/additional_information",

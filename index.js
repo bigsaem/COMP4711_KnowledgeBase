@@ -72,10 +72,6 @@ app.get("/", (req, res) => {
   //res.render("login");
 });
 
-app.get("/:userid/profile", (req, res) => {
-  res.render("partials/userprofile", { liked: false });
-});
-
 app.get("/message", (req, res) => {
   res.render("message", { messagehbs: true });
 });
@@ -86,6 +82,7 @@ app.get("/:userid/messages", (req, res) => {
 ////////////
 // SERVER //
 ////////////
-const PORT = process.env.PORT || 8000;
-app.listen(PORT);
-console.log("node server is running on port ", PORT);
+
+app.listen(process.env.PORT || 80);
+
+console.log("node server is running on port 80");

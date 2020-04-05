@@ -28,10 +28,24 @@ function getSubjectPost(subject) {
   return db.query(sql);
 }
 
+function getLatestPosts(limit, offset) {
+  let sql = `SELECT * FROM messagepost ORDER BY postid DESC LIMIT ${limit} OFFSET ${offset}`;
+  return new Promise((resolve, reject) => {
+    db.query(sql)
+      .then(data => {
+        resolve(data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}
+
 module.exports = {
     addPost : addMessagePost,
     getPost : getMessagePost,
     getTopic : getTopicPost,
     getsubject : getSubjectPost,
     getPostId : getPostById,
+    getLatestPosts : getLatestPosts
 }
