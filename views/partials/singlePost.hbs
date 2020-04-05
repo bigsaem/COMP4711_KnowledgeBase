@@ -8,8 +8,7 @@
         <!-- Sets the subject and topic in a custom box -->
         <div class="row">
             <div class="col-9">
-                <span class="posts-subject-text">{{postDetail.subject}}
-                </span>
+                <a href="/post/{{postDetail.postid}}"><span class="posts-subject-text">{{postDetail.subject}}</span></a>
             </div>
             <div class="col-3 posts-topic-text">
                 <span>{{postDetail.topic}}</span>
@@ -29,8 +28,40 @@
                 <span>{{postDetail.timestamp}}</span>
             </div>
             <div class="col-3 posts-replies">
-                <span><a href="/post/{{postDetail.postid}}">{{postDetail.replies}} Replies</a></span>
+                <span><a onclick="show_hide(this)">{{postDetail.replies}} Replies</a></span>
             </div>
         </div>
+
+
+
+        <div class="row reply-hide singlePost-reply-box">
+            <div class="col-3">
+                <img class="singlePost-reply-profile-picture" src="{{postDetail.imageurl}}">
+            </div>
+            <div class="col-9">
+               <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, nobis! Nobis cupiditate labore
+                quibusdam eligendi rerum. Facere ab aspernatur deleniti consectetur, temporibus fugit! Veritatis
+                magni, ipsam vitae explicabo asperiores saepe.</p>
+            </div>
+        </div>
+
     </div>
 </div>
+
+
+        <script>
+            function show_hide(element) {
+                alert("Triggered");
+                let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
+                console.log(masterNode);
+                for (let i = 0; i < masterNode.length; i++) {
+                    if (masterNode[i].classList.contains("reply-hide")) {
+                        masterNode[i].classList.remove("reply-hide");
+                        masterNode[i].classList.add("reply-show");
+                    } else {
+                        masterNode[i].classList.remove("reply-show");
+                        masterNode[i].classList.add("reply-hide");
+                    }
+                }
+            }
+        </script>
