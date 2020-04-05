@@ -81,6 +81,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     };
     messageDate = await handleConversation(info);
     res.render("messagespage", {
+      loggedIn: true,
       messageHeader,
       messageDate,
       userID,
@@ -89,6 +90,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     });
   } else {
     res.render("messagespage", {
+      loggedIn: true,
       messageHeader,
       userID,
       subject,
