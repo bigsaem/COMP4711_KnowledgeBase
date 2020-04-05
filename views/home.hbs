@@ -53,6 +53,72 @@
 
     </div>
     <div class="col-9">
-        Yoooo
+        <div id="home-post-question">
+            <span id="home-question-text">What's your question today?</span>
+
+            <form onsubmit="return isValidForm()" id="home-question-form" action="/test" method="POST">
+                <div class="form-group row">
+                    <input class="square-border col form-control home-post-input-spacing" type="text" name="subject"
+                        placeholder="Subject" />
+                </div>
+
+                <div class="row form-group">
+                    <textarea class="square-border col form-control home-post-input-spacing" rows="3" name="details"
+                        placeholder="Explain in detail..."></textarea>
+                </div>
+
+                <input id="home-question-hidden-topic" type="text" name="topic">
+
+                <div id="home-form-bottom" class="row form-group">
+                    <div id="home-post-dropdown" class="dropdown col square-border">
+                        <button class="btn btn-primary dropdown-toggle" id="home-topic-menu" type="button"
+                            data-toggle="dropdown">Topic
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li id="home-dropdown-php" role="presentation">PHP</li>
+                            <li id="home-dropdown-node" role="presentation">Node.js</li>
+                            <li id="home-dropdown-java" role="presentation">Java</li>
+                            <li id="home-dropdown-sql" role="presentation">SQL</li>
+                            <li id="home-dropdown-zend" role="presentation">Zend</li>
+                        </ul>
+                    </div>
+                    <button id="home-post-question-submit" class="square-border btn btn-primary col" type="submit">Post
+                        Question</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+    let dropdownbtn = document.getElementById("home-topic-menu");
+    let hiddeninput = document.getElementById("home-question-hidden-topic");
+    document.getElementById("home-dropdown-php").addEventListener("click", function () {
+        dropdownbtn.innerHTML = "PHP <span class='caret'></span>";
+        hiddeninput.setAttribute("value", "php");
+    });
+    document.getElementById("home-dropdown-node").addEventListener("click", function () {
+        dropdownbtn.innerHTML = "Node.js <span class='caret'></span>";
+        hiddeninput.setAttribute("value", "node.js");
+    });
+    document.getElementById("home-dropdown-java").addEventListener("click", function () {
+        dropdownbtn.innerHTML = "Java <span class='caret'></span>";
+        hiddeninput.setAttribute("value", "java");
+    });
+    document.getElementById("home-dropdown-sql").addEventListener("click", function () {
+        dropdownbtn.innerHTML = "SQL <span class='caret'></span>";
+        hiddeninput.setAttribute("value", "sql");
+    });
+    document.getElementById("home-dropdown-zend").addEventListener("click", function () {
+        dropdownbtn.innerHTML = "Zend <span class='caret'></span>";
+        hiddeninput.setAttribute("value", "zend");
+    });
+
+
+    function isValidForm() {
+        if(!hiddeninput.hasAttribute("value")) {
+            alert("You must select a topic");
+            return false;
+        }
+    }
+</script>

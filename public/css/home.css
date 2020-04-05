@@ -1,5 +1,5 @@
 #home-profile-col {
-    padding-top:50px;
+    padding-top: 50px;
     text-align: center;
 }
 
@@ -16,7 +16,7 @@
 }
 
 #home-facts {
-    padding:0px;
+    padding: 0px;
     margin: 0px;
     font-size: 12pt;
     color: lightgrey;
@@ -38,4 +38,54 @@
 
 .home-profile-content {
     color: rgb(80, 75, 75);
+}
+
+#home-post-question {
+    width: 50%;
+}
+
+#home-question-form {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+#home-question-text {
+    font-size: 14pt;
+    color: grey;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+#home-post-dropdown {
+    margin-left: -15px;
+
+}
+
+.row .square-border {
+    border-radius: 0px;
+}
+
+#home-topic-menu {
+    width: 300px;
+    border-radius: 0%;
+    color: rgb(39, 148, 221);
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: white;
+}
+
+#home-post-question-submit {
+    border-radius: 0%;
+    color: rgb(39, 148, 221);
+    border-color:rgb(39, 148, 221);
+    border: solid 2px;
+    background-color: white;
+}
+
+.dropdown-menu li:hover {
+    background-color: lightgrey;
+}
+
+#home-question-hidden-topic {
+    display: none;
 }
