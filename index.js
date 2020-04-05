@@ -76,9 +76,7 @@ app.get("/message", (req, res) => {
   res.render("message", { messagehbs: true });
 });
 
-app.get("/:userid/messages", (req, res) => {
-  res.render("messagespage", { messagespagehbs: true });
-});
+
 ////////////
 // SERVER //
 ////////////

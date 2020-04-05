@@ -29,8 +29,6 @@ exports.getHomeInfo = async (req, res) => {
   }
 
   likeCount = likeCount.rows[0].count;
-
-  
   latestPosts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
   });
@@ -54,13 +52,54 @@ exports.getHomeInfo = async (req, res) => {
   });
 };
 
+exports.viewProfilePage = async (req, res, next) => {
+  let userid = req.params.userid;
+  let myUserid = req.session.user.userid;
+  let notMyProfile = myUserid != userid;
+  let profile = await profileData.getProfileById(userid);
+  let likes = await likesData.getLikes(userid);
+  let posts = await messagePostData.getPost(userid);
+  let messages = await messageRepliesData.getAll(req.session.user);
+  let liked = false;
+  profile = profile.rows[0];
+  posts.rows.forEach(post =>{
+    post.timestamp = post.timestamp.toDateString();
+  })
+  if(notMyProfile){
+    for(let i in likes.rows){
+      if(likes.rows[i].owner == myUserid) liked = true;
+    }
+  }
+  res.render('partials/userprofile', {
+    messageCount:messages.rowCount,
+    loggedIn: true,
+    userObj:profile, 
+    likes:likes.rowCount, 
+    posts:posts.rows, 
+    postCount: posts.rowCount, 
+    notMyProfile:notMyProfile, 
+    liked:liked
+  });
+};
+exports.viewSendMessagePage = async (req, res, next) => {
+  let myID = req.session.user.userid;
+  let recipientID = req.params.userid;
+  let profile = await profileData.getProfileById(recipientID);
+  profile = profile.rows[0];
+  let url = profile.imageurl;
+  res.render("message", {
+    loggedIn:true,
+    myID,
+    recipientID,
+    url
+  });
+};
 exports.viewMessagesPage = async (req, res, next) => {
   let userID = req.params.userid;
   let subject;
   let data = {
     userid: userID,
   };
-
   let messages = await messageRepliesData.getAll(data);
   messages = messages.rows;
   let messageHeader = handleMessageHeader(messages, userID);
@@ -75,7 +114,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     };
     messageDate = await handleConversation(info);
     res.render("messagespage", {
-      loggedIn: true,
+      loggedIn:true,
       messageHeader,
       messageDate,
       userID,
@@ -84,7 +123,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     });
   } else {
     res.render("messagespage", {
-      loggedIn: true,
+      loggedIn:true,
       messageHeader,
       userID,
       subject,
@@ -118,28 +157,6 @@ exports.getMessageHistory = async (req, res, next) => {
   });
 };
 
-exports.sendMessage = async (req, res, next) => {
-  let userID = req.params.userid;
-  let recipientID = req.params.recipientid;
-  let subject = req.body.subject;
-  let content = req.body.response;
-  let timestamp = Date.now();
-
-  let data = {
-    to: recipientID,
-    from: userID,
-    subject,
-    content,
-    timestamp,
-  };
-
-  await messageRepliesData.post(data).then((data) => {
-    console.log("success writing to db", data);
-    res.redirect(
-      `/user/${userID}/messages/view/${recipientID}/?subject=${subject}`
-    );
-  });
-};
 
 let handleMessageHeader = (messages, userID) => {
   let messageHeader = [];
@@ -165,8 +182,6 @@ let handleMessageHeader = (messages, userID) => {
 
 let handleConversation = async (info) => {
   let messageHistory = await messageRepliesData.getOne(info);
-
-  console.log(messageHistory);
   let messageGroups = messageHistory.reduce((messageGroups, data) => {
     let date = data.timestamp.toDateString();
     if (!messageGroups[date]) {
@@ -192,9 +207,9 @@ let handleConversation = async (info) => {
 };
 
 exports.editProfilePage = async (req, res, next) => {
-  res.render("editprofile", { userObj: req.session.user });
+  res.render("editprofile", {
+    loggedIn:true, 
+    userObj: req.session.user 
+  });
 };
 
-exports.viewProfilePage = async (req, res, next) => {
-  res.render("editprofile", { userObj: req.session.user });
-};
