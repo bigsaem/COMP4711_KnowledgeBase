@@ -29,7 +29,7 @@ exports.getHomeInfo = async (req, res) => {
   likeCount = likeCount.rows[0].count;
 
   let postData = [];
-  myPosts.rows.forEach((post) => {
+  latestPosts.rows.forEach((post) => {
     let time = post.timestamp.toDateString();
     postData.push({
       topic: post.topic,
@@ -42,7 +42,7 @@ exports.getHomeInfo = async (req, res) => {
     });
   });
 
-  console.log(myPosts.rows);
+  console.log(latestPosts.rows);
 
   res.render("home", {
     loggedIn: true,
