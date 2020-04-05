@@ -49,14 +49,14 @@
 
             </tr>
         </table>
-
-
     </div>
-    <div class="col-9">
+
+    
+    <div id="home-right-column" class="col-9">
         <div id="home-post-question">
             <span id="home-question-text">What's your question today?</span>
 
-            <form onsubmit="return isValidForm()" id="home-question-form" action="/test" method="POST">
+            <form onsubmit="return isValidPostForm()" id="home-question-form" action="/test" method="POST">
                 <div class="form-group row">
                     <input class="square-border col form-control home-post-input-spacing" type="text" name="subject"
                         placeholder="Subject" />
@@ -87,38 +87,98 @@
                 </div>
             </form>
         </div>
+
+        <div class="row">
+            <div id="home-search-question-div" class="home-search-inline col-2">
+                <span id="home-search-by-topic-text">Search by topic</span>
+            </div>
+
+            <div class="home-search-inline col-9">
+                <form onsubmit="return isValidSearchForm()">
+                    <div id="home-search-dropdown" class="dropdown home-search-inline square-border row">
+                        <div id="home-dropdown-search" class="col-4">
+                            <input id="home-search-hidden-topic" type="text" name="topic">
+                            <button class="btn btn-primary dropdown-toggle" id="home-search-menu" type="button"
+                                data-toggle="dropdown" data-flip="false">Topic
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li id="home-filter-php" role="presentation">PHP</li>
+                                <li id="home-filter-node" role="presentation">Node.js</li>
+                                <li id="home-filter-java" role="presentation">Java</li>
+                                <li id="home-filter-sql" role="presentation">SQL</li>
+                                <li id="home-filter-zend" role="presentation">Zend</li>
+                            </ul>
+                        </div>
+                        <div id="home-search-submit" class="col-3">
+                            <button id="home-search-submit-btn"
+                                class=" home-search-inlinesquare-border btn btn-primary col" type="submit">Go
+                                -></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    let dropdownbtn = document.getElementById("home-topic-menu");
-    let hiddeninput = document.getElementById("home-question-hidden-topic");
+    let homeDropDownPostTopicBtn = document.getElementById("home-topic-menu");
+    let homeDropDownSearchTopicBtn = document.getElementById("home-search-menu");
+    let hiddenPostInput = document.getElementById("home-question-hidden-topic");
+    let hiddenSearchInput = document.getElementById("home-search-hidden-topic");
+
     document.getElementById("home-dropdown-php").addEventListener("click", function () {
-        dropdownbtn.innerHTML = "PHP <span class='caret'></span>";
-        hiddeninput.setAttribute("value", "php");
+        setPostTopic("php");
     });
     document.getElementById("home-dropdown-node").addEventListener("click", function () {
-        dropdownbtn.innerHTML = "Node.js <span class='caret'></span>";
-        hiddeninput.setAttribute("value", "node.js");
+        setPostTopic("node");
     });
     document.getElementById("home-dropdown-java").addEventListener("click", function () {
-        dropdownbtn.innerHTML = "Java <span class='caret'></span>";
-        hiddeninput.setAttribute("value", "java");
+        setPostTopic("java");
     });
     document.getElementById("home-dropdown-sql").addEventListener("click", function () {
-        dropdownbtn.innerHTML = "SQL <span class='caret'></span>";
-        hiddeninput.setAttribute("value", "sql");
+        setPostTopic("sql");
     });
     document.getElementById("home-dropdown-zend").addEventListener("click", function () {
-        dropdownbtn.innerHTML = "Zend <span class='caret'></span>";
-        hiddeninput.setAttribute("value", "zend");
+        setPostTopic("zend");
+    });
+    document.getElementById("home-filter-php").addEventListener("click", function () {
+        setSearchTopic("php");
+    });
+    document.getElementById("home-filter-node").addEventListener("click", function () {
+        setSearchTopic("node");
+    });
+    document.getElementById("home-filter-java").addEventListener("click", function () {
+        setSearchTopic("java");
+    });
+    document.getElementById("home-filter-sql").addEventListener("click", function () {
+        setSearchTopic("sql");
+    });
+    document.getElementById("home-filter-zend").addEventListener("click", function () {
+        setSearchTopic("zend");
     });
 
 
-    function isValidForm() {
-        if(!hiddeninput.hasAttribute("value")) {
+    function isValidPostForm() {
+        if (!hiddenPostInput.hasAttribute("value")) {
             alert("You must select a topic");
             return false;
         }
+    }
+
+    function isValidSearchForm() {
+        if (!hiddenSearchInput.hasAttribute("value")) {
+            alert("You must select a topic");
+            return false;
+        }
+    }
+
+    function setPostTopic(topic) {
+        homeDropDownPostTopicBtn.innerHTML = topic + "<span class='caret'></span>";
+        hiddeninput.setAttribute("value", topic);
+    }
+    function setSearchTopic(topic) {
+        homeDropDownSearchTopicBtn.innerHTML = topic + "<span class='caret'></span>";
+        hiddeninput.setAttribute("value", topic);
     }
 </script>
