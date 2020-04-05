@@ -1,95 +1,56 @@
-span {
-    font-weight: bold;
-}
-
 #submitbutton {
     padding: 7px;
     background-color: solid rgb(184, 181, 181);
 }
 
-#container .noshowborder {
-    border: 0px;
-}
-
-#navbar {
-    background-color: #f0ad4e;
+#main-navbar {
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
 }
 
-#headerform {}
-
-#container {
-    padding-top: 25px;
-    width: 400px;
-    margin: 0 auto;
+#main-title {
+    font-size: 30pt;
+    font-weight: bold;
+    top: -8px;
 }
 
-#container form {
-    border: 1px solid rgb(184, 181, 181);
-    padding: 15px 15px;
+#main-title-k {
+    color: black;
+
 }
 
-#container form h3 {
-    margin-top: 5px;
+#main-title-b {
+        color: #00BFFF;
+    
 }
 
-#topInput {
-    width: 40%;
+#main-searchbar {
+    padding-left: 0px;
 }
 
-#inputForm {
-    display: none;
-    text-align: center;
+#main-searchbar-input {
+    background-color: rgb(215, 229, 233);
+    border: solid 2px lightgrey;
+    border-radius: 0%;
+    padding-right:1px;
 }
 
-#addArtistButton {
-    margin: 5px;
-    width: 20ppx
+.has-search .form-control {
+    padding-left: 2.375rem;
 }
 
-#inputForm input {
-    display: inline-block;
-    width: 100%;
-}
-
-.hidden {
-    display: none;
-}
-
-#addArtistButton {
-    display: inline;
-    width: 25%;
-}
-
-#profilesDiv {
-    margin: 0 20px;
-    border: 1px solid rgb(184, 181, 181);
-}
-
-.profile {
-    padding: 10px;
-    position: relative;
-    border-bottom: 1px solid rgb(184, 181, 181);
-}
-
-.profile img {
-    float: left;
-    padding: 0 10px;
-}
-
-.profile:hover {
-    background-color: rgb(184, 181, 181);
-}
-
-.deleteButton {
+.has-search .form-control-feedback {
     position: absolute;
-    right: 10px;
-    bottom: 40px;
-    float: right;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    padding: 5px;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+#main-navbar-submit {
+    border-radius: 0%;
 }

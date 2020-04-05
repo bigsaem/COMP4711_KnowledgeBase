@@ -71,7 +71,6 @@ app.get("/", (req, res) => {
 });
 
 
-
 app.get('/message', (req, res) => {
   res.render('message', { messagehbs: true });
 })
@@ -84,4 +83,6 @@ app.get('/:userid/messages', (req, res) => {
 ////////////
 
 app.listen(process.env.PORT || 80);
+
 console.log("node server is running on port 80");
+
