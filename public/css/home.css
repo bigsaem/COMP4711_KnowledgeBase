@@ -190,3 +190,21 @@ p {
 .posts-individual {
     padding-bottom: 25px;
 }
+
+#home-next-posts-btn, #home-back-posts-btn {
+  
+    border-radius: 0%;
+    border: solid 1px  rgb(4, 118, 194);
+    color: rgb(4, 118, 194);
+    background-color: white;
+    margin: 5px;
+}
+
+
+#home-posts-navigate {
+    margin-left: 275px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 200px;
+}

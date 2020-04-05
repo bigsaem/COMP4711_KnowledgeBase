@@ -57,7 +57,7 @@
         <div id="home-post-question">
             <span id="home-question-text">What's your question today?</span>
 
-            <form onsubmit="return isValidForm()" id="home-question-form" action="/post/createPost" method="POST">
+            <form onsubmit="return isValidPostForm()" id="home-question-form" action="/post/createPost" method="POST">
                 <div class="form-group row">
                     <input class="square-border  form-control home-post-input-spacing" type="text" name="subject"
                         placeholder="Subject" />
@@ -128,6 +128,20 @@
             {{#each posts}}
             {{>singlePost postDetail=this}}
             {{/each}}
+        </div>
+
+        <div id="home-posts-navigate">
+            <div id="home-back-posts">
+                <form>
+                    <button id="home-back-posts-btn" class="btn col" type="submit"><- Back</button>
+                </form>
+            </div>
+            <div id="home-next-posts">
+                <form>
+                    <button id="home-next-posts-btn" class="btn col" type="submit">Next -></button>
+                </form>
+            </div>
+
         </div>
 
 
