@@ -22,12 +22,14 @@ router.post("/user/:userid/removeLike", profileController.removeLike);
 router.get("/user/:userid/messages", navigationController.viewMessagesPage);
 
 router.get(
-  "/user/:userid/getMessageHistory/:recipientid",
+  "/user/:userid/messages/view/:recipientid",
   navigationController.getMessageHistory
 );
 
-
-// router.get("/user/:userid/messages/send", navigationController.sendMessages);
+router.post(
+  "/user/:userid/messages/send/:recipientid",
+  navigationController.sendMessage
+);
 
 // router.get("/user/:userid/message", messageController.viewMessagePage);
 

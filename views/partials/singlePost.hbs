@@ -1,0 +1,35 @@
+<div class="row posts-individual">
+    <div class="col-2">
+        <img class="posts-user-picture" src="{{postDetail.imageurl}}" />
+    </div>
+
+    <div id="posts-start-of-subject" class="col-5">
+
+        <!-- Sets the subject and topic in a custom box -->
+        <div class="row">
+            <div class="col-9">
+                <span class="posts-subject-text">{{postDetail.subject}}</span>
+            </div>
+            <div class="col-3 posts-topic-text">
+                <span>{{postDetail.topic}}</span>
+            </div>
+        </div>
+
+        <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
+        <div class="row">
+            <div class="col">
+                <p id="posts-content-text">{{postDetail.content}}</p>
+            </div>
+        </div>
+
+        <!-- Date and replies -->
+        <div class="row">
+            <div class="col-9 posts-date">
+                <span>{{postDetail.timestamp}}</span>
+            </div>
+            <div class="col-3 posts-replies">
+                <span><a href="/post/{{postDetail.postid}}">{{postDetail.replies}} Replies</a></span>
+            </div>
+        </div>
+    </div>
+</div>

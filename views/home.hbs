@@ -16,7 +16,7 @@
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                 </td>
                 <td>
-                    <span class="home-profile-content">{{posts}}</span>
+                    <span class="home-profile-content">{{postCount}}</span>
                 </td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="row form-group">
-                    <textarea class="square-border form-control home-post-input-spacing" rows="3" name="details"
+                    <textarea class="square-border form-control home-post-input-spacing" rows="3" name="postdetail"
                         placeholder="Explain in detail..."></textarea>
                 </div>
 
@@ -125,96 +125,9 @@
         <br /><br />
 
         <div id="home-discussions-container">
-            <div class="row posts-individual">
-
-                <div class="col-2">
-                    <img class="posts-user-picture" src="{{url}}" />
-                </div>
-
-                <div id="posts-start-of-subject" class="col-5">
-
-                    <!-- Sets the subject and topic in a custom box -->
-                    <div class="row">
-                        <div class="col-9">
-                            <span class="posts-subject-text">User settings deleted{{subject}}</span>
-                        </div>
-                        <div class="col-3 posts-topic-text">
-                            <span>nodejs{{topic}}</span>
-                        </div>
-                    </div>
-
-                    <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
-                    <div class="row">
-                        <div class="col">
-                            <p id="posts-content-text">{{postdetail}}Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit. Quasi laudantium qui excepturi et
-                                nisi
-                                enim corporis ducimus tenetur reprehenderit? Neque nesciunt nam ducimus officia
-                                consequuntur! Ea
-                                facere explicabo nostrum odio.</p>
-                        </div>
-                    </div>
-
-                    <!-- Date and replies -->
-                    <div class="row">
-                        <div class="col-9 posts-date">
-                            <span>25 Oct 2019{{date}}</span>
-                        </div>
-                        <div class="col-3 posts-replies">
-                            <span><a href="/">6 Replies{{replies}}</a></span>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-            <div class="row posts-individual">
-
-                <div class="col-2">
-                    <img class="posts-user-picture" src="{{url}}" />
-                </div>
-
-                <div id="posts-start-of-subject" class="col-5">
-
-                    <!-- Sets the subject and topic in a custom box -->
-                    <div class="row">
-                        <div class="col-9">
-                            <span class="posts-subject-text">User settings deleted{{subject}}</span>
-                        </div>
-                        <div class="col-3 posts-topic-text">
-                            <span>nodejs{{topic}}</span>
-                        </div>
-                    </div>
-
-                    <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
-                    <div class="row">
-                        <div class="col">
-                            <p id="posts-content-text">{{postdetail}}Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit. Quasi laudantium qui excepturi et
-                                nisi
-                                enim corporis ducimus tenetur reprehenderit? Neque nesciunt nam ducimus officia
-                                consequuntur! Ea
-                                facere explicabo nostrum odio.</p>
-                        </div>
-                    </div>
-
-                    <!-- Date and replies -->
-                    <div class="row">
-                        <div class="col-9 posts-date">
-                            <span>25 Oct 2019{{date}}</span>
-                        </div>
-                        <div class="col-3 posts-replies">
-                            <span><a href="/">6 Replies{{replies}}</a></span>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div>
+            {{#each posts}}
+            {{>singlePost postDetail=this}}
+            {{/each}}
         </div>
 
 

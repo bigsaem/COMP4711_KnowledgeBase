@@ -1,11 +1,9 @@
 const db = require("../db/db");
 const table = "likes";
 
-let getLikes = (recipient) =>{
+let getLikes = recipient => {
   return new Promise((resolve, reject) => {
-    db.query(
-      `SELECT * FROM ${table} WHERE recipient = '${recipient}';`
-    )
+    db.query(`SELECT * FROM ${table} WHERE recipient = '${recipient}';`)
       .then(data => {
         resolve(data);
       })
