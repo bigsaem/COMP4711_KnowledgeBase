@@ -60,7 +60,7 @@ let getAllConversationHeader = data => {
       `
     )
       .then(data => {
-        resolve(data.rows);
+        resolve(data);
       })
       .catch(err => {
         reject(err);
