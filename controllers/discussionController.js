@@ -6,27 +6,15 @@ exports.viewCreatePage = (req, res, next) => {
 };
 
 exports.createPost = async (req, res, next) => {
-  let topic = req.body.topic;
-  let subject = req.body.subject;
-  let postdetail = req.body.postdetail;
-  let timestamp = Date.now();
-  let userid = req.body.userid; //not sure how this would be passed yet
-
-  let data = {
-    topic: topic,
-    subject: subject,
-    postdetail: postdetail,
-    timestamp: timestamp,
-    userid: userid
-  };
-
+  let data = req.body;
+  data.timestamp = Date.now();
+  data.userid = req.session.user.userid; 
   console.log(data);
-
   await messagePostData
     .addPost(data)
     .then(() => {
       console.log("post successfully added");
-      res.send("ok");
+      res.redirect(`/user/${data.userid}/home`);
     })
     .catch(err => {
       console.log("Error adding post", err);
