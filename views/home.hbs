@@ -1,11 +1,58 @@
+<div class="row">
+    <div id="home-profile-col" class="col-3">
+        <img id="home-profile-pic" src="{{url}}">
+        <br />
+        <br />
+        <span id="home-name">{{name}}</span>
+        <br />
+        <span id="home-facts">{{facts}}</span>
+        <br />
+        <table id="home-user-table">
+            <tr>
+                <td>
+                    <a class="home-profile-link" href="/user/{{userid}}/posts">Posts</a>
+                </td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td>
+                    <span class="home-profile-content">{{posts}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="home-profile-link" href="/user/{{userid}}/messages">Messages</a></td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td><span class="home-profile-content">{{messages}}</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="home-profile-content">Likes</span>
+                </td>
+                <td>
+                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                </td>
+                <td>
+                    <span class="home-profile-content">{{likes}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="home-profile-link" href="/user/{{userid}}/edit_profile">Edit profile</a>
+                </td>
 
-<img src="{{url}}">
-<p>Name: {{name}}</p>
-<p>Details: {{facts}}</p>
-<p>Posts: {{posts}} </p>
-<p>Likes: {{likes}} </p>
-{{#if myProfile}}
-    <form id="editProfile" action="/user/{{userid}}/edit_profile" method="GET">
-        <button class="btn btn-primary" type="submit">Edit profile</button>
-    </form>
-{{/if}}
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="col-9">
+        Yoooo
+    </div>
+</div>

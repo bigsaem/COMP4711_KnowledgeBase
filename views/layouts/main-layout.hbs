@@ -14,11 +14,12 @@
     <link rel="stylesheet" type="text/css" href="/css/userprofile.css">
     <link rel="stylesheet" type="text/css" href="/css/message.css">
     <link rel="stylesheet" type="text/css" href="/css/messagespage.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
@@ -40,12 +41,12 @@
     <!-- The main navbar -->
     <div id="main-navbar" class="row">
 
-        <div  id="main-title" class="col-1">
-        <span>
-            <a href="/">
-            <span id="main-title-k">k</span><span id="main-title-b">b</span>
-            </a>
-        </span>
+        <div id="main-title" class="col-1">
+            <span>
+                <a href="/">
+                    <span id="main-title-k">k</span><span id="main-title-b">b</span>
+                </a>
+            </span>
         </div>
 
         <div id="main-searchbar" class="col-4">
@@ -61,11 +62,12 @@
 
         <div class="col-2">
             <form id="main-navbarsubmit" action="/signup" method="POST">
-                <input class="form-control col form-content-spacing btn btn-primary" type="submit" name="logout" value="Logout" />
+                <input class="form-control col form-content-spacing btn btn-primary" type="submit" name="logout"
+                    value="Logout" />
             </form>
         </div>
 
-  </div>
+    </div>
     {{else}}
     <!-- On the login screen, do not show the main nav-bar -->
 
