@@ -5,24 +5,25 @@ const messagePostData = require("../models/messagePostData");
 
 exports.getHomeInfo = async (req, res, next) => {
   // TODO: We need a model which will get all unique profile likes
-  let userid = req.session.user.userid;
-  let myprofile = userid == req.params.userid;
-  if(!myprofile){
-    res.redirect(`/user/${req.session.user.userid}/home`);
+  let myInfo = req.session.user;
+  let userid = myInfo.userid;
+  let isItMyProfile = userid == req.params.userid;
+  if(!isItMyProfile){
+    res.redirect(`/user/${myInfo.userid}/home`);
     return;
   }
   let postCount = await messagePostData.getPost(userid);
-  let likeCount = await likesData.getlikes(userid);
+  let likeCount = await likesData.getnumlikes(userid);
   likeCount = likeCount.rows[0].count;
   res.render('home', 
   {
     loggedIn: true, 
-    name: req.session.user.firstname + " " + req.session.user.lastname, 
-    url: req.session.user.imageurl, 
-    facts: req.session.user.description,
+    name: myInfo.firstname + " " + myInfo.lastname, 
+    url: myInfo.imageurl, 
+    facts: myInfo.description,
     posts: postCount.rowCount,
     likes: likeCount,
-    myProfile:myprofile,
+    myProfile:isItMyProfile,
     userid:userid, 
   });
 };
