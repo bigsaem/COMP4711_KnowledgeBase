@@ -16,19 +16,24 @@ var db = require('../db/db');
 ----------------------------------------------------------------------------------------------------------------------*/
 // Add a single individual to the database
 function addProfile(data) {
-    let sql = 
-    `INSERT INTO profile (password, firstname, lastname, email, imageurl, description, country, dateofbirth)
+    let sql =
+        `INSERT INTO profile (password, firstname, lastname, email, imageurl, description, country, dateofbirth)
      VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}', '${data.imageurl}', '${data.description}', '${data.country}', '${data.dateofbirth}')`;
     console.log(sql);
-     return db.query(sql);
+    return db.query(sql);
 }
-// function addAdditionalInfo(data) {
-//     let sql = `INSERT INTO profile (password, firstname, lastname, email) VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}')`;
-//     return db.query(sql);
-// }
+
 function getProfileById(userid) {
     let sql = `SELECT * FROM profile where userid = ${userid}`;
-    return db.query(sql);
+    return new Promise((resolve, reject) => {
+        db.query(sql)
+            .then(data => {
+                resolve(data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
 }
 function getProfileByEmail(email) {
     let sql = `SELECT * FROM profile where email = '${email}'`;
@@ -47,7 +52,7 @@ function removeProfileByUserName(userid) {
 
 
 module.exports = {
-    add : addProfile,
+    add: addProfile,
     getProfileById: getProfileById,
     getProfileByEmail: getProfileByEmail,
     editProfile: editProfileDB,
