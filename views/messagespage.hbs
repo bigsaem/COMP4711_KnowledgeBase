@@ -1,103 +1,33 @@
 <div id="messages-container" class="container">
     <div class="row">
-
         <!-- List of messages column -->
         <div id="messages-column" class="col-4 list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="row messages-list">
-                    <!-- {{url}} -->
-                    <div class="col-3">
-
-                        <img class="messages-pictures" src="https://randomuser.me/api/portraits/men/7.jpg">
-
-                    </div>
-                    <div class="col-6">
-                        <span class="messages-name">Darren James</span>
-                        <p>New Role</p>
-                    </div>
-                    <div class="col-3 messages-date">Sep 18</div>
-
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="row messages-list">
-                    <!-- {{url}} -->
-                    <div class="col-3">
-
-                        <img class="messages-pictures" src="https://randomuser.me/api/portraits/men/13.jpg">
-
-                    </div>
-                    <div class="col-6">
-                        <span class="messages-name">Kevin Hudson</span>
-                        <p>Zend Training</p>
-                    </div>
-                    <div class="col-3 messages-date">Sep 16</div>
-
-                </div>
-            </a>
-
-
+            {{#each messageHeader}}
+            {{> messageHeader messageHeaderInfo=this }}
+            {{/each}}
         </div>
 
         <div class="col-8">
             <div id="messages-details">
 
                 <div class="messages-by-day">
-
-                    <div class="messages-date">
-                        <span class="messages-specific-date">SEP 4</span>
-                        <div class="messages-single-message row">
-                            <div class="col-1">
-                                <img class="messages-pictures-small"
-                                    src="https://randomuser.me/api/portraits/men/13.jpg" />
-                            </div>
-                            <div class="col-11">
-                                <div class="row">
-                                    <span class="messages-mini-name">Kevin Hudson</span>
-                                    <span class="dot">.</span>
-                                    <span class="messages-time">9:03 AM</span>
-                                </div>
-                                <div class="row">
-                                    <p>You have some great zend skills, want to conduct a workshop?</p>
-                                </div>
+                    {{#each messageDate}}
+                    {{>messageDate messageDateInfo=this}}
+                    {{/each}}
+                    <form id="messages-send-form" action="/user/{{userID}}/messages/send/{{recipientID}}" method="POST">
+                        <div class="row">
+                            <textarea class="col" rows="5" name="response" placeholder="Write a message..."></textarea>
+                        </div>
+                        <input name="subject" value="{{subject}}" type="hidden" />
+                        <div class="row">
+                            <div id="messages-submit-div">
+                                <button id="messages-submit-btn" class="btn btn-primary" type="submit">Send</button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="messages-date">
-                        <span class="messages-specific-date">SEP 16</span>
-                        <div class="messages-single-message row">
-                            <div class="col-1">
-                                <img class="messages-pictures-small"
-                                    src="https://randomuser.me/api/portraits/men/22.jpg" />
-                            </div>
-                            <div class="col-11">
-                                <div class="row">
-                                    <span class="messages-mini-name">Sean Williamson</span>
-                                    <span class="dot">.</span>
-                                    <span class="messages-time">9:57 PM</span>
-                                </div>
-                                <div class="row">
-                                    <p>Umm, give me some time to think about it...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <form id="messages-send-form" action="/user/:userid/message/send" method="POST">
-                    <div class="row">
-                        <textarea class="col" rows="5" name="response"
-                            placeholder="Write a message..."></textarea>
-                    </div>
-
-                    <div class="row">
-                        <div id="messages-submit-div">
-                            <button id="messages-submit-btn" class="btn btn-primary" type="submit">Send</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
 
-                
+
 
 
 

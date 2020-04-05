@@ -6,9 +6,13 @@ let postMessage = data => {
     db.query(
       `
           INSERT INTO ${table}
-              (subject, content, timestamp, to, from)
+              (subject, content, "timestamp", "to", "from")
           VALUES
-              ('${data.subject}', '${data.content}', '${data.timestamp}', '${data.to}', '${data.from}');
+             ('${data.subject}',
+              '${data.content}', 
+              to_timestamp(${data.timestamp / 1000}),
+              '${data.to}',
+              '${data.from}');
       `
     )
       .then(data => {
@@ -25,7 +29,12 @@ let getConversation = data => {
     db.query(
       `
           SELECT * FROM ${table} 
-          WHERE 'to' = ${data.to} AND 'from' = ${data.from}
+          LEFT JOIN profile
+          ON ${table}.to = profile.userid
+          WHERE ((${table}.to = ${data.to} AND ${table}.from = ${data.userid})
+          OR (${table}.to = ${data.userid} AND ${table}.from = ${data.to}))
+          AND subject = '${data.subject}'
+          ORDER BY ${table}.timestamp ASC
       `
     )
       .then(data => {
@@ -37,12 +46,17 @@ let getConversation = data => {
   });
 };
 
-let getAllConversation = data => {
+let getAllConversationHeader = data => {
   return new Promise((resolve, reject) => {
     db.query(
       `
-          SELECT * FROM ${table} 
-          WHERE 'to' = ${data.to}
+      SELECT subject, MAX(timestamp) as lastMessageTime, imageurl, firstname, lastname, userid
+      FROM ${table}
+      LEFT JOIN profile
+      ON ${table}.to = profile.userid AND ${table}.from = ${data.userid}
+      OR ${table}.from = profile.userid AND ${table}.to = ${data.userid}
+      GROUP BY subject, imageurl, firstname, lastname, userid
+      ORDER BY lastMessageTime DESC
       `
     )
       .then(data => {
@@ -57,5 +71,5 @@ let getAllConversation = data => {
 module.exports = {
   post: postMessage,
   getOne: getConversation,
-  getAll: getAllConversation
+  getAll: getAllConversationHeader
 };

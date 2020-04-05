@@ -1,7 +1,7 @@
 const db = require("../db/db");
 const table = "likes";
 
-let checkLikes = (recipient, owner) =>{
+let checkLikes = (recipient, owner) => {
   return new Promise((resolve, reject) => {
     db.query(
       `
@@ -18,7 +18,7 @@ let checkLikes = (recipient, owner) =>{
         reject(err);
       });
   });
-}
+};
 let addLikes = (recipient, owner) => {
   return new Promise((resolve, reject) => {
     db.query(
@@ -43,7 +43,7 @@ let removeLikes = (recipient, owner) => {
     db.query(
       `
           DELETE FROM ${table}
-            WHERE recipient = ${recipient} AND 'owner' = ${owner};
+            WHERE recipient = ${recipient} AND ${table}.owner = ${owner};
         `
     )
       .then(data => {

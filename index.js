@@ -20,7 +20,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const session = require('client-sessions');
+const session = require("client-sessions");
 const expressHbs = require("express-handlebars");
 const app = express();
 const authRoute = require("./routes/authRoute");
@@ -31,12 +31,14 @@ const postRoute = require("./routes/postRoute");
 app.use(express.json());
 
 //session object added
-app.use(session({
-  cookieName: 'session',
-  secret: 'random_string_goes_here',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
-}));
+app.use(
+  session({
+    cookieName: "session",
+    secret: "random_string_goes_here",
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000
+  })
+);
 
 // To install: npm install express-handlebars
 app.engine(
@@ -70,20 +72,20 @@ app.get("/", (req, res) => {
   //res.render("login");
 });
 
-app.get('/:userid/profile', (req, res) => {
-  res.render('partials/userprofile', { liked: false });
-})
+app.get("/:userid/profile", (req, res) => {
+  res.render("partials/userprofile", { liked: false });
+});
 
-app.get('/message', (req, res) => {
-  res.render('message', { messagehbs: true });
-})
+app.get("/message", (req, res) => {
+  res.render("message", { messagehbs: true });
+});
 
-app.get('/:userid/messages', (req, res) => {
-  res.render('messagespage', { messagespagehbs: true });
-})
+app.get("/:userid/messages", (req, res) => {
+  res.render("messagespage", { messagespagehbs: true });
+});
 ////////////
 // SERVER //
 ////////////
-
-app.listen(80);
-console.log("node server is running on port 80");
+const PORT = process.env.PORT || 8000;
+app.listen(PORT);
+console.log("node server is running on port ", PORT);
