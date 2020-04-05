@@ -50,7 +50,7 @@ function getSubjectPost(subject) {
 }
 
 function getLatestPosts(limit, offset) {
-  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+  let sql = ` SELECT messagepost.postid, messagepost.userid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
               FROM messagepost 
               LEFT JOIN reply
               ON reply.postid = messagepost.postid

@@ -1,6 +1,6 @@
 <div class="row posts-individual">
     <div class="col-2">
-        <img class="posts-user-picture" src="{{postDetail.imageurl}}" />
+        <a href= "/user/{{postDetail.userid}}"><img class="posts-user-picture" src="{{postDetail.imageurl}}" /></a>
     </div>
 
     <div id="posts-start-of-subject" class="col-5">
@@ -8,7 +8,8 @@
         <!-- Sets the subject and topic in a custom box -->
         <div class="row">
             <div class="col-9">
-                <span class="posts-subject-text">{{postDetail.subject}}</span>
+                <span class="posts-subject-text">{{postDetail.subject}}
+                </span>
             </div>
             <div class="col-3 posts-topic-text">
                 <span>{{postDetail.topic}}</span>
@@ -18,7 +19,7 @@
         <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
         <div class="row">
             <div class="col">
-                <p id="posts-content-text">{{postDetail.content}}</p>
+                <p id="posts-content-text">{{postDetail.postdetail}}</p>
             </div>
         </div>
 
