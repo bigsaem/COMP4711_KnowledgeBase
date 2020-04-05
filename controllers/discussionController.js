@@ -8,7 +8,7 @@ exports.viewCreatePage = (req, res, next) => {
 exports.createPost = async (req, res, next) => {
   let data = req.body;
   data.timestamp = Date.now();
-  data.userid = req.session.user.userid; 
+  data.userid = req.session.user.userid;
   console.log(data);
   await messagePostData
     .addPost(data)
@@ -16,7 +16,7 @@ exports.createPost = async (req, res, next) => {
       console.log("post successfully added");
       res.redirect(`/user/${data.userid}/home`);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Error adding post", err);
     });
 };
@@ -26,15 +26,40 @@ exports.deletePost = (req, res, next) => {
   console.log("deletePost");
 };
 
-exports.getPost = (req, res, next) => {
-  // let postid = req.params.postid;
+exports.getPost = async (req, res, next) => {
+  let postid = req.params.postid;
+  let data = (await messagePostData.getPostId(postid)).rows[0];
+  let replyInfo = (await replyData.getReply(postid)).rows;
+  let time = data.timestamp.toDateString();
 
-  // messagePostData.getMessagePost(postid)
-  // .then(data => {
+  console.log(replyInfo);
+  let postData = [
+    {
+      topic: data.topic,
+      subject: data.subject,
+      content: data.postdetail,
+      timestamp: time,
+      imageurl: data.imageurl,
+      replies: data.replies,
+      postid: data.postid,
+    },
+  ];
 
-  // })
-  //Need another function to get one singular post in model
-  console.log("getPost");
+  let replies = [];
+  replyInfo.forEach((reply) => {
+    let time = reply.timestamp.toDateString();
+    replies.push({
+      replydetail: reply.replydetail,
+      timestamp: time,
+      imageurl: reply.imageurl,
+      name: reply.firstname + " " + reply.lastname,
+    });
+  });
+
+  res.render("postpage", {
+    posts: postData,
+    replies,
+  });
 };
 
 exports.getAllPosts = (req, res, next) => {
@@ -42,10 +67,10 @@ exports.getAllPosts = (req, res, next) => {
 
   messagePostData
     .getPost(userid)
-    .then(data => {
+    .then((data) => {
       res.send("success", data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Error getting all posts", err);
     });
 };
@@ -55,10 +80,10 @@ exports.getAllReplies = (req, res, next) => {
 
   replyData
     .getReplyPost(postid)
-    .then(data => {
+    .then((data) => {
       console.log("success adding reply", data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Error adding reply", err);
     });
 };
@@ -71,10 +96,10 @@ exports.addComment = (req, res, next) => {
 
   replyData
     .addReplyPost(replydetail, timestamp, userid, postid)
-    .then(data => {
+    .then((data) => {
       console.log("success adding reply", data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Error adding reply", err);
     });
 };
