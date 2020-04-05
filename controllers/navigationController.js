@@ -5,20 +5,22 @@ const messagePostData = require("../models/messagePostData");
 
 exports.getHomeInfo = async (req, res) => {
   // TODO: We need a model which will get all unique profile likes
-  let maxPage = 2;
   let myInfo = req.session.user;
-  let userid = myInfo.userid;
-  let isItMyProfile = userid == req.params.userid;
-  let pageNum = req.params.pagenum == undefined ? 0 : req.params.pagenum;
+  let myid = myInfo.userid;
+  let isItMyProfile = myid == req.params.userid;
+  if (!isItMyProfile) {
+    res.redirect(`/user/${myid}/home`);
+    return;
+  }
+  let maxPage = 2;
+  
+  let pageNum = req.params.pagenum == undefined ? 0 : parseInt(req.params.pagenum);
   pageNum = pageNum > maxPage ? 2 : pageNum;
   let next = pageNum != maxPage ? true : false; //for next or prev page button activation
   let prev = pageNum != 0 ? true : false;
-  if (!isItMyProfile) {
-    res.redirect(`/user/${myInfo.userid}/home`);
-    return;
-  }
-  let myPosts = await messagePostData.getPost(userid);
-  let likeCount = await likesData.getnumlikes(userid);
+  let myPosts = await messagePostData.getPost(myid);
+  let messages = await messageRepliesData.getAll(req.session.user);
+  let likeCount = await likesData.getnumlikes(myid);
   let latestPosts;
   if (pageNum == 2) {
     latestPosts = await messagePostData.getLatestPosts(1, pageNum * 2);
@@ -28,21 +30,10 @@ exports.getHomeInfo = async (req, res) => {
 
   likeCount = likeCount.rows[0].count;
 
-  let postData = [];
+  
   latestPosts.rows.forEach((post) => {
-    let time = post.timestamp.toDateString();
-    postData.push({
-      topic: post.topic,
-      subject: post.subject,
-      content: post.postdetail,
-      timestamp: time,
-      imageurl: post.imageurl,
-      replies: post.replies,
-      postid: post.postid,
-    });
+    post.timestamp = post.timestamp.toDateString();
   });
-
-  console.log(latestPosts.rows);
 
   res.render("home", {
     loggedIn: true,
@@ -50,13 +41,16 @@ exports.getHomeInfo = async (req, res) => {
     url: myInfo.imageurl,
     facts: myInfo.description,
     postCount: myPosts.rowCount,
+    messageCount: messages.rowCount,
     likes: likeCount,
     myProfile: isItMyProfile,
-    userid: userid,
+    userid: myid,
     latestPosts: latestPosts,
     prev: prev,
     next: next,
-    posts: postData,
+    prevPage: pageNum-1,
+    nextPage: pageNum+1,
+    posts: latestPosts.rows,
   });
 };
 
@@ -68,7 +62,7 @@ exports.viewMessagesPage = async (req, res, next) => {
   };
 
   let messages = await messageRepliesData.getAll(data);
-
+  messages = messages.rows;
   let messageHeader = handleMessageHeader(messages, userID);
 
   let messageDate;
@@ -89,6 +83,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     });
   } else {
     res.render("messagespage", {
+      loggedIn: true,
       messageHeader,
       userID,
       subject,
@@ -107,12 +102,13 @@ exports.getMessageHistory = async (req, res, next) => {
     subject,
   };
   let messages = await messageRepliesData.getAll(info);
-
+  messages = messages.rows;
   let messageHeader = handleMessageHeader(messages, userID);
 
   let messageDate = await handleConversation(info);
 
   res.render("messagespage", {
+    loggedIn: true,
     messageHeader,
     messageDate,
     userID,
