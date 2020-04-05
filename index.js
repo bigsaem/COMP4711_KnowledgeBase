@@ -70,9 +70,7 @@ app.get("/", (req, res) => {
   //res.render("login");
 });
 
-app.get('/:userid/profile', (req, res) => {
-  res.render('partials/userprofile', { liked: false });
-})
+
 
 app.get('/message', (req, res) => {
   res.render('message', { messagehbs: true });

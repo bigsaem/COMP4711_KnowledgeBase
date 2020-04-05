@@ -7,13 +7,12 @@ exports.getHomeInfo = async (req, res, next) => {
   // TODO: We need a model which will get all unique profile likes
   let userid = req.session.user.userid;
   let myprofile = userid == req.params.userid;
-  console.log(userid, req.params.userid, myprofile);
   if(!myprofile){
     res.redirect(`/user/${req.session.user.userid}/home`);
     return;
   }
   let postCount = await messagePostData.getPost(userid);
-  let likeCount = await likesData.getnumlikes(userid);
+  let likeCount = await likesData.getlikes(userid);
   likeCount = likeCount.rows[0].count;
   res.render('home', 
   {
@@ -56,7 +55,9 @@ exports.getMessageHistory = async (req, res, next) => {
 };
 
 exports.editProfilePage = async(req, res, next) =>{
-  
-  console.log(req.session.user);
+  res.render('editprofile', {userObj: req.session.user});
+}
+
+exports.viewProfilePage = async(req, res, next) =>{
   res.render('editprofile', {userObj: req.session.user});
 }
