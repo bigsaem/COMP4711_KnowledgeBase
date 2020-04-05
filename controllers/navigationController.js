@@ -62,15 +62,20 @@ exports.viewMessagesPage = async (req, res, next) => {
       subject
     };
     messageDate = await handleConversation(info);
+    res.render("messagespage", {
+      messageHeader,
+      messageDate,
+      userID,
+      recipientID: messages[0].userid,
+      subject
+    });
+  } else {
+    res.render("messagespage", {
+      messageHeader,
+      userID,
+      subject
+    });
   }
-
-  res.render("messagespage", {
-    messageHeader,
-    messageDate,
-    userID,
-    recipientID: messages[0].userid,
-    subject
-  });
 };
 
 exports.getMessageHistory = async (req, res, next) => {
