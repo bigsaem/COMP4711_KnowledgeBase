@@ -83,6 +83,6 @@ app.get("/:userid/messages", (req, res) => {
 // SERVER //
 ////////////
 
-app.listen(process.env.PORT || 80);
+app.listen(process.env.PORT || 8000);
 
 console.log("node server is running on port 80");
