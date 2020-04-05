@@ -1,6 +1,6 @@
 <div class="row">
     <div id="home-profile-col" class="col-3">
-        <a href = '/user/{{userid}}'><img id="home-profile-pic" src="{{url}}"></a>
+        <a href='/user/{{userid}}'><img id="home-profile-pic" src="{{url}}"></a>
         <br />
         <br />
         <span id="home-name">{{name}}</span>
@@ -51,19 +51,20 @@
         </table>
     </div>
 
-    
+
     <div id="home-right-column" class="col-9">
+
         <div id="home-post-question">
             <span id="home-question-text">What's your question today?</span>
 
             <form onsubmit="return isValidForm()" id="home-question-form" action="/post/createPost" method="POST">
                 <div class="form-group row">
-                    <input class="square-border col form-control home-post-input-spacing" type="text" name="subject"
+                    <input class="square-border  form-control home-post-input-spacing" type="text" name="subject"
                         placeholder="Subject" />
                 </div>
 
                 <div class="row form-group">
-                    <textarea class="square-border col form-control home-post-input-spacing" rows="3" name="details"
+                    <textarea class="square-border form-control home-post-input-spacing" rows="3" name="details"
                         placeholder="Explain in detail..."></textarea>
                 </div>
 
@@ -118,6 +119,105 @@
                 </form>
             </div>
         </div>
+        <br />
+
+        <span id="home-discussions-title">Latest discussions</span>
+        <br /><br />
+
+        <div id="home-discussions-container">
+            <div class="row posts-individual">
+
+                <div class="col-2">
+                    <img class="posts-user-picture" src="{{url}}" />
+                </div>
+
+                <div id="posts-start-of-subject" class="col-5">
+
+                    <!-- Sets the subject and topic in a custom box -->
+                    <div class="row">
+                        <div class="col-9">
+                            <span class="posts-subject-text">User settings deleted{{subject}}</span>
+                        </div>
+                        <div class="col-3 posts-topic-text">
+                            <span>nodejs{{topic}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
+                    <div class="row">
+                        <div class="col">
+                            <p id="posts-content-text">{{postdetail}}Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Quasi laudantium qui excepturi et
+                                nisi
+                                enim corporis ducimus tenetur reprehenderit? Neque nesciunt nam ducimus officia
+                                consequuntur! Ea
+                                facere explicabo nostrum odio.</p>
+                        </div>
+                    </div>
+
+                    <!-- Date and replies -->
+                    <div class="row">
+                        <div class="col-9 posts-date">
+                            <span>25 Oct 2019{{date}}</span>
+                        </div>
+                        <div class="col-3 posts-replies">
+                            <span><a href="/">6 Replies{{replies}}</a></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="row posts-individual">
+
+                <div class="col-2">
+                    <img class="posts-user-picture" src="{{url}}" />
+                </div>
+
+                <div id="posts-start-of-subject" class="col-5">
+
+                    <!-- Sets the subject and topic in a custom box -->
+                    <div class="row">
+                        <div class="col-9">
+                            <span class="posts-subject-text">User settings deleted{{subject}}</span>
+                        </div>
+                        <div class="col-3 posts-topic-text">
+                            <span>nodejs{{topic}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
+                    <div class="row">
+                        <div class="col">
+                            <p id="posts-content-text">{{postdetail}}Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Quasi laudantium qui excepturi et
+                                nisi
+                                enim corporis ducimus tenetur reprehenderit? Neque nesciunt nam ducimus officia
+                                consequuntur! Ea
+                                facere explicabo nostrum odio.</p>
+                        </div>
+                    </div>
+
+                    <!-- Date and replies -->
+                    <div class="row">
+                        <div class="col-9 posts-date">
+                            <span>25 Oct 2019{{date}}</span>
+                        </div>
+                        <div class="col-3 posts-replies">
+                            <span><a href="/">6 Replies{{replies}}</a></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
     </div>
 </div>
 
