@@ -7,15 +7,52 @@ span {
     background-color: solid rgb(184, 181, 181);
 }
 
-#container .noshowborder {
-    border: 0px;
-}
-
-#navbar {
-    background-color: #f0ad4e;
+#main-navbar {
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
+}
+
+#main-title {
+    font-size: 30pt;
+    font-weight: bold;
+    top: -8px;
+}
+
+#main-title-k {
+    color: black;
+
+}
+
+#main-title-b {
+        color: #00BFFF;
+    
+}
+
+#main-searchbar {
+    padding-left: 0px;
+}
+
+#main-searchbar-input {
+    background-color: rgb(215, 229, 233);
+    border: solid 2px lightgrey;
+    border-radius: 0%;
+    padding-right:1px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
 }
 
 #headerform {}
