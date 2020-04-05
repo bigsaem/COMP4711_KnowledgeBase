@@ -12,7 +12,7 @@ exports.getHomeInfo = async (req, res, next) => {
     return;
   }
   let postCount = await messagePostData.getPost(userid);
-  let likeCount = await likesData.getlikes(userid);
+  let likeCount = await likesData.getnumlikes(userid);
   likeCount = likeCount.rows[0].count;
   res.render('home', 
   {
