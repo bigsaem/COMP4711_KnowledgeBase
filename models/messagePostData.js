@@ -50,7 +50,15 @@ function getSubjectPost(subject) {
 }
 
 function getLatestPosts(limit, offset) {
-  let sql = `SELECT * FROM messagepost ORDER BY postid DESC LIMIT ${limit} OFFSET ${offset}`;
+  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+              FROM messagepost 
+              LEFT JOIN reply
+              ON reply.postid = messagepost.postid
+              LEFT JOIN profile
+              ON messagepost.userid = profile.userid
+              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
+              ORDER BY postid DESC LIMIT ${limit} OFFSET ${offset}
+            `;
   return new Promise((resolve, reject) => {
     db.query(sql)
       .then((data) => {
