@@ -1,8 +1,9 @@
-
+#posts-start-of-subject{
+    padding:0;
+}
 
 #posts-start-of-subject .singlePost-reply-box {
     padding-top:15px;
-    width: 500px;
 }
 
 .reply-inline-divs {
@@ -24,6 +25,3 @@ element.style {
     display: none !important;
 }
 
-.reply-show {
-    display: inline !important;
-}

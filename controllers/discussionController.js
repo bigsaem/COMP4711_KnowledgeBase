@@ -87,6 +87,7 @@ exports.getAllReplies = (req, res, next) => {
 };
 
 exports.addComment = (req, res, next) => {
+  console.log(req);
   let postid = req.params.postid;
   let replydetail = req.body.replydetail;
   let timestamp = Date.now();
@@ -95,7 +96,7 @@ exports.addComment = (req, res, next) => {
   replyData
     .addReply(replydetail, timestamp, userid, postid)
     .then((data) => {
-      console.log("success adding reply", data);
+      res.redirect(req.headers.referer); //go back to the previous page
     })
     .catch((err) => {
       console.log("Error adding reply", err);

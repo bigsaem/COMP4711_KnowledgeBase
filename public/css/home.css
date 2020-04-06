@@ -139,6 +139,9 @@
     font-size: 14pt;
     font-weight: bold;
 }
+#home-discussions-container {
+    width: 50%;
+}
 
 .posts-user-picture {
     width: 100px;
@@ -152,6 +155,7 @@
 }
 
 .posts-topic-text {
+    height:fit-content;
     padding-right: 5px;
     border: solid 1px rgb(39, 148, 221);
     text-align: center;
@@ -163,15 +167,13 @@
     color: rgb(39, 148, 221);
 }
 
-#posts-start-of-subject {
-    margin-left: -35px;
-}
+
 
 #posts-content-text {
     margin-left: 50px;
 }
 
-p {
+.posts-content-text {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -201,7 +203,9 @@ p {
     background-color: white;
     margin: 5px;
 }
-
+.singlePost-reply-comment form{
+    width: 100%;
+}
 #home-posts-navigate {
     margin-left: 275px;
     display: flex;
