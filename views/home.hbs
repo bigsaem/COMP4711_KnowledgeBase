@@ -53,102 +53,11 @@
 
 
     <div id="home-right-column" class="col-9">
-
-        <div id="home-post-question">
-            <span id="home-question-text">What's your question today?</span>
-
-            <form onsubmit="return isValidPostForm()" id="home-question-form" action="/post/createPost" method="POST">
-                <div class="form-group row">
-                    <input class="square-border  form-control home-post-input-spacing" type="text" name="subject"
-                        placeholder="Subject" />
-                </div>
-
-                <div class="row form-group">
-                    <textarea class="square-border form-control home-post-input-spacing" rows="3" name="postdetail"
-                        placeholder="Explain in detail..."></textarea>
-                </div>
-
-                <input id="home-question-hidden-topic" type="text" name="topic">
-
-                <div id="home-form-bottom" class="row form-group">
-                    <div id="home-post-dropdown" class="dropdown col square-border">
-                        <button class="btn btn-primary dropdown-toggle" name="topic" id="home-topic-menu" type="button"
-                            data-toggle="dropdown">Topic
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <li id="home-dropdown-php" role="presentation">PHP</li>
-                            <li id="home-dropdown-node" role="presentation">Node.js</li>
-                            <li id="home-dropdown-java" role="presentation">Java</li>
-                            <li id="home-dropdown-sql" role="presentation">SQL</li>
-                            <li id="home-dropdown-zend" role="presentation">Zend</li>
-                        </ul>
-                    </div>
-                    <button id="home-post-question-submit" class="square-border btn btn-primary col" type="submit">Post
-                        Question</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="row">
-            <div id="home-search-question-div" class="home-search-inline col-2">
-                <span id="home-search-by-topic-text">Search by topic</span>
-            </div>
-
-            <div class="home-search-inline col-9">
-                <form onsubmit="return isValidSearchForm()" action="/search/topic/" method="GET">
-                    <div id="home-search-dropdown" class="dropdown home-search-inline square-border row">
-                        <div id="home-dropdown-search" class="col-4">
-                            <input id="home-search-hidden-topic" type="text" name="topic">
-                            <button class="btn btn-primary dropdown-toggle" id="home-search-menu" type="button"
-                                data-toggle="dropdown" data-flip="false">Topic
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <li id="home-filter-php" role="presentation">PHP</li>
-                                <li id="home-filter-node" role="presentation">Node.js</li>
-                                <li id="home-filter-java" role="presentation">Java</li>
-                                <li id="home-filter-sql" role="presentation">SQL</li>
-                                <li id="home-filter-zend" role="presentation">Zend</li>
-                            </ul>
-                        </div>
-                        <div id="home-search-submit" class="col-3">
-                            <button id="home-search-submit-btn"
-                                class=" home-search-inlinesquare-border btn btn-primary col" type="submit">Go
-                                -></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <br />
-
-        <span id="home-discussions-title">Latest discussions</span>
-        <br /><br />
-
-        <div id="home-discussions-container">
-            {{#each posts}}
-            {{>singlePost postDetail=this}}
-            {{/each}}
-        </div>
-
-        <div id="home-posts-navigate">
-            {{#if prev}}
-            <div id="home-back-posts">
-                <a href="/user/{{userid}}/home/{{prevPage}}">
-                    <button id="home-back-posts-btn" class="btn col">
-                        <- Back</button>
-                </a>
-            </div>
-            {{/if}}
-            {{#if next}}
-            <div id="home-next-posts">
-                <a href="/user/{{userid}}/home/{{nextPage}}">
-                    <button id="home-next-posts-btn" class="btn col" type="submit">Next -></button>
-                </a>
-            </div>
-            {{/if}}
-        </div>
-
-
+        {{#if allPost}}
+            {{>myAllPost}}
+        {{else}}
+            {{>homeRight}}
+        {{/if}}
     </div>
 </div>
 
