@@ -12,7 +12,7 @@ router.get("/post/:postid", discussionController.getPost);
 
 router.get("/post/:postid/replies", discussionController.getAllReplies);
 
-router.get("/post/:postid/replies/comment", discussionController.addComment);
+router.post("/post/:postid/replies/comment", discussionController.addComment);
 
 
 

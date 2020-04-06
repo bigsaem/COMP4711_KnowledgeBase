@@ -89,11 +89,11 @@ exports.getAllReplies = (req, res, next) => {
 exports.addComment = (req, res, next) => {
   let postid = req.params.postid;
   let replydetail = req.body.replydetail;
-  let timestamp = req.body.timestamp;
+  let timestamp = Date.now();
   let userid = req.body.userid; //not sure how this is passed yet
 
   replyData
-    .addReplyPost(replydetail, timestamp, userid, postid)
+    .addReply(replydetail, timestamp, userid, postid)
     .then((data) => {
       console.log("success adding reply", data);
     })
