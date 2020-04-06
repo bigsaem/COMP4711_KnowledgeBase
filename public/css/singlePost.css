@@ -1,0 +1,26 @@
+.singlePost-reply-profile-picture {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#posts-start-of-subject .singlePost-reply-box {
+    padding-top:15px;
+    width: 500px;
+}
+
+.reply-inline-divs {
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+
+
+.reply-hide {
+    display: none !important;
+}
+
+.reply-show {
+    display: inline !important;
+}
+

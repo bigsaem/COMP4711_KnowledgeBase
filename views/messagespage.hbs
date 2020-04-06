@@ -16,7 +16,7 @@
                     {{/each}}
                     <form id="messages-send-form" action="/user/{{userID}}/messages/send/{{recipientID}}" method="POST">
                         <div class="row">
-                            <textarea class="col" rows="5" name="response" placeholder="Write a message..."></textarea>
+                            <textarea class="col" rows="5" name="content" placeholder="Write a message..."></textarea>
                         </div>
                         <input name="subject" value="{{subject}}" type="hidden" />
                         <div class="row">

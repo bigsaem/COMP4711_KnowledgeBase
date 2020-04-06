@@ -3,7 +3,6 @@
     <div class="row">
         <div id="profile-overview" class="col-6">
             <div class="row">
-
                 <img src="{{userObj.imageurl}}" id="userprofile-picture">
                 {{!-- <img src="https://randomuser.me/api/portraits/men/7.jpg" id="userprofile-picture"> --}}
             </div>
@@ -19,19 +18,23 @@
                 {{userObj.country}}
                 {{!-- Country --}}
             </div>
-
         </div>
 
         <div id="profile-actions" class="col-4">
             <div id="userprofile-empty-row" class="row">
                 <br />
             </div>
+            {{#if notMyProfile}}
             <div class="row">
-                <button class="btn btn-primary">Message</button>
+                <a href="/user/{{userObj.userid}}/message/send">
+                    <button class="btn btn-primary">Message</button>
+                </a>
             </div>
+            {{else}}
             <div class="row">
-                <br />
+                <a class="home-profile-link" href="/user/{{userObj.userid}}/messages">{{messageCount}} Messages</a>
             </div>
+            {{/if}}
             <div class="row">
                 <span class="profilefontclr">{{likes}} Likes</span>
                 <!-- This should refresh the page -->
