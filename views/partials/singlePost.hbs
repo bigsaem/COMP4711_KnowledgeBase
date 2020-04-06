@@ -37,13 +37,14 @@
         {{>singleReply replyDetail=this}}
         {{/each}}
 
-        <!-- The reply form -->
+        <!-- The reply form for response and submit -->
         <div class="row reply-hide singlePost-reply-comment">
             <form action="/post/{{postDetail.postid}}/replies/comment" method="POST">
-                <textarea>
-
-                </textarea>
-                <input type="submit">
+                <input class="reply-hide" type="text" value="{{postDetail.postid}}" name="postid">
+                <textarea class="square-border form-control home-post-input-spacing" rows="3" name="replydetail"
+                    placeholder="Add your reply..."></textarea>
+                <input id="single-reply-submit-btn" class="form-control form-content-spacing btn btn-primary"
+                    type="submit" value="Comment" />
             </form>
         </div>
 

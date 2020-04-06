@@ -3,12 +3,16 @@ let db = require("../db/db");
 function addMessagePost(data) {
   let sql = `INSERT INTO messagepost (topic, subject, postdetail, timestamp, userid) 
               VALUES( '${data.topic}', 
-                      '${data.subject}', 
-                      '${data.postdetail}', 
+                      $1, 
+                      $2, 
                       to_timestamp(${data.timestamp / 1000}),
                       '${data.userid}')
             `;
-  return db.query(sql);
+  return db.query(sql, 
+    [
+      data.subject,
+      data.postdetail
+    ]);
 }
 
 function getMessagePost(userid) {
@@ -59,9 +63,9 @@ function getSubjectPost(subject) {
               ON reply.postid = messagepost.postid
               LEFT JOIN profile
               ON messagepost.userid = profile.userid
-              WHERE subject like '%${subject}%'
+              WHERE subject like $1
               GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
-  return db.query(sql);
+  return db.query(sql, ['%' + subject + '%']);
 }
 
 function getLatestPosts(limit, offset) {

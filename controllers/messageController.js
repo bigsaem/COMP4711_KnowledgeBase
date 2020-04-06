@@ -13,7 +13,6 @@ exports.sendMessage = async (req, res, next) => {
       timestamp,
     };
     await messageRepliesData.post(data).then((data) => {
-      console.log("success writing to db", data);
       res.redirect(
         `/user/${myID}/messages/view/${recipientID}/?subject=${subject}`
       );

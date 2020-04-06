@@ -76,7 +76,6 @@ exports.signup_additionalInfo = (req, res, next) => {
 
   profileData.add(userObj).then(data=>{
     profileData.getProfileByEmail(userObj.email).then(data=>{
-      console.log(data.rows[0]);
       userObj.userid = data.rows[0].userid;
       res.redirect(`/user/${userObj.userid}/home`);
     }).catch((e) => { console.log("error occured in get user id " + e); });
