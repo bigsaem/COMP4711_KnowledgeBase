@@ -36,15 +36,25 @@
         {{>singleReply replyDetail=this}}
         {{/each}}
 
+        <!-- The reply form -->
+        <div class="row reply-hide singlePost-reply-comment">
+            <form>
+                <textarea>
+
+                </textarea>
+                <input type="submit">
+            </form>
+        </div>
+
     </div>
 </div>
 
 
 <script>
     function show_hide(element) {
-        alert("Triggered");
         let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
-        console.log(masterNode);
+        let replyBox = element.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-comment")[0];
+        console.log(replyBox);
         for (let i = 0; i < masterNode.length; i++) {
             if (masterNode[i].classList.contains("reply-hide")) {
                 masterNode[i].classList.remove("reply-hide");
@@ -52,7 +62,15 @@
             } else {
                 masterNode[i].classList.remove("reply-show");
                 masterNode[i].classList.add("reply-hide");
+                replyBox.classList.add("reply-hide");
             }
+
+
+        }
+        if (replyBox.classList.contains("reply-hide")) {
+            replyBox.classList.add("reply-show");
+        } else {
+            replyBox.classList.add("reply-hide");
         }
     }
 </script>
