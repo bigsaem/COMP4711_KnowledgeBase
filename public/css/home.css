@@ -17,9 +17,11 @@
 
 #home-facts {
     padding: 0px;
-    margin: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
     font-size: 12pt;
     color: lightgrey;
+    
 }
 
 #home-user-box {
