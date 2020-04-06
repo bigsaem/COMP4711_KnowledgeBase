@@ -91,12 +91,13 @@ exports.viewProfilePage = async (req, res, next) => {
   let userid = req.params.userid;
   let myUserid = req.session.user.userid;
   let notMyProfile = myUserid != userid;
-  let profile = await profileData.getProfileById(userid);
-  let likes = await likesData.getLikes(userid);
-  let posts = await messagePostData.getPost(userid);
-  let messages = await messageRepliesData.getAll(userid);
-  let liked = false;
+  let profile = await profileData.getProfileById(userid).catch(e=>console.log("profile" + e));
   profile = profile.rows[0];
+  let likes = await likesData.getLikes(userid).catch(e=>console.log("likes" + e));
+  let posts = await messagePostData.getPost(userid).catch(e=>console.log("posts" + e));
+  let messages = await messageRepliesData.getAll(profile).catch(e=>console.log("messages" + e));
+  let liked = false;
+  
   posts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
   });

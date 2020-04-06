@@ -2,6 +2,7 @@ const db = require("../db/db");
 const table = "messagereply";
 
 let postMessage = (data) => {
+  console.log(data);
   return new Promise((resolve, reject) => {
     db.query(
       `
@@ -9,12 +10,14 @@ let postMessage = (data) => {
               (subject, content, "timestamp", "to", "from")
           VALUES
              ('${data.subject}',
-              '${data.content}', 
+              $1, 
               to_timestamp(${data.timestamp / 1000}),
               '${data.to}',
               '${data.from}');
       `
-    )
+    ,[
+      data.content
+    ])
       .then((data) => {
         resolve(data);
       })
