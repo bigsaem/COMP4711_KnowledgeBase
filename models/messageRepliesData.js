@@ -2,19 +2,23 @@ const db = require("../db/db");
 const table = "messagereply";
 
 let postMessage = (data) => {
+  console.log(data);
   return new Promise((resolve, reject) => {
     db.query(
       `
           INSERT INTO ${table}
               (subject, content, "timestamp", "to", "from")
           VALUES
-             ('${data.subject}',
-              '${data.content}', 
+             ($1,
+              $2, 
               to_timestamp(${data.timestamp / 1000}),
               '${data.to}',
               '${data.from}');
       `
-    )
+    ,[
+      data.subject,
+      data.content
+    ])
       .then((data) => {
         resolve(data);
       })
@@ -33,10 +37,10 @@ let getConversation = (data) => {
           ON ${table}.from = profile.userid
           WHERE ((${table}.to = ${data.to} AND ${table}.from = ${data.userid})
           OR (${table}.to = ${data.userid} AND ${table}.from = ${data.to}))
-          AND subject = '${data.subject}'
+          AND subject = $1
           ORDER BY ${table}.timestamp ASC
       `
-    )
+    , [data.subject])
       .then((data) => {
         resolve(data.rows);
       })
