@@ -90,7 +90,7 @@ exports.addComment = (req, res, next) => {
   let postid = req.params.postid;
   let replydetail = req.body.replydetail;
   let timestamp = Date.now();
-  let userid = req.body.userid; //not sure how this is passed yet
+  let userid =  req.session.user.userid;
 
   replyData
     .addReply(replydetail, timestamp, userid, postid)
