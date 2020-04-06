@@ -73,6 +73,10 @@ exports.signup_additionalInfo = (req, res, next) => {
   for (let key in req.body) {
     userObj[key] = req.body[key];
   }
+<<<<<<< HEAD
+=======
+  console.log(userObj);
+>>>>>>> 8fad10203230b90b038b135d2d2ab32e3fdcd4c2
   profileData.add(userObj).then(data=>{
     profileData.getProfileByEmail(userObj.email).then(data=>{
       console.log(data.rows[0]);

@@ -72,7 +72,7 @@
 
                 <div id="home-form-bottom" class="row form-group">
                     <div id="home-post-dropdown" class="dropdown col square-border">
-                        <button class="btn btn-primary dropdown-toggle" id="home-topic-menu" type="button"
+                        <button class="btn btn-primary dropdown-toggle" name="topic" id="home-topic-menu" type="button"
                             data-toggle="dropdown">Topic
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -95,7 +95,7 @@
             </div>
 
             <div class="home-search-inline col-9">
-                <form onsubmit="return isValidSearchForm()">
+                <form onsubmit="return isValidSearchForm()" action="/search/topic/" method="GET">
                     <div id="home-search-dropdown" class="dropdown home-search-inline square-border row">
                         <div id="home-dropdown-search" class="col-4">
                             <input id="home-search-hidden-topic" type="text" name="topic">
