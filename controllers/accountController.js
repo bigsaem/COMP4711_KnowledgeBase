@@ -76,7 +76,7 @@ exports.signup_additionalInfo = (req, res, next) => {
     userObj[key] = req.body[key];
   }
   console.log(userObj);
-  profileData.add(userObj).then(res=>{
+  profileData.add(userObj).then(data=>{
     profileData.getProfileByEmail(userObj.email).then(data=>{
       console.log(data.rows[0]);
       userObj.userid = data.rows[0].userid;
