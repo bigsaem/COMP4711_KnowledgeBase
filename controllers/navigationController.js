@@ -13,8 +13,9 @@ exports.getHomeInfo = async (req, res) => {
     return;
   }
   let maxPage = 2;
-  
-  let pageNum = req.params.pagenum == undefined ? 0 : parseInt(req.params.pagenum);
+
+  let pageNum =
+    req.params.pagenum == undefined ? 0 : parseInt(req.params.pagenum);
   pageNum = pageNum > maxPage ? 2 : pageNum;
   let next = pageNum != maxPage ? true : false; //for next or prev page button activation
   let prev = pageNum != 0 ? true : false;
@@ -30,7 +31,6 @@ exports.getHomeInfo = async (req, res) => {
 
   likeCount = likeCount.rows[0].count;
 
-  
   latestPosts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
   });
@@ -48,8 +48,8 @@ exports.getHomeInfo = async (req, res) => {
     latestPosts: latestPosts,
     prev: prev,
     next: next,
-    prevPage: pageNum-1,
-    nextPage: pageNum+1,
+    prevPage: pageNum - 1,
+    nextPage: pageNum + 1,
     posts: latestPosts.rows,
   });
 };
@@ -79,14 +79,14 @@ exports.viewMessagesPage = async (req, res, next) => {
       messageDate,
       userID,
       recipientID: messages[0].userid,
-      subject,
+      subject: encodeURI(subject),
     });
   } else {
     res.render("messagespage", {
       loggedIn: true,
       messageHeader,
       userID,
-      subject,
+      subject: encodeURI(subject),
     });
   }
 };
@@ -99,7 +99,7 @@ exports.getMessageHistory = async (req, res, next) => {
   let info = {
     to: recipientID,
     userid: userID,
-    subject,
+    subject: decodeURI(subject),
   };
   let messages = await messageRepliesData.getAll(info);
   messages = messages.rows;
@@ -120,7 +120,7 @@ exports.getMessageHistory = async (req, res, next) => {
 exports.sendMessage = async (req, res, next) => {
   let userID = req.params.userid;
   let recipientID = req.params.recipientid;
-  let subject = req.body.subject;
+  let subject = decodeURI(req.body.subject);
   let content = req.body.response;
   let timestamp = Date.now();
 
@@ -133,7 +133,7 @@ exports.sendMessage = async (req, res, next) => {
   };
 
   await messageRepliesData.post(data).then((data) => {
-    console.log("success writing to db", data);
+    // console.log("success writing to db", data);
     res.redirect(
       `/user/${userID}/messages/view/${recipientID}/?subject=${subject}`
     );
@@ -148,7 +148,9 @@ let handleMessageHeader = (messages, userID) => {
     let to = message.firstname + " " + message.lastname;
     let lastMessagedDate = message.lastmessagetime.toDateString();
     let imageURL = message.imageurl;
-    let convoURL = `/user/${userID}/messages/view/${message.userid}/?subject=${subject}`;
+    let convoURL = `/user/${userID}/messages/view/${
+      message.userid
+    }/?subject=${encodeURI(subject)}`;
 
     messageHeader.push({
       subject,
@@ -165,7 +167,7 @@ let handleMessageHeader = (messages, userID) => {
 let handleConversation = async (info) => {
   let messageHistory = await messageRepliesData.getOne(info);
 
-  console.log(messageHistory);
+  // console.log(messageHistory);
   let messageGroups = messageHistory.reduce((messageGroups, data) => {
     let date = data.timestamp.toDateString();
     if (!messageGroups[date]) {
