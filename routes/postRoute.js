@@ -14,4 +14,7 @@ router.get("/post/:postid/replies", discussionController.getAllReplies);
 
 router.get("/post/:postid/replies/comment", discussionController.addComment);
 
+
+
+
 module.exports = router;
