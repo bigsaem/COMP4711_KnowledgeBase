@@ -31,6 +31,8 @@ router.get("/user/:userid/message/send", navigationController.viewSendMessagePag
 
 router.post("/user/:userid/messages/send/:recipientID", messageController.sendMessage);
 
+router.post("/user/:userid/messages/init/:recipientID", messageController.sendInitMessage);
+
 router.get("/user/:userid/posts", navigationController.viewmyallpost);
 
 module.exports = router;
