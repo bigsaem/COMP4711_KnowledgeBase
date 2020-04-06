@@ -93,7 +93,7 @@ exports.addComment = (req, res, next) => {
   let userid = req.body.userid; //not sure how this is passed yet
 
   replyData
-    .addReplyPost(replydetail, timestamp, userid, postid)
+    .addReply(replydetail, timestamp, userid, postid)
     .then((data) => {
       console.log("success adding reply", data);
     })

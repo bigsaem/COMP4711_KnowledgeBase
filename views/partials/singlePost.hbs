@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <!-- Date and replies -->
+        <!-- Date and replies tally -->
         <div class="row">
             <div class="col-9 posts-date">
                 <span>{{postDetail.timestamp}}</span>
@@ -32,13 +32,14 @@
             </div>
         </div>
 
+        <!-- Each individual reply -->
         {{#each postDetail.replyDetail}}
         {{>singleReply replyDetail=this}}
         {{/each}}
 
         <!-- The reply form -->
         <div class="row reply-hide singlePost-reply-comment">
-            <form>
+            <form action="/post/:postid/replies/comment" method="GET">
                 <textarea>
 
                 </textarea>
@@ -68,8 +69,10 @@
 
         }
         if (replyBox.classList.contains("reply-hide")) {
+            replyBox.classList.remove("reply-hide");
             replyBox.classList.add("reply-show");
         } else {
+            replyBox.classList.remove("reply-show");
             replyBox.classList.add("reply-hide");
         }
     }
