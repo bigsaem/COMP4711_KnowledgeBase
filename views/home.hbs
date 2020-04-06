@@ -24,7 +24,7 @@
                 <td>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                 </td>
-                <td><span class="home-profile-content">{{messages}}</span></td>
+                <td><span class="home-profile-content">{{messageCount}}</span></td>
             </tr>
             <tr>
                 <td>
@@ -131,17 +131,21 @@
         </div>
 
         <div id="home-posts-navigate">
+            {{#if prev}}
             <div id="home-back-posts">
-                <form>
-                    <button id="home-back-posts-btn" class="btn col" type="submit"><- Back</button>
-                </form>
+                <a href="/user/{{userid}}/home/{{prevPage}}">
+                    <button id="home-back-posts-btn" class="btn col">
+                        <- Back</button>
+                </a>
             </div>
+            {{/if}}
+            {{#if next}}
             <div id="home-next-posts">
-                <form>
+                <a href="/user/{{userid}}/home/{{nextPage}}">
                     <button id="home-next-posts-btn" class="btn col" type="submit">Next -></button>
-                </form>
+                </a>
             </div>
-
+            {{/if}}
         </div>
 
 

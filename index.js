@@ -27,7 +27,7 @@ const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const searchRoute = require("./routes/searchRoute");
 const postRoute = require("./routes/postRoute");
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 80;
 app.use(express.json());
 
 //session object added
@@ -76,9 +76,7 @@ app.get("/message", (req, res) => {
   res.render("message", { messagehbs: true });
 });
 
-app.get("/:userid/messages", (req, res) => {
-  res.render("messagespage", { messagespagehbs: true });
-});
+
 ////////////
 // SERVER //
 ////////////

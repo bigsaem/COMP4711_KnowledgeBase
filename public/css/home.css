@@ -145,16 +145,19 @@
     height: 100px;
     border-radius: 50%;
 }
+
 .posts-subject-text {
     font-size: 13pt;
     color: gray;
 }
+
 .posts-topic-text {
     padding-right: 5px;
     border: solid 1px rgb(39, 148, 221);
     text-align: center;
     margin-left: -35px;
 }
+
 .posts-topic-text span {
     width: 100%;
     color: rgb(39, 148, 221);
@@ -173,13 +176,13 @@ p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-  }
-
+}
 
 .posts-date {
     font-size: 10pt;
 }
-  .posts-replies {
+
+.posts-replies {
     text-decoration: underline;
     padding-right: 5px;
     text-align: center;
@@ -192,14 +195,12 @@ p {
 }
 
 #home-next-posts-btn, #home-back-posts-btn {
-  
     border-radius: 0%;
-    border: solid 1px  rgb(4, 118, 194);
+    border: solid 1px rgb(4, 118, 194);
     color: rgb(4, 118, 194);
     background-color: white;
     margin: 5px;
 }
-
 
 #home-posts-navigate {
     margin-left: 275px;
