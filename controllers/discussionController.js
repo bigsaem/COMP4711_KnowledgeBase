@@ -56,7 +56,8 @@ exports.getPost = async (req, res, next) => {
     },
   ];
   res.render("postpage", {
-    posts: postData,
+    loggedIn: true,
+    posts: postData
   });
 };
 
