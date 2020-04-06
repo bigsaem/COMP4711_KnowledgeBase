@@ -32,19 +32,6 @@ exports.getPost = async (req, res, next) => {
   let replyInfo = (await replyData.getReply(postid)).rows;
   let time = data.timestamp.toDateString();
 
-  console.log(replyInfo);
-  let postData = [
-    {
-      topic: data.topic,
-      subject: data.subject,
-      content: data.postdetail,
-      timestamp: time,
-      imageurl: data.imageurl,
-      replies: data.replies,
-      postid: data.postid,
-    },
-  ];
-
   let replies = [];
   replyInfo.forEach((reply) => {
     let time = reply.timestamp.toDateString();
@@ -56,9 +43,20 @@ exports.getPost = async (req, res, next) => {
     });
   });
 
+  let postData = [
+    {
+      topic: data.topic,
+      subject: data.subject,
+      content: data.postdetail,
+      timestamp: time,
+      imageurl: data.imageurl,
+      replies: data.replies,
+      postid: data.postid,
+      replyDetail: replies,
+    },
+  ];
   res.render("postpage", {
     posts: postData,
-    replies,
   });
 };
 

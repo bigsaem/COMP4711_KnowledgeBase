@@ -1,7 +1,7 @@
 const db = require("../db/db");
 const table = "messagereply";
 
-let postMessage = data => {
+let postMessage = (data) => {
   return new Promise((resolve, reject) => {
     db.query(
       `
@@ -15,16 +15,16 @@ let postMessage = data => {
               '${data.from}');
       `
     )
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
 };
 
-let getConversation = data => {
+let getConversation = (data) => {
   return new Promise((resolve, reject) => {
     db.query(
       `
@@ -37,17 +37,16 @@ let getConversation = data => {
           ORDER BY ${table}.timestamp ASC
       `
     )
-      .then(data => {
+      .then((data) => {
         resolve(data.rows);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
 };
 
-let getAllConversationHeader = data => {
-  console.log(data);
+let getAllConversationHeader = (data) => {
   return new Promise((resolve, reject) => {
     db.query(
       `
@@ -60,10 +59,10 @@ let getAllConversationHeader = data => {
       ORDER BY lastMessageTime DESC
       `
     )
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
@@ -72,5 +71,5 @@ let getAllConversationHeader = data => {
 module.exports = {
   post: postMessage,
   getOne: getConversation,
-  getAll: getAllConversationHeader
+  getAll: getAllConversationHeader,
 };
