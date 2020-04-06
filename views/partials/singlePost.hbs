@@ -40,9 +40,9 @@
         <!-- The reply form -->
         <div class="row reply-hide singlePost-reply-comment">
             <form action="/post/{{postDetail.postid}}/replies/comment" method="POST">
-                <textarea>
-
-                </textarea>
+                <input class="reply-hide" type="text" value="{{postDetail.postid}}" name="postid">
+                <textarea class="square-border form-control home-post-input-spacing" rows="3" name="replydetail"
+                    placeholder="Add your reply..."></textarea>
                 <input type="submit">
             </form>
         </div>
