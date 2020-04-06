@@ -53,8 +53,10 @@
 
 
     <div id="home-right-column" class="col-9">
-
-        <div id="home-post-question">
+        {{#if allPost}}
+            {{>myAllPost}}
+        {{else}}
+            <div id="home-post-question">
             <span id="home-question-text">What's your question today?</span>
 
             <form onsubmit="return isValidPostForm()" id="home-question-form" action="/post/createPost" method="POST">
@@ -147,8 +149,7 @@
             </div>
             {{/if}}
         </div>
-
-
+        {{/if}}
     </div>
 </div>
 
