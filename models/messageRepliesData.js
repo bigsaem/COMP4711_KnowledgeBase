@@ -30,7 +30,7 @@ let getConversation = (data) => {
       `
           SELECT * FROM ${table} 
           LEFT JOIN profile
-          ON ${table}.to = profile.userid
+          ON ${table}.from = profile.userid
           WHERE ((${table}.to = ${data.to} AND ${table}.from = ${data.userid})
           OR (${table}.to = ${data.userid} AND ${table}.from = ${data.to}))
           AND subject = '${data.subject}'
