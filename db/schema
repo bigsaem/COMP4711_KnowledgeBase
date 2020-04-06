@@ -16,7 +16,7 @@ CREATE TABLE messagepost (
 	postid serial NOT NULL,
 	topic varchar(100) NULL,
 	subject varchar(100) NULL,
-	postdetail varchar(200) NULL,
+	postdetail varchar(500) NULL,
 	"timestamp" date NULL,
 	userid serial NOT NULL,
 	CONSTRAINT messagepost_pk PRIMARY KEY (postid)
