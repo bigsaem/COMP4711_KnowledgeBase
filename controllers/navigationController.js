@@ -58,7 +58,7 @@ exports.getHomeInfo = async (req, res) => {
   });
 };
 
-exports.viewmyallpost = async(req, res) =>{
+exports.viewmyallpost = async (req, res) => {
   let myInfo = req.session.user;
   let myid = myInfo.userid;
   let isItMyProfile = myid == req.params.userid;
@@ -66,10 +66,6 @@ exports.viewmyallpost = async(req, res) =>{
   let likeCount = await likesData.getnumlikes(myid);
   let messages = await messageRepliesData.getAll(req.session.user);
 
-  if (!isItMyProfile) {
-    //res.redirect(`/user/${myid}/home`);
-    return;
-  }
   likeCount = likeCount.rows[0].count;
 
   res.render("home", {
@@ -83,9 +79,9 @@ exports.viewmyallpost = async(req, res) =>{
     likes: likeCount,
     myProfile: isItMyProfile,
     userid: myid,
-    allPosts: myPosts.rows
+    allPosts: myPosts.rows,
   });
-}
+};
 
 exports.viewProfilePage = async (req, res, next) => {
   let userid = req.params.userid;
@@ -115,7 +111,6 @@ exports.viewProfilePage = async (req, res, next) => {
     postCount: posts.rowCount,
     notMyProfile: notMyProfile,
     liked: liked,
-
   });
 };
 exports.viewSendMessagePage = async (req, res, next) => {

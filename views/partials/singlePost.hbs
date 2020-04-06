@@ -3,7 +3,7 @@
         <a href="/user/{{postDetail.userid}}"><img class="posts-user-picture" src="{{postDetail.imageurl}}" /></a>
     </div>
 
-    <div id="posts-start-of-subject" class="col-5">
+    <div id="posts-start-of-subject" class="col-10">
 
         <!-- Sets the subject and topic in a custom box -->
         <div class="row">
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <!-- Date and replies -->
+        <!-- Date and replies tally -->
         <div class="row">
             <div class="col-9 posts-date">
                 <span>{{postDetail.timestamp}}</span>
@@ -32,9 +32,20 @@
             </div>
         </div>
 
+        <!-- Each individual reply -->
         {{#each postDetail.replyDetail}}
         {{>singleReply replyDetail=this}}
         {{/each}}
+
+        <!-- The reply form -->
+        <div class="row reply-hide singlePost-reply-comment">
+            <form action="/post/:postid/replies/comment" method="GET">
+                <textarea>
+
+                </textarea>
+                <input type="submit">
+            </form>
+        </div>
 
     </div>
 </div>
@@ -42,9 +53,9 @@
 
 <script>
     function show_hide(element) {
-        alert("Triggered");
         let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
-        console.log(masterNode);
+        let replyBox = element.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-comment")[0];
+        console.log(replyBox);
         for (let i = 0; i < masterNode.length; i++) {
             if (masterNode[i].classList.contains("reply-hide")) {
                 masterNode[i].classList.remove("reply-hide");
@@ -52,7 +63,17 @@
             } else {
                 masterNode[i].classList.remove("reply-show");
                 masterNode[i].classList.add("reply-hide");
+                replyBox.classList.add("reply-hide");
             }
+
+
+        }
+        if (replyBox.classList.contains("reply-hide")) {
+            replyBox.classList.remove("reply-hide");
+            replyBox.classList.add("reply-show");
+        } else {
+            replyBox.classList.remove("reply-show");
+            replyBox.classList.add("reply-hide");
         }
     }
 </script>
