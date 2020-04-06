@@ -6,7 +6,7 @@ CREATE TABLE profile (
 	lastname varchar(50) NOT NULL,
 	email varchar(50) NOT NULL,
 	imageurl varchar(100) NULL,
-	description varchar(200) NULL,
+	description varchar(500) NULL,
 	country varchar(100) NULL,
 	"dateofbirth" date NULL,
 	CONSTRAINT profile_pk PRIMARY KEY (userid)
