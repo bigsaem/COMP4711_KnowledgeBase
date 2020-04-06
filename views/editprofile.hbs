@@ -1,29 +1,34 @@
-<div class="row editProfile" >
-<form action="/user/{{userObj.userid}}/edit_profile" method="POST">
-    <div id="login-preregistration-names" class="form-group">
-        <div class="row">
-            <input class="col form-control form-content-spacing" type="text" name="firstname" placeholder="firstname" />
-            <input class="col form-control form-content-spacing" type="text" name="lastname" placeholder="lastname" />
+<div class="row editProfile">
+    {{log this}}
+    <form action="/user/{{userObj.userid}}/edit_profile" method="POST">
+        <div id="login-preregistration-names" class="form-group">
+            <div class="row">
+                <input class="col form-control form-content-spacing" type="text" name="firstname"
+                    value="{{userObj.firstname}}" placeholder="firstname" />
+                <input class="col form-control form-content-spacing" type="text" name="lastname"
+                    value="{{userObj.lastname}}" placeholder="lastname" />
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <input class="col form-control" type="url" name="imageurl" placeholder="imageurl" />
-    </div>
-    <div class="row form-group">
-        <textarea class="col form-control" rows="5" name="description"
-            placeholder="a few lines about yourself..."></textarea>
-    </div>
-    <div class="row form-group">
-        <input class="col form-control" type="text" name="country" placeholder="country" />
-    </div>
-    <div class="row form-group">
-        <input class="col form-control" name="dateofbirth" placeholder="date of birth" type="text"
-            onfocus="(this.type='date')" onblur="(this.type='text')" />
-    </div>
-    <div class="rwo error-msg">
-        <b>{{editFailed}}</b>
-    </div>
-    <button id="login-preregistration-btn" class="btn btn-primary" type="submit">Edit profile</button>
-    </div>
+        <div class="form-group row">
+            <input class="col form-control" type="url" name="imageurl" value="{{userObj.imageurl}}"
+                placeholder="imageurl" />
+        </div>
+        <div class="row form-group">
+            <textarea class="col form-control" rows="5" name="description"
+                placeholder="a few lines about yourself...">{{userObj.description}}</textarea>
+        </div>
+        <div class="row form-group">
+            <input class="col form-control" type="text" name="country" value="{{userObj.country}}"
+                placeholder="country" />
+        </div>
+        <div class="row form-group">
+            <input class="col form-control" name="dateofbirth" value="{{userObj.dateofbirth}}"
+                placeholder="date of birth" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" />
+        </div>
+        <div class="rwo error-msg">
+            <b>{{editFailed}}</b>
+        </div>
+        <button id="login-preregistration-btn" class="btn btn-primary" type="submit">Edit profile</button>
+</div>
 </form>
 </div>
