@@ -20,7 +20,7 @@ exports.getHomeInfo = async (req, res) => {
   let next = pageNum != maxPage ? true : false; //for next or prev page button activation
   let prev = pageNum != 0 ? true : false;
   let myPosts = await messagePostData.getPost(myid);
-  let messages = await messageRepliesData.getAll(req.session.user);
+  let messages = await messageRepliesData.getAll({ userid: req.session.user });
   let likeCount = await likesData.getnumlikes(myid);
   let latestPosts;
   if (pageNum == 2) {
@@ -30,10 +30,6 @@ exports.getHomeInfo = async (req, res) => {
   }
 
   likeCount = likeCount.rows[0].count;
-<<<<<<< HEAD
-
-=======
->>>>>>> e13eca7268fa362a7e3130664dde81afc67c63a4
   latestPosts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
   });
@@ -64,26 +60,26 @@ exports.viewProfilePage = async (req, res, next) => {
   let profile = await profileData.getProfileById(userid);
   let likes = await likesData.getLikes(userid);
   let posts = await messagePostData.getPost(userid);
-  let messages = await messageRepliesData.getAll(req.session.user);
+  let messages = await messageRepliesData.getAll({ userid });
   let liked = false;
   profile = profile.rows[0];
-  posts.rows.forEach(post =>{
+  posts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
-  })
-  if(notMyProfile){
-    for(let i in likes.rows){
-      if(likes.rows[i].owner == myUserid) liked = true;
+  });
+  if (notMyProfile) {
+    for (let i in likes.rows) {
+      if (likes.rows[i].owner == myUserid) liked = true;
     }
   }
-  res.render('partials/userprofile', {
-    messageCount:messages.rowCount,
+  res.render("partials/userprofile", {
+    messageCount: messages.rowCount,
     loggedIn: true,
-    userObj:profile, 
-    likes:likes.rowCount, 
-    posts:posts.rows, 
-    postCount: posts.rowCount, 
-    notMyProfile:notMyProfile, 
-    liked:liked
+    userObj: profile,
+    likes: likes.rowCount,
+    posts: posts.rows,
+    postCount: posts.rowCount,
+    notMyProfile: notMyProfile,
+    liked: liked,
   });
 };
 exports.viewSendMessagePage = async (req, res, next) => {
@@ -93,10 +89,10 @@ exports.viewSendMessagePage = async (req, res, next) => {
   profile = profile.rows[0];
   let url = profile.imageurl;
   res.render("message", {
-    loggedIn:true,
+    loggedIn: true,
     myID,
     recipientID,
-    url
+    url,
   });
 };
 exports.viewMessagesPage = async (req, res, next) => {
@@ -119,7 +115,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     };
     messageDate = await handleConversation(info);
     res.render("messagespage", {
-      loggedIn:true,
+      loggedIn: true,
       messageHeader,
       messageDate,
       userID,
@@ -128,7 +124,7 @@ exports.viewMessagesPage = async (req, res, next) => {
     });
   } else {
     res.render("messagespage", {
-      loggedIn:true,
+      loggedIn: true,
       messageHeader,
       userID,
       subject: encodeURI(subject),
@@ -162,7 +158,6 @@ exports.getMessageHistory = async (req, res, next) => {
   });
 };
 
-<<<<<<< HEAD
 exports.sendMessage = async (req, res, next) => {
   let userID = req.params.userid;
   let recipientID = req.params.recipientid;
@@ -185,8 +180,6 @@ exports.sendMessage = async (req, res, next) => {
     );
   });
 };
-=======
->>>>>>> e13eca7268fa362a7e3130664dde81afc67c63a4
 
 let handleMessageHeader = (messages, userID) => {
   let messageHeader = [];
@@ -214,11 +207,6 @@ let handleMessageHeader = (messages, userID) => {
 
 let handleConversation = async (info) => {
   let messageHistory = await messageRepliesData.getOne(info);
-<<<<<<< HEAD
-
-  // console.log(messageHistory);
-=======
->>>>>>> e13eca7268fa362a7e3130664dde81afc67c63a4
   let messageGroups = messageHistory.reduce((messageGroups, data) => {
     let date = data.timestamp.toDateString();
     if (!messageGroups[date]) {
@@ -245,8 +233,7 @@ let handleConversation = async (info) => {
 
 exports.editProfilePage = async (req, res, next) => {
   res.render("editprofile", {
-    loggedIn:true, 
-    userObj: req.session.user 
+    loggedIn: true,
+    userObj: req.session.user,
   });
 };
-
