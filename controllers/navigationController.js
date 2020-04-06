@@ -66,10 +66,6 @@ exports.viewmyallpost = async(req, res) =>{
   let likeCount = await likesData.getnumlikes(myid);
   let messages = await messageRepliesData.getAll(req.session.user);
 
-  if (!isItMyProfile) {
-    //res.redirect(`/user/${myid}/home`);
-    return;
-  }
   likeCount = likeCount.rows[0].count;
 
   res.render("home", {
