@@ -2,6 +2,7 @@ const profileData = require("../models/profileData");
 const messageRepliesData = require("../models/messageRepliesData");
 const likesData = require("../models/likesData");
 const messagePostData = require("../models/messagePostData");
+const replyData = require("../models/replyData");
 
 exports.getHomeInfo = async (req, res) => {
   // TODO: We need a model which will get all unique profile likes
@@ -20,7 +21,7 @@ exports.getHomeInfo = async (req, res) => {
   let next = pageNum != maxPage ? true : false; //for next or prev page button activation
   let prev = pageNum != 0 ? true : false;
   let myPosts = await messagePostData.getPost(myid);
-  let messages = await messageRepliesData.getAll({ userid: req.session.user });
+  let messages = await messageRepliesData.getAll(req.session.user);
   let likeCount = await likesData.getnumlikes(myid);
   let latestPosts;
   if (pageNum == 2) {
@@ -30,9 +31,12 @@ exports.getHomeInfo = async (req, res) => {
   }
 
   likeCount = likeCount.rows[0].count;
-  latestPosts.rows.forEach((post) => {
+
+  for (const post of latestPosts.rows) {
     post.timestamp = post.timestamp.toDateString();
-  });
+    let replyInfo = await replyData.getReply(post.postid);
+    post.replyDetail = replyInfo.rows;
+  }
 
   res.render("home", {
     loggedIn: true,
@@ -60,7 +64,7 @@ exports.viewProfilePage = async (req, res, next) => {
   let profile = await profileData.getProfileById(userid);
   let likes = await likesData.getLikes(userid);
   let posts = await messagePostData.getPost(userid);
-  let messages = await messageRepliesData.getAll({ userid });
+  let messages = await messageRepliesData.getAll(userid);
   let liked = false;
   profile = profile.rows[0];
   posts.rows.forEach((post) => {
