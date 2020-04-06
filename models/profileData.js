@@ -17,10 +17,29 @@ var db = require('../db/db');
 // Add a single individual to the database
 function addProfile(data) {
     let sql =
-        `INSERT INTO profile (password, firstname, lastname, email, imageurl, description, country, dateofbirth)
-     VALUES('${data.password}', '${data.firstname}', '${data.lastname}', '${data.email}', '${data.imageurl}', '${data.description}', '${data.country}', '${data.dateofbirth}')`;
-    console.log(sql);
-    return db.query(sql);
+        `INSERT INTO profile 
+        (
+            password, 
+            firstname, 
+            lastname, 
+            email, 
+            imageurl, 
+            description, 
+            country, 
+            dateofbirth
+        )   VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`;
+    
+    return db.query(sql, 
+        [
+            data.password, 
+            data.firstname, 
+            data.lastname, 
+            data.email, 
+            data.imageurl, 
+            data.description, 
+            data.country, 
+            data.dateofbirth
+        ]);
 }
 
 function getProfileById(userid) {
@@ -41,8 +60,11 @@ function getProfileByEmail(email) {
 }
 
 function editProfileDB(user, userid) {
-    let sql = `UPDATE profile SET firstname='${user.firstname}', lastname='${user.lastname}', imageurl = '${user.imageurl}', description = '${user.description}', country = '${user.country}', dateofbirth = '${user.dateofbirth}'  where userid=${userid}`;
-    return db.query(sql);
+    let sql = `UPDATE profile SET firstname='${user.firstname}', lastname='${user.lastname}', imageurl = '${user.imageurl}', description = $1, country = '${user.country}', dateofbirth = '${user.dateofbirth}'  where userid=${userid}`;
+    return db.query(sql, 
+    [
+        user.description
+    ]);
 }
 
 function removeProfileByUserName(userid) {
