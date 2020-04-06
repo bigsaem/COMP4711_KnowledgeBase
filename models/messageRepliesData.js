@@ -47,6 +47,7 @@ let getConversation = data => {
 };
 
 let getAllConversationHeader = data => {
+  console.log(data);
   return new Promise((resolve, reject) => {
     db.query(
       `

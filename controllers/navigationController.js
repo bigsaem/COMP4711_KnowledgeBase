@@ -8,6 +8,7 @@ exports.getHomeInfo = async (req, res) => {
   let myInfo = req.session.user;
   let myid = myInfo.userid;
   let isItMyProfile = myid == req.params.userid;
+  console.log(req.session.user);
   if (!isItMyProfile) {
     res.redirect(`/user/${myid}/home`);
     return;
