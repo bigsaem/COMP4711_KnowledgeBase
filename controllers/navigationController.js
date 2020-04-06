@@ -58,7 +58,7 @@ exports.getHomeInfo = async (req, res) => {
   });
 };
 
-exports.viewmyallpost = async(req, res) =>{
+exports.viewmyallpost = async (req, res) => {
   let myInfo = req.session.user;
   let myid = myInfo.userid;
   let isItMyProfile = myid == req.params.userid;
@@ -79,9 +79,9 @@ exports.viewmyallpost = async(req, res) =>{
     likes: likeCount,
     myProfile: isItMyProfile,
     userid: myid,
-    allPosts: myPosts.rows
+    allPosts: myPosts.rows,
   });
-}
+};
 
 exports.viewProfilePage = async (req, res, next) => {
   let userid = req.params.userid;
@@ -90,7 +90,7 @@ exports.viewProfilePage = async (req, res, next) => {
   let profile = await profileData.getProfileById(userid);
   let likes = await likesData.getLikes(userid);
   let posts = await messagePostData.getPost(userid);
-  let messages = await messageRepliesData.getAll(userid);
+  let messages = await messageRepliesData.getAll({ userid });
   let liked = false;
   profile = profile.rows[0];
   posts.rows.forEach((post) => {
@@ -110,7 +110,6 @@ exports.viewProfilePage = async (req, res, next) => {
     postCount: posts.rowCount,
     notMyProfile: notMyProfile,
     liked: liked,
-
   });
 };
 exports.viewSendMessagePage = async (req, res, next) => {
