@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/css/message.css">
     <link rel="stylesheet" type="text/css" href="/css/messagespage.css">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/css/search.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -52,7 +53,10 @@
         <div id="main-searchbar" class="col-4">
             <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
-                <input id="main-searchbar-input" type="text" class="form-control" placeholder="Search">
+                <form action="/search" method="GET">
+                    <input id="main-searchbar-input" type="text" name="keyword" class="form-control" placeholder="Search">
+                    {{!-- <input type="submit" value="Submit"> --}}
+                </form>
             </div>
         </div>
 

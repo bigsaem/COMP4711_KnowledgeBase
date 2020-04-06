@@ -40,12 +40,27 @@ function getPostById(postid) {
 }
 
 function getTopicPost(topic) {
-  let sql = `SELECT * FROM messagepost where topic like '${topic}'`;
+  // let sql = `SELECT * FROM messagepost where topic like '${topic}'`;
+  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+              FROM messagepost 
+              LEFT JOIN reply
+              ON reply.postid = messagepost.postid
+              LEFT JOIN profile
+              ON messagepost.userid = profile.userid
+              WHERE topic like '${topic}'
+              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
   return db.query(sql);
 }
 //category
 function getSubjectPost(subject) {
-  let sql = `SELECT * FROM messagepost where subject like '${subject}'`;
+  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+              FROM messagepost 
+              LEFT JOIN reply
+              ON reply.postid = messagepost.postid
+              LEFT JOIN profile
+              ON messagepost.userid = profile.userid
+              WHERE subject like '%${subject}%'
+              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
   return db.query(sql);
 }
 
