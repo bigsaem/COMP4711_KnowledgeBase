@@ -1,8 +1,4 @@
-.singlePost-reply-profile-picture {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-}
+
 
 #posts-start-of-subject .singlePost-reply-box {
     padding-top:15px;
@@ -15,6 +11,14 @@
     height: 100%;
 }
 
+element.style {
+    display: inline-block;
+    vertical-align: top;
+}
+
+element.style {
+    display:inline-block;
+}
 
 .reply-hide {
     display: none !important;
@@ -23,4 +27,3 @@
 .reply-show {
     display: inline !important;
 }
-
