@@ -8,23 +8,19 @@ function addMessagePost(data) {
                       to_timestamp(${data.timestamp / 1000}),
                       '${data.userid}')
             `;
-  return db.query(sql, 
-    [
-      data.subject,
-      data.postdetail
-    ]);
+  return db.query(sql, [data.subject, data.postdetail]);
 }
 
 function getMessagePost(userid) {
   let sql = `
-      SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+      SELECT profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
       FROM messagepost 
       LEFT JOIN reply
       ON reply.postid = messagepost.postid
       LEFT JOIN profile
       ON messagepost.userid = profile.userid
       WHERE messagepost.userid = ${userid}
-      GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
+      GROUP BY profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
   `;
   return db.query(sql);
 }
@@ -65,7 +61,7 @@ function getSubjectPost(subject) {
               ON messagepost.userid = profile.userid
               WHERE subject like $1
               GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
-  return db.query(sql, ['%' + subject + '%']);
+  return db.query(sql, ["%" + subject + "%"]);
 }
 
 function getLatestPosts(limit, offset) {
