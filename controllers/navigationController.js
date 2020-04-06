@@ -87,13 +87,13 @@ exports.viewProfilePage = async (req, res, next) => {
   let userid = req.params.userid;
   let myUserid = req.session.user.userid;
   let notMyProfile = myUserid != userid;
-  let profile = await profileData.getProfileById(userid).catch(e=>console.log("profile" + e));
+  let profile = await profileData.getProfileById(userid).catch(e => console.log("profile" + e));
   profile = profile.rows[0];
-  let likes = await likesData.getLikes(userid).catch(e=>console.log("likes" + e));
-  let posts = await messagePostData.getPost(userid).catch(e=>console.log("posts" + e));
-  let messages = await messageRepliesData.getAll(profile).catch(e=>console.log("messages" + e));
+  let likes = await likesData.getLikes(userid).catch(e => console.log("likes" + e));
+  let posts = await messagePostData.getPost(userid).catch(e => console.log("posts" + e));
+  let messages = await messageRepliesData.getAll(profile).catch(e => console.log("messages" + e));
   let liked = false;
-  
+
   posts.rows.forEach((post) => {
     post.timestamp = post.timestamp.toDateString();
   });
@@ -119,11 +119,16 @@ exports.viewSendMessagePage = async (req, res, next) => {
   let profile = await profileData.getProfileById(recipientID);
   profile = profile.rows[0];
   let url = profile.imageurl;
+  let recipientName = profile.firstname + " " + profile.lastname;
+  let recipientEmail = profile.email;
+
   res.render("message", {
     loggedIn: true,
     myID,
     recipientID,
     url,
+    recipientEmail,
+    recipientName
   });
 };
 exports.viewMessagesPage = async (req, res, next) => {
@@ -222,7 +227,7 @@ let handleMessageHeader = (messages, userID) => {
     let imageURL = message.imageurl;
     let convoURL = `/user/${userID}/messages/view/${
       message.userid
-    }/?subject=${encodeURI(subject)}`;
+      }/?subject=${encodeURI(subject)}`;
 
     messageHeader.push({
       subject,
