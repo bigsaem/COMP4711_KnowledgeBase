@@ -47,12 +47,13 @@ let getConversation = data => {
 };
 
 let getAllConversationHeader = data => {
+  console.log(data);
   return new Promise((resolve, reject) => {
     db.query(
       `
       SELECT subject, MAX(timestamp) as lastMessageTime, imageurl, firstname, lastname, userid
       FROM ${table}
-      LEFT JOIN profile
+      INNER JOIN profile
       ON ${table}.to = profile.userid AND ${table}.from = ${data.userid}
       OR ${table}.from = profile.userid AND ${table}.to = ${data.userid}
       GROUP BY subject, imageurl, firstname, lastname, userid

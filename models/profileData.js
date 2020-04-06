@@ -52,7 +52,6 @@ function removeProfileByUserName(userid) {
 
 
 module.exports = {
-    loggedIn: true,
     add: addProfile,
     getProfileById: getProfileById,
     getProfileByEmail: getProfileByEmail,
