@@ -18,6 +18,11 @@
                 {{userObj.country}}
                 {{!-- Country --}}
             </div>
+            {{#unless notMyProfile}}
+            <div class="row">
+                <a class="home-profile-link" href="/user/{{userObj.userid}}/edit_profile">Edit profile</a>
+            </div>
+            {{/unless}}
         </div>
 
         <div id="profile-actions" class="col-4">
@@ -31,6 +36,7 @@
                 </a>
             </div>
             {{else}}
+
             <div class="row">
                 <a class="home-profile-link" href="/user/{{userObj.userid}}/messages">{{messageCount}} Messages</a>
             </div>
