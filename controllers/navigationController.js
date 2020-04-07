@@ -176,6 +176,7 @@ exports.viewMessagesPage = async (req, res, next) => {
       loggedIn: true,
       messageHeader,
       messageDate,
+      messages: true,
       userID,
       recipientID: messages[0].userid,
       subject: encodeURI(subject),
@@ -183,6 +184,7 @@ exports.viewMessagesPage = async (req, res, next) => {
   } else {
     res.render("messagespage", {
       loggedIn: true,
+      messages: false,
       messageHeader,
       userID,
       subject: encodeURI(subject),

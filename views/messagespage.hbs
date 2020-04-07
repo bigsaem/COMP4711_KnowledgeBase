@@ -11,6 +11,7 @@
             <div id="messages-details">
 
                 <div class="messages-by-day">
+                    {{#if messages}}
                     {{#each messageDate}}
                     {{>messageDate messageDateInfo=this}}
                     {{/each}}
@@ -25,6 +26,9 @@
                             </div>
                         </div>
                     </form>
+                    {{else}}
+                    <h1>Sorry there are no messages to display</h1>
+                    {{/if}}
                 </div>
 
 
