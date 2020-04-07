@@ -1,3 +1,7 @@
+body {
+    width: 100% !important;
+}
+
 #submitbutton {
     padding: 7px;
     background-color: solid rgb(184, 181, 181);
