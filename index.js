@@ -27,7 +27,7 @@ const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const searchRoute = require("./routes/searchRoute");
 const postRoute = require("./routes/postRoute");
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8000;
 app.use(express.json());
 
 //session object added

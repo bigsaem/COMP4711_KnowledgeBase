@@ -103,7 +103,7 @@ exports.viewProfilePage = async (req, res, next) => {
     .catch((e) => console.log("messages" + e));
   let liked = false;
 
-  posts.rows.forEach(async (post) => {
+  await posts.rows.forEach(async (post) => {
     post.timestamp = post.timestamp.toDateString();
     let replyInfo = (await replyData.getReply(post.postid)).rows;
 
@@ -210,6 +210,7 @@ exports.getMessageHistory = async (req, res, next) => {
 
   res.render("messagespage", {
     loggedIn: true,
+    messages: true,
     messageHeader,
     messageDate,
     userID,
