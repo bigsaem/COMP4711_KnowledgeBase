@@ -3,10 +3,10 @@ let db = require("../db/db");
 function addReplyPost(replydetail, timestamp, userid, postid) {
   let sql = `
             INSERT INTO reply (replydetail, "timestamp","userid","postid") 
-            VALUES('${replydetail}', to_timestamp(${timestamp / 1000}),
+            VALUES($1, to_timestamp(${timestamp / 1000}),
             '${userid}','${postid}')
             `; 
-  return db.query(sql);
+  return db.query(sql, [replydetail]);
 }
 
 function getReplyPost(postId) {
