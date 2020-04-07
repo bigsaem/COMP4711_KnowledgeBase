@@ -56,7 +56,6 @@
     function show_hide(element) {
         let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
         let replyBox = element.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-comment")[0];
-        console.log(replyBox);
         for (let i = 0; i < masterNode.length; i++) {
             if (masterNode[i].classList.contains("reply-hide")) {
                 masterNode[i].classList.remove("reply-hide");
