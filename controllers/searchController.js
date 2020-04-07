@@ -5,7 +5,6 @@ exports.searchKeyword = async (req, res, next) => {
   let keyword = req.query.keyword;
   let posts = (await messagePostData.getsubject(keyword)).rows;
   let allPost = await handlePostData(posts);
-  console.log(allPost.rows);
   res.render("searchpage", { loggedIn: true, postsData: allPost });
 };
 
@@ -13,12 +12,14 @@ exports.searchTopic = async (req, res, next) => {
   let topic = req.query.topic;
   let posts = (await messagePostData.getTopic(topic)).rows;
   let allPost = await handlePostData(posts);
+  console.log("topic allpost data: ", allPost);
+
   res.render("searchpage", { loggedIn: true, postsData: allPost });
 };
 
 let handlePostData = async (posts) => {
   let allPosts = [];
-  posts.forEach(async (data) => {
+  for (data of posts) {
     let replyInfo = (await replyData.getReply(data.postid)).rows;
     let time = data.timestamp.toDateString();
 
@@ -45,6 +46,6 @@ let handlePostData = async (posts) => {
       userid: data.userid,
     };
     allPosts.push(postData);
-  });
+  }
   return allPosts;
 };
