@@ -65,6 +65,7 @@ app.use(postRoute);
 app.get("/", (req, res) => {
   if (req.session.user == undefined || req.session.user.userid == undefined) {
     req.session.destroy();
+    console.log('i"m here')
     res.render("login");
   } else {
     res.redirect(`/user/${req.session.user.userid}/home`);
