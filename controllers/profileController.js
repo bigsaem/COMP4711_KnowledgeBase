@@ -15,25 +15,9 @@
 const profileData = require("../models/profileData");
 const messagePostData = require("../models/messagePostData");
 const likesData = require("../models/likesData");
+const messageRepliesData = require("../models/messageRepliesData");
 //i need handle bar variables to render a page
-exports.getProfile = async (req, res, next) => {
-  let userid = req.params.userid;
-  let myUserid = req.session.user.userid;
-  let notMyProfile = myUserid != userid;
-  let profile = await profileData.getProfileById(userid);
-  let likes = await likesData.getLikes(userid);
-  let posts = await messagePostData.getPost(userid);
-  profile = profile.rows[0];
-  let liked = false;
-  console.log(likes.rows);
-  if(notMyProfile){
-    for(let i in likes.rows){
-      if(likes.rows[i].owner == myUserid) liked = true;
-    }
-  }
 
-  res.render('partials/userprofile', {userObj:profile, likes:likes.rowCount, posts:posts.rows, postCount: posts.rowCount, notMyProfile:notMyProfile, liked:liked})
-};
 
 
 exports.getAllPosts = (req, res, next) => {

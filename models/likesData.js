@@ -1,13 +1,13 @@
 const db = require("../db/db");
 const table = "likes";
 
-let getLikes = recipient => {
+let getLikes = (recipient) => {
   return new Promise((resolve, reject) => {
     db.query(`SELECT * FROM ${table} WHERE recipient = '${recipient}';`)
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         reject(err);
       });
@@ -23,10 +23,10 @@ let addLikes = (recipient, owner) => {
               ('${recipient}', '${owner}');
       `
     )
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
@@ -40,17 +40,18 @@ let removeLikes = (recipient, owner) => {
             WHERE recipient = ${recipient} AND owner = ${owner};
         `
     )
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
 };
 
 function getNumberLikes(recipient) {
-  let sql = `SELECT COUNT( recipient = ${recipient} ) FROM likes`;
+  let sql = `SELECT COUNT( likeid ) FROM likes
+              WHERE recipient = ${recipient}`;
   return db.query(sql);
 }
 
@@ -58,5 +59,5 @@ module.exports = {
   add: addLikes,
   delete: removeLikes,
   getnumlikes: getNumberLikes,
-  getLikes: getLikes
+  getLikes: getLikes,
 };

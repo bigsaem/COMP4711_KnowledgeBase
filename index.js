@@ -27,7 +27,7 @@ const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 const searchRoute = require("./routes/searchRoute");
 const postRoute = require("./routes/postRoute");
-
+const PORT = process.env.PORT || 80;
 app.use(express.json());
 
 //session object added
@@ -36,7 +36,7 @@ app.use(
     cookieName: "session",
     secret: "random_string_goes_here",
     duration: 30 * 60 * 1000,
-    activeDuration: 5 * 60 * 1000
+    activeDuration: 5 * 60 * 1000,
   })
 );
 
@@ -46,7 +46,7 @@ app.engine(
   expressHbs({
     layoutsDir: "views/layouts/",
     defaultLayout: "main-layout",
-    extname: "hbs"
+    extname: "hbs",
   })
 );
 app.set("view engine", "hbs");
@@ -76,13 +76,10 @@ app.get("/message", (req, res) => {
   res.render("message", { messagehbs: true });
 });
 
-app.get("/:userid/messages", (req, res) => {
-  res.render("messagespage", { messagespagehbs: true });
-});
 ////////////
 // SERVER //
 ////////////
 
-app.listen(process.env.PORT || 8000);
+app.listen(PORT);
 
-console.log("node server is running on port 80");
+console.log("node server is running on port ", PORT);

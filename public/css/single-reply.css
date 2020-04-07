@@ -1,0 +1,20 @@
+.singlePost-reply-profile-picture {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.single-reply-img {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.single-reply-p {
+    padding:0 !important;
+}
+
+#single-reply-submit-btn {
+    margin-top: 10px;
+    float:right;
+    width: 30%;
+}

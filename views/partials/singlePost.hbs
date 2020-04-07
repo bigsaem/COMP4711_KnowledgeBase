@@ -1,0 +1,80 @@
+<div class="row posts-individual">
+    <div class="col-3">
+        <a href="/user/{{postDetail.userid}}"><img class="posts-user-picture" src="{{postDetail.imageurl}}" /></a>
+    </div>
+
+    <div id="posts-start-of-subject" class="col-9">
+
+        <!-- Sets the subject and topic in a custom box -->
+        <div class="row">
+            <div class="col-10">
+                <a href="/post/{{postDetail.postid}}"><span class="posts-subject-text">{{postDetail.subject}}</span></a>
+            </div>
+            <div class="col-2 posts-topic-text">
+                <span>{{postDetail.topic}}</span>
+            </div>
+        </div>
+
+        <!-- Text details of post subject matter, hidden after 3 rows, see element p css -->
+        <div class="row">
+            <div class="col">
+                <p class="posts-content-text">{{postDetail.postdetail}}</p>
+            </div>
+        </div>
+
+        <!-- Date and replies tally -->
+        <div class="row">
+            <div class="col-9 posts-date">
+                <span>{{postDetail.timestamp}}</span>
+            </div>
+            <div class="col-3 posts-replies">
+                <span><a onclick="show_hide(this)">{{postDetail.replies}} Replies</a></span>
+            </div>
+        </div>
+
+        <!-- Each individual reply -->
+        {{#each postDetail.replyDetail}}
+        {{>singleReply replyDetail=this}}
+        {{/each}}
+
+        <!-- The reply form for response and submit -->
+        <div class="row reply-hide singlePost-reply-comment">
+            <form action="/post/{{postDetail.postid}}/replies/comment" method="POST">
+                <input class="reply-hide" type="text" value="{{postDetail.postid}}" name="postid">
+                <textarea class="square-border form-control home-post-input-spacing" rows="3" name="replydetail"
+                    placeholder="Add your reply..."></textarea>
+                <input id="single-reply-submit-btn" class="form-control form-content-spacing btn btn-primary"
+                    type="submit" value="Comment" />
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    function show_hide(element) {
+        let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
+        let replyBox = element.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-comment")[0];
+        console.log(replyBox);
+        for (let i = 0; i < masterNode.length; i++) {
+            if (masterNode[i].classList.contains("reply-hide")) {
+                masterNode[i].classList.remove("reply-hide");
+                masterNode[i].classList.add("reply-show");
+            } else {
+                masterNode[i].classList.remove("reply-show");
+                masterNode[i].classList.add("reply-hide");
+                replyBox.classList.add("reply-hide");
+            }
+
+
+        }
+        if (replyBox.classList.contains("reply-hide")) {
+            replyBox.classList.remove("reply-hide");
+            replyBox.classList.add("reply-show");
+        } else {
+            replyBox.classList.remove("reply-show");
+            replyBox.classList.add("reply-hide");
+        }
+    }
+</script>

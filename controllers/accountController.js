@@ -57,7 +57,6 @@ exports.signup = (req, res, next) => {
     if (data.rows.length != 0) {
       res.render("login", { loginhbs: true, signupFail: "That email is not available to use" });
     } else {
-      //profileData.add(req.body);
       req.session.user = req.body;
       res.render('signup', { signuphbs: true });
     }
@@ -70,15 +69,13 @@ exports.signup_additionalInfo = (req, res, next) => {
     res.render("signup", { signuphbs: true, signupFail: "Fill all the input box" });
     return;
   }
-  console.log(req.body);
   let userObj = req.session.user;
   for (let key in req.body) {
     userObj[key] = req.body[key];
   }
-  console.log(userObj);
-  profileData.add(userObj).then(res=>{
+
+  profileData.add(userObj).then(data=>{
     profileData.getProfileByEmail(userObj.email).then(data=>{
-      console.log(data.rows[0]);
       userObj.userid = data.rows[0].userid;
       res.redirect(`/user/${userObj.userid}/home`);
     }).catch((e) => { console.log("error occured in get user id " + e); });

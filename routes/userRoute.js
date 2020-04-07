@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const profileController = require("../controllers/profileController");
 const navigationController = require("../controllers/navigationController");
-// const messageController = require("../controllers/messageController");
+const messageController = require("../controllers/messageController");
 
 router.get("/user/:userid/home", navigationController.getHomeInfo);
 
 router.get("/user/:userid/home/:pagenum", navigationController.getHomeInfo);
 
-router.get("/user/:userid/", profileController.getProfile);
+router.get("/user/:userid/", navigationController.viewProfilePage);
 
 router.get("/user/:userid/edit_profile", navigationController.editProfilePage);
 
@@ -26,15 +26,13 @@ router.get(
   navigationController.getMessageHistory
 );
 
-router.post(
-  "/user/:userid/messages/send/:recipientid",
-  navigationController.sendMessage
-);
 
-// router.get("/user/:userid/message", messageController.viewMessagePage);
+router.get("/user/:userid/message/send", navigationController.viewSendMessagePage);
 
-// router.get("/user/:userid/message/send", messageController.sendMessage);
+router.post("/user/:userid/messages/send/:recipientID", messageController.sendMessage);
 
-router.get("/user/:userid/posts", profileController.getAllPosts);
+router.post("/user/:userid/messages/init/:recipientID", messageController.sendInitMessage);
+
+router.get("/user/:userid/posts", navigationController.viewmyallpost);
 
 module.exports = router;

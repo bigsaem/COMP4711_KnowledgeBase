@@ -7,18 +7,18 @@
         </div>
         <div class="col-4">
             <div id="message-direct">
-                <form action="/user/:userid/message/send" method="POST">
+                <form action="/user/{{myID}}/messages/init/{{recipientID}}" method="POST">
                     <div class="form-group row">
                         <input class="col form-control" type="text" name="subject" placeholder="subject" />
                     </div>
-
+                    <input name="recipientEmail" value={{recipientEmail}} type="hidden" />
                     <div class="row form-group">
-                        <textarea class="col form-control" rows="5" name="message"
+                        <textarea class="col form-control" rows="5" name="content"
                             placeholder="message details..."></textarea>
                     </div>
 
                     <div class="row form-group">
-                        <button id="signup-submit-btn" class="btn btn-primary" type="submit">Message</button>
+                        <button id="messages-submit-btn" class="btn btn-primary" type="submit">Message</button>
                     </div>
                 </form>
             </div>

@@ -1,0 +1,27 @@
+#posts-start-of-subject{
+    padding:0;
+}
+
+#posts-start-of-subject .singlePost-reply-box {
+    padding-top:15px;
+}
+
+.reply-inline-divs {
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+
+element.style {
+    display: inline-block;
+    vertical-align: top;
+}
+
+element.style {
+    display:inline-block;
+}
+
+.reply-hide {
+    display: none !important;
+}
+
