@@ -70,6 +70,7 @@ app.get("/", (req, res) => {
   } else {
     res.redirect(`/user/${req.session.user.userid}/home`);
   }
+  //res.render("login");
 });
 
 app.get("/message", (req, res) => {
