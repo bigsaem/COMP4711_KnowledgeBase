@@ -1,65 +1,54 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  ::-webkit-input-placeholder {
-    font-style: italic;
-  }
-  :-moz-placeholder {
-    font-style: italic;  
-  }
-  ::-moz-placeholder {
-    font-style: italic;  
-  }
-  :-ms-input-placeholder {  
-    font-style: italic; 
-  }
-  
-  #form {
-    max-width:400px;
-    margin:auto;
-    padding: 10px;
-    border:1px solid rgb(184, 181, 181);
-    background-color: #f7f7f7;
-  }
-  /* Style the input container */
-  .input-container {
+#login-navbar {
+    width: 100%;
+    background-color: #ffffff;
     display: flex;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  /* Style the form icons */
-  .icon {
+    justify-content: space-between;
+}
+
+#login-title {
+    font-size: 20pt;
     padding: 10px;
-    background: #f0ad4e;
-    color: white;
-    min-width: 50px;
-    text-align: center;
-  }
-  
-  /* Style the input fields */
-  .input-field {
-    width: 100%;
+}
+
+#login-title #login-title-base {
+    color: #00BFFF;
+}
+
+.form-content-spacing {
+    margin-right: 5px;
+}
+
+#login-navbarsubmit {
     padding: 10px;
-    outline: none;
-  }
-  
-  .input-field:focus {
-    border: 2px solid #f0ad4e;
-  }
-  
-  /* Set a style for the submit button */
-  .btn {
-    background-color: #f0ad4e;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
+    width: 500px;
+}
+
+#login-register {
+    padding-top: 10px;
     width: 100%;
-    opacity: 0.9;
-  }
-  
-  .btn:hover {
-    opacity: 1;
-  }
+}
+
+#login-main-image {
+    max-width: 100%;
+    max-height: 100%;
+    padding-left: 10px;
+    padding-right: 100px;
+}
+
+#login-preregistration {
+    padding-right: 50px;
+}
+
+#login-preregistration-title {
+    font-size: 30pt;
+    padding-bottom: 15px;
+}
+
+#login-preregistration-btn {
+    margin: 1px;
+    width: 100%;
+}
+
+.error-msg{
+    color:red;
+}

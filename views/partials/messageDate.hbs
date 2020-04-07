@@ -1,0 +1,6 @@
+<div class="messages-date">
+    <span class="messages-specific-date">{{messageDateInfo.date}}</span>
+    {{#each messageDateInfo.data}}
+    {{> singleMessage singleMessageInfo=this}}
+    {{/each}}
+</div>

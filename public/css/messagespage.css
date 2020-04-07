@@ -1,0 +1,75 @@
+#messages-container {
+    margin-top: 50px;
+}
+
+.messages-pictures {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#messages-details {
+    border-left: solid 3px whitesmoke;
+}
+
+.messages-pictures-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.messages-list {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.messages-list:hover {
+    background-color: whitesmoke;
+}
+
+.messages-date {
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.messages-specific-date {
+    color: lightslategray;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.messages-specific-date::before,
+.messages-specific-date::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid lightslategray;
+}
+
+.messages-specific-date::before {
+    margin-right: .25em;
+}
+
+.messages-specific-date::after {
+    margin-left: .25em;
+}
+
+.dot {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 10pt;
+}
+
+#messages-send-form {
+    margin-left: 15px;
+}
+
+#messages-submit-div {
+    width: 100%;
+    background-color: whitesmoke;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}

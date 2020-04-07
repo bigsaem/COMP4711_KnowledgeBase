@@ -1,0 +1,27 @@
+<div id="message-container" class="container">
+    <div class="row">
+        <div id="message-image-location" class="col-3">
+
+            <img src="{{url}}" id="message-picture">
+
+        </div>
+        <div class="col-4">
+            <div id="message-direct">
+                <form action="/user/:userid/message/send" method="POST">
+                    <div class="form-group row">
+                        <input class="col form-control" type="text" name="subject" placeholder="subject" />
+                    </div>
+
+                    <div class="row form-group">
+                        <textarea class="col form-control" rows="5" name="message"
+                            placeholder="message details..."></textarea>
+                    </div>
+
+                    <div class="row form-group">
+                        <button id="signup-submit-btn" class="btn btn-primary" type="submit">Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

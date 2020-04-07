@@ -1,25 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Knowledge Base</title>
+
+    <!-- Generic CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/main-layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
+    <link rel="stylesheet" type="text/css" href="/css/userprofile.css">
+    <link rel="stylesheet" type="text/css" href="/css/message.css">
+    <link rel="stylesheet" type="text/css" href="/css/messagespage.css">
     <link rel="stylesheet" type="text/css" href="/css/home.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-    <title>Justin Cervantes Lab 5</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
+
 <body>
-    <!-- On the login screen, do not show the logout navbar which should be displayed throughout the rest of the site -->
-    {{#if login}}
-    {{else}}
-    <div id="navbar">
-        <form id="headerform" action="/logout" method="GET">
-            <input id="submitbutton" type="submit" value="Logout"></input>
-        </form>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+
+    {{#if loggedIn}}
+    <!-- The main navbar -->
+    <div id="main-navbar" class="row">
+
+        <div id="main-title" class="col-1">
+            <span>
+                <a href="/">
+                    <span id="main-title-k">k</span><span id="main-title-b">b</span>
+                </a>
+            </span>
+        </div>
+
+        <div id="main-searchbar" class="col-4">
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input id="main-searchbar-input" type="text" class="form-control" placeholder="Search">
+            </div>
+        </div>
+
+        <div class="col-5">
+
+        </div>
+
+        <div class="col-2">
+            <form action="/signup" method="POST">
+                <input id="main-navbar-submit" class="form-control col form-content-spacing btn btn-primary" type="submit" name="logout"
+                    value="Logout" />
+            </form>
+        </div>
+
     </div>
+    {{else}}
+    <!-- On the login screen, do not show the main nav-bar -->
+
     {{/if}}
 
     {{{body}}}
 
 </body>
+
 </html>

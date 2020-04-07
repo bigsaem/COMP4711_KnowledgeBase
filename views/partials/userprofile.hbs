@@ -1,0 +1,83 @@
+<div class="container">
+
+    <div class="row">
+        <div id="profile-overview" class="col-6">
+            <div class="row">
+        
+                <img src="{{userObj.imageurl}}" id="userprofile-picture">
+                {{!-- <img src="https://randomuser.me/api/portraits/men/7.jpg" id="userprofile-picture"> --}}
+            </div>
+            <div class="row" id="userprofile-name">
+                {{userObj.firstname}} {{userObj.lastname}}
+                {{!-- Kevin Hudson --}}
+            </div>
+            <div class="row" id="userprofile-facts">
+                {{userObj.description}}
+                {{!-- Team Lead | Part-time Singer | Fulltime Dad --}}
+            </div>
+            <div class="row" id="userprofile-country">
+                {{userObj.country}}
+                {{!-- Country --}}
+            </div>
+
+        </div>
+
+        <div id="profile-actions" class="col-4">
+            <div id="userprofile-empty-row" class="row">
+                <br />
+            </div>
+            <div class="row">
+                <button class="btn btn-primary">Message</button>
+            </div>
+            <div class="row">
+                <br />
+            </div>
+            <div class="row">
+                <span class="profilefontclr">{{likes}} Likes</span>
+                <!-- This should refresh the page -->
+                {{#if notMyProfile}}
+                    {{#if liked}}
+                    <form id="userprofilelikeform" action="/user/{{userObj.userid}}/removeLike" method="POST">
+                        <input id="userprofile-dislike-symbol" type="submit" value="-">
+                    </form>
+                    {{else}}
+                    <form id="userprofiledislikeform" action="/user/{{userObj.userid}}/like" method="POST">
+                        <input id="userprofile-like-symbol" type="submit" value="+">
+                    </form>
+                    {{/if}}
+                {{/if}}
+                
+            </div>
+            <div class="row">
+                <span class="profilefontclr">{{postCount}} Posts</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+    <div class="row">
+        
+        <br />
+        </div><div class="row">
+        <br />
+        </div>
+        <div class="row">
+        <h1 id="userprofileposts">All posts by {{userObj.name}}</h1>
+        {{!-- <h1 id="userprofileposts">All posts by Kevin</h1> --}}
+    </div>
+    
+    {{#each posts}}
+        <div class="posts">
+            <img src="{{../userObj.imageurl}}">
+            <p>
+                <b>{{this.subject}}</b>
+                {{this.postdetail}}
+                {{this.topic}}
+                {{this.timestamp}}
+            </p>
+        </div>
+        
+    {{/each}}
+
+</div>

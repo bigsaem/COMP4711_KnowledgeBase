@@ -1,0 +1,38 @@
+<div id="messages-container" class="container">
+    <div class="row">
+        <!-- List of messages column -->
+        <div id="messages-column" class="col-4 list-group">
+            {{#each messageHeader}}
+            {{> messageHeader messageHeaderInfo=this }}
+            {{/each}}
+        </div>
+
+        <div class="col-8">
+            <div id="messages-details">
+
+                <div class="messages-by-day">
+                    {{#each messageDate}}
+                    {{>messageDate messageDateInfo=this}}
+                    {{/each}}
+                    <form id="messages-send-form" action="/user/{{userID}}/messages/send/{{recipientID}}" method="POST">
+                        <div class="row">
+                            <textarea class="col" rows="5" name="response" placeholder="Write a message..."></textarea>
+                        </div>
+                        <input name="subject" value="{{subject}}" type="hidden" />
+                        <div class="row">
+                            <div id="messages-submit-div">
+                                <button id="messages-submit-btn" class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
