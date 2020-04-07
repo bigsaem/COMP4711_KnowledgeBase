@@ -27,51 +27,51 @@ function getMessagePost(userid) {
 
 function getPostById(postid) {
   let sql = `
-        SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+        SELECT profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
         FROM messagepost 
         LEFT JOIN reply
         ON reply.postid = messagepost.postid
         LEFT JOIN profile
         ON messagepost.userid = profile.userid
         WHERE messagepost.postid = ${postid}
-        GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
+        GROUP BY profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
             `;
   return db.query(sql);
 }
 
 function getTopicPost(topic) {
   // let sql = `SELECT * FROM messagepost where topic like '${topic}'`;
-  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+  let sql = ` SELECT profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
               FROM messagepost 
               LEFT JOIN reply
               ON reply.postid = messagepost.postid
               LEFT JOIN profile
               ON messagepost.userid = profile.userid
               WHERE topic like '${topic}'
-              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
+              GROUP BY profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
   return db.query(sql);
 }
 //category
 function getSubjectPost(subject) {
-  let sql = ` SELECT messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+  let sql = ` SELECT profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
               FROM messagepost 
               LEFT JOIN reply
               ON reply.postid = messagepost.postid
               LEFT JOIN profile
               ON messagepost.userid = profile.userid
               WHERE subject like $1
-              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
+              GROUP BY profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl`;
   return db.query(sql, ["%" + subject + "%"]);
 }
 
 function getLatestPosts(limit, offset) {
-  let sql = ` SELECT messagepost.postid, messagepost.userid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
+  let sql = ` SELECT profile.userid, messagepost.postid, messagepost.userid, topic, subject, postdetail, messagepost.timestamp, COUNT(replyid) as replies, imageurl
               FROM messagepost 
               LEFT JOIN reply
               ON reply.postid = messagepost.postid
               LEFT JOIN profile
               ON messagepost.userid = profile.userid
-              GROUP BY messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
+              GROUP BY profile.userid, messagepost.postid, topic, subject, postdetail, messagepost.timestamp, imageurl
               ORDER BY postid DESC LIMIT ${limit} OFFSET ${offset}
             `;
   return new Promise((resolve, reject) => {
