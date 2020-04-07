@@ -17,7 +17,7 @@ exports.searchTopic = async (req, res, next) => {
 
 let handlePostData = async (posts) => {
   let allPosts = [];
-  posts.forEach(async (data) => {
+  for (data in posts) {
     let replyInfo = (await replyData.getReply(data.postid)).rows;
     let time = data.timestamp.toDateString();
 
@@ -44,6 +44,6 @@ let handlePostData = async (posts) => {
       userid: data.userid,
     };
     allPosts.push(postData);
-  });
+  }
   return allPosts;
 };
