@@ -56,6 +56,15 @@
     function show_hide(element) {
         let masterNode = element.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-box");
         let replyBox = element.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("singlePost-reply-comment")[0];
+
+        if (replyBox.classList.contains("reply-hide")) {
+            replyBox.classList.remove("reply-hide");
+            replyBox.classList.add("reply-show");
+        } else {
+            replyBox.classList.remove("reply-show");
+            replyBox.classList.add("reply-hide");
+        }
+
         for (let i = 0; i < masterNode.length; i++) {
             if (masterNode[i].classList.contains("reply-hide")) {
                 masterNode[i].classList.remove("reply-hide");
@@ -68,12 +77,6 @@
 
 
         }
-        if (replyBox.classList.contains("reply-hide")) {
-            replyBox.classList.remove("reply-hide");
-            replyBox.classList.add("reply-show");
-        } else {
-            replyBox.classList.remove("reply-show");
-            replyBox.classList.add("reply-hide");
-        }
+
     }
 </script>

@@ -3,7 +3,7 @@
 }
 
 #posts-start-of-subject .singlePost-reply-box {
-    padding-top:15px;
+    padding:5px 0px 5px 0px !important;
 }
 
 .reply-inline-divs {
