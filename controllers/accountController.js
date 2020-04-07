@@ -1,3 +1,17 @@
+/*------------------------------------------------------------------------------------------------------------------
+-- FILE: accountController.js
+--
+-- DATE: March 31, 2020
+--
+-- REVISIONS: 
+--
+-- DESIGNER:    Sam Lee
+--
+-- PROGRAMMER:  Sam Lee
+--
+-- NOTES:
+-- This file manages sign in, sign up and sign out with validation.
+----------------------------------------------------------------------------------------------------------------------*/
 const profileData = require("../models/profileData");
 
 //check if the user is already logged in and if so, redirect to the 'home' page
@@ -19,6 +33,7 @@ exports.signin = (req, res, next) => {
   let result = profileData.getProfileByEmail(email);
   result.then((data) => {
     if (data.rows.length == 0) {
+      console.log(data.rows);
       res.render("login", { loginhbs: true, signinFail: "login failed" });
     }
     else if (password === data.rows[0].password) {
