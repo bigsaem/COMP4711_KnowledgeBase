@@ -1,10 +1,6 @@
 const messagePostData = require("../models/messagePostData");
 const replyData = require("../models/replyData");
 
-exports.viewCreatePage = (req, res, next) => {
-  console.log("viewCreatePage");
-};
-
 exports.createPost = async (req, res, next) => {
   let data = req.body;
   data.timestamp = Date.now();
@@ -47,7 +43,7 @@ exports.getPost = async (req, res, next) => {
     {
       topic: data.topic,
       subject: data.subject,
-      content: data.postdetail,
+      postdetail: data.postdetail,
       timestamp: time,
       imageurl: data.imageurl,
       replies: data.replies,
