@@ -38,7 +38,7 @@ let handlePostData = async (posts) => {
     let postData = {
       topic: data.topic,
       subject: data.subject,
-      content: data.postdetail,
+      postdetail: data.postdetail,
       timestamp: time,
       imageurl: data.imageurl,
       replies: data.replies,
