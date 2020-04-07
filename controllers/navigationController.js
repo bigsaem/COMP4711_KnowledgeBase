@@ -66,7 +66,23 @@ exports.viewmyallpost = async (req, res) => {
   let myPosts = await messagePostData.getPost(myid);
   let likeCount = await likesData.getnumlikes(myid);
   let messages = await messageRepliesData.getAll(req.session.user);
+  for (post of myPosts.rows){
+    console.log(post)
+    post.timestamp = post.timestamp.toDateString();
+    let replyInfo = (await replyData.getReply(post.postid)).rows;
 
+    let replies = [];
+    replyInfo.forEach((reply) => {
+      let time = reply.timestamp.toDateString();
+      replies.push({
+        replydetail: reply.replydetail,
+        timestamp: time,
+        imageurl: reply.imageurl,
+        name: reply.firstname + " " + reply.lastname,
+      });
+    });
+    post.replyDetail = replies;
+  };
   likeCount = likeCount.rows[0].count;
 
   res.render("home", {
@@ -103,7 +119,8 @@ exports.viewProfilePage = async (req, res, next) => {
     .catch((e) => console.log("messages" + e));
   let liked = false;
 
-  await posts.rows.forEach(async (post) => {
+  for (post of posts.rows){
+    console.log(post)
     post.timestamp = post.timestamp.toDateString();
     let replyInfo = (await replyData.getReply(post.postid)).rows;
 
@@ -117,8 +134,9 @@ exports.viewProfilePage = async (req, res, next) => {
         name: reply.firstname + " " + reply.lastname,
       });
     });
-    post["replyDetail"] = replies;
-  });
+    post.replyDetail = replies;
+  };
+  console.log(posts.rows);
   if (notMyProfile) {
     for (let i in likes.rows) {
       if (likes.rows[i].owner == myUserid) liked = true;

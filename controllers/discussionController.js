@@ -5,7 +5,6 @@ exports.createPost = async (req, res, next) => {
   let data = req.body;
   data.timestamp = Date.now();
   data.userid = req.session.user.userid;
-  console.log(data);
   await messagePostData
     .addPost(data)
     .then(() => {
@@ -17,17 +16,11 @@ exports.createPost = async (req, res, next) => {
     });
 };
 
-exports.deletePost = (req, res, next) => {
-  // dont know if this is needed yet
-  console.log("deletePost");
-};
-
 exports.getPost = async (req, res, next) => {
   let postid = req.params.postid;
   let data = (await messagePostData.getPostId(postid)).rows[0];
   let replyInfo = (await replyData.getReply(postid)).rows;
   let time = data.timestamp.toDateString();
-
   let replies = [];
   replyInfo.forEach((reply) => {
     let time = reply.timestamp.toDateString();
@@ -85,7 +78,6 @@ exports.getAllReplies = (req, res, next) => {
 };
 
 exports.addComment = (req, res, next) => {
-  console.log(req);
   let postid = req.params.postid;
   let replydetail = req.body.replydetail;
   let timestamp = Date.now();
