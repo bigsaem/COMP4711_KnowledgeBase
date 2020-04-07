@@ -53,11 +53,12 @@ exports.getPost = async (req, res, next) => {
       replies: data.replies,
       postid: data.postid,
       replyDetail: replies,
+      userid: data.userid,
     },
   ];
   res.render("postpage", {
     loggedIn: true,
-    posts: postData
+    posts: postData,
   });
 };
 
@@ -92,7 +93,7 @@ exports.addComment = (req, res, next) => {
   let postid = req.params.postid;
   let replydetail = req.body.replydetail;
   let timestamp = Date.now();
-  let userid =  req.session.user.userid;
+  let userid = req.session.user.userid;
 
   replyData
     .addReply(replydetail, timestamp, userid, postid)

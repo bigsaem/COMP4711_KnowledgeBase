@@ -6,7 +6,7 @@ const replyData = require("../models/replyData");
 
 exports.getHomeInfo = async (req, res) => {
   // TODO: We need a model which will get all unique profile likes
-  
+
   let myInfo = req.session.user;
   let myid = myInfo.userid;
   let isItMyProfile = myid == req.params.userid;
@@ -88,15 +88,36 @@ exports.viewProfilePage = async (req, res, next) => {
   let userid = req.params.userid;
   let myUserid = req.session.user.userid;
   let notMyProfile = myUserid != userid;
-  let profile = await profileData.getProfileById(userid).catch(e => console.log("profile" + e));
+  let profile = await profileData
+    .getProfileById(userid)
+    .catch((e) => console.log("profile" + e));
   profile = profile.rows[0];
-  let likes = await likesData.getLikes(userid).catch(e => console.log("likes" + e));
-  let posts = await messagePostData.getPost(userid).catch(e => console.log("posts" + e));
-  let messages = await messageRepliesData.getAll(profile).catch(e => console.log("messages" + e));
+  let likes = await likesData
+    .getLikes(userid)
+    .catch((e) => console.log("likes" + e));
+  let posts = await messagePostData
+    .getPost(userid)
+    .catch((e) => console.log("posts" + e));
+  let messages = await messageRepliesData
+    .getAll(profile)
+    .catch((e) => console.log("messages" + e));
   let liked = false;
 
-  posts.rows.forEach((post) => {
+  posts.rows.forEach(async (post) => {
     post.timestamp = post.timestamp.toDateString();
+    let replyInfo = (await replyData.getReply(post.postid)).rows;
+
+    let replies = [];
+    replyInfo.forEach((reply) => {
+      let time = reply.timestamp.toDateString();
+      replies.push({
+        replydetail: reply.replydetail,
+        timestamp: time,
+        imageurl: reply.imageurl,
+        name: reply.firstname + " " + reply.lastname,
+      });
+    });
+    post["replyDetail"] = replies;
   });
   if (notMyProfile) {
     for (let i in likes.rows) {
@@ -129,7 +150,7 @@ exports.viewSendMessagePage = async (req, res, next) => {
     recipientID,
     url,
     recipientEmail,
-    recipientName
+    recipientName,
   });
 };
 exports.viewMessagesPage = async (req, res, next) => {
@@ -155,6 +176,7 @@ exports.viewMessagesPage = async (req, res, next) => {
       loggedIn: true,
       messageHeader,
       messageDate,
+      messages: true,
       userID,
       recipientID: messages[0].userid,
       subject: encodeURI(subject),
@@ -162,6 +184,7 @@ exports.viewMessagesPage = async (req, res, next) => {
   } else {
     res.render("messagespage", {
       loggedIn: true,
+      messages: false,
       messageHeader,
       userID,
       subject: encodeURI(subject),
@@ -228,7 +251,7 @@ let handleMessageHeader = (messages, userID) => {
     let imageURL = message.imageurl;
     let convoURL = `/user/${userID}/messages/view/${
       message.userid
-      }/?subject=${encodeURI(subject)}`;
+    }/?subject=${encodeURI(subject)}`;
 
     messageHeader.push({
       subject,
