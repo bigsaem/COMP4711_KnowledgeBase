@@ -14,6 +14,10 @@ const pool = new Pool({
 //   user: "postgres",
 //   database: "c4711",
 //   password: "pgpass",
+<<<<<<< HEAD
 //   port: 5432,
+=======
+//   port: 5432
+>>>>>>> parent of 9517cbc... error message on message page if no messages
 // });
 module.exports = pool;
