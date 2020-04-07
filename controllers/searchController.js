@@ -5,6 +5,7 @@ exports.searchKeyword = async (req, res, next) => {
   let keyword = req.query.keyword;
   let posts = (await messagePostData.getsubject(keyword)).rows;
   let allPost = await handlePostData(posts);
+  console.log(allPost.rows);
   res.render("searchpage", { loggedIn: true, postsData: allPost });
 };
 
