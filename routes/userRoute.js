@@ -13,25 +13,29 @@ router.get("/user/:userid/", navigationController.viewProfilePage);
 router.get("/user/:userid/edit_profile", navigationController.editProfilePage);
 
 router.post("/user/:userid/edit_profile", profileController.editProfile);
-// router.get("/user/:userid/updateProfile", profileController.updateProfile);
 
 router.post("/user/:userid/like", profileController.addLike);
 
 router.post("/user/:userid/removeLike", profileController.removeLike);
 
-router.get("/user/:userid/messages", navigationController.viewMessagesPage);
+router.get("/user/:userid/messages", messageController.viewMessagesPage);
 
 router.get(
   "/user/:userid/messages/view/:recipientid",
-  navigationController.getMessageHistory
+  messageController.getMessageHistory
 );
 
+router.get("/user/:userid/message/send", messageController.viewSendMessagePage);
 
-router.get("/user/:userid/message/send", navigationController.viewSendMessagePage);
+router.post(
+  "/user/:userid/messages/send/:recipientID",
+  messageController.sendMessage
+);
 
-router.post("/user/:userid/messages/send/:recipientID", messageController.sendMessage);
-
-router.post("/user/:userid/messages/init/:recipientID", messageController.sendInitMessage);
+router.post(
+  "/user/:userid/messages/init/:recipientID",
+  messageController.sendInitMessage
+);
 
 router.get("/user/:userid/posts", navigationController.viewmyallpost);
 
