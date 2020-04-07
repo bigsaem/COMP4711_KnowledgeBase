@@ -2,7 +2,6 @@ const db = require("../db/db");
 const table = "messagereply";
 
 let postMessage = (data) => {
-  console.log(data);
   return new Promise((resolve, reject) => {
     db.query(
       `
